@@ -14,3 +14,6 @@
 $router->get('/', function () use ($router) {
     return $router->app->version();
 });
+
+$router->get('project/{id}', 'ProjectController@show');
+$router->post('project/store', 'ProjectController@store');
