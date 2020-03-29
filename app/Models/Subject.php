@@ -5,9 +5,9 @@ namespace App\Models;
 use App\Interfaces\iCrudable;
 use Illuminate\Database\Eloquent\Model;
 
-class Project extends Model implements iCrudable
+class Subject extends Model implements iCrudable
 {
-    protected $table = 'projects';
+    protected $table = 'subjects';
 
     protected $guarded = [];
 
@@ -20,13 +20,15 @@ class Project extends Model implements iCrudable
      * Get all fields 
      *
      * @return Array
-     */
+     */    
     public function getFields()
     {
         return [
-            'project_id', 
-            'name', 
-            'description'
+            'subject_name', 
+            'display_name', 
+            'staff_notes',
+            'keywords',
+            'loc'
         ];
     }
 
@@ -34,13 +36,12 @@ class Project extends Model implements iCrudable
      * Get all validations 
      *
      * @return Array
-     */
+     */    
     public function getValidations()
     {
         return [
-            'project_id' => 'required',
-            'name' => 'required',
-            'description' => 'required'
+            'subject_name' => 'required',
+            'display_name' => 'required'
         ];
     }
 }
