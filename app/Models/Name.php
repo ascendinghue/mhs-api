@@ -67,13 +67,18 @@ class Name extends Model implements iCrudable
         ];
     }
 
+    /**
+     * Get the Name's name_key
+     *
+     * @return string
+     */    
     public function getNameKeyAttribute()
     {
         return implode('-',[
-            $this->family_name,
-            $this->given_name,
-            $this->middle_name,
-            $this->date_of_birth
+            strtolower($this->family_name),
+            strtolower($this->given_name),
+            strtolower($this->middle_name),
+            strtolower($this->date_of_birth)
         ]);
     }
 }
