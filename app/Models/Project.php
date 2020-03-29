@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Models;
+namespace Models;
 
 use App\Interfaces\iCrudable;
 use Illuminate\Database\Eloquent\Model;
@@ -11,10 +11,32 @@ class Project extends Model implements iCrudable
 
     protected $guarded = [];
 
+    /**
+     * The fields that shouldn't be shown
+     *
+     * @var array
+     */    
     protected $hidden = [
         'created_at',
         'updated_at'
     ];
+
+    /**
+     * The relationships that should be eager loaded.
+     *
+     * @var array
+     */
+    protected $with = [
+        'subjects'
+    ];
+
+    /**
+     * The subjects that belong to the project.
+     */
+    public function subjects()
+    {
+        return $this->belongsToMany('Models\Subject', 'project_subject', 'id', 'id');
+    }
 
     /**
      * Get all fields 
