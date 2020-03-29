@@ -8,32 +8,16 @@ use Illuminate\Http\Request;
 
 class ProjectController extends Controller
 {
-    /**
-     * Retrieve the project for the given ID.
-     *
-     * @param  int  $id
-     * @return Response
-     */
-    public function show($id)
-    {
-        return Project::findOrFail($id);
-    }
 
-    /**
-     * Store a new project.
-     *
-     * @param  Request  $request
-     * @return Response
-     */
-    public function store(Request $request)
+    public function __construct(Project $project)
     {
-        $this->validate($request, [
+        $this->_model = $project;
+        $this->_fields = ['project_id', 'name', 'description'];
+        $this->_validations = [
             'project_id' => 'required',
             'name' => 'required',
             'description' => 'required'
-        ]);
-
-        $data = $request->only(['project_id', 'name', 'description']);
-        return Project::create($data);
+        ];
     }
+    
 }

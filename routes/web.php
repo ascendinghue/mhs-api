@@ -15,5 +15,10 @@ $router->get('/', function () use ($router) {
     return $router->app->version();
 });
 
-$router->get('project/{id}', 'ProjectController@show');
-$router->post('project/store', 'ProjectController@store');
+$router->group(['prefix'=>'api/v1'], function() use($router){
+    $router->get('projects', 'ProjectController@index');
+    $router->post('projects', 'ProjectController@store');
+    $router->get('projects/{id}', 'ProjectController@show');
+    $router->patch('projects/{id}', 'ProjectController@update');
+    $router->delete('projects/{id}', 'ProjectController@delete');
+});
