@@ -9,6 +9,7 @@ class Name extends Model implements iCrudable
 {
     protected $table = 'names';
 
+    protected $appends = ['name_key'];
     protected $guarded = [];
 
     /**
@@ -37,7 +38,6 @@ class Name extends Model implements iCrudable
     public function getFields()
     {
         return [
-            'name_key',
             'family_name', 
             'given_name',
             'maiden_name',
@@ -62,14 +62,18 @@ class Name extends Model implements iCrudable
         return [
             'family_name' => 'required',
             'given_name' => 'required',
-            'middle_name' => 'required',
-            'suffix' => 'required',
-            'keywords' => 'required',
-            'date_of_birth' => 'required',
-            'date_of_death' => 'required',
-            'public_notes' => 'required',
-            'staff_notes' => 'required',
-            'bio_filename' => 'required'
+            'date_of_birth' => 'nullable|date_format:Y-m-d',
+            'date_of_death' => 'nullable|date_format:Y-m-d'
         ];
+    }
+
+    public function getNameKeyAttribute()
+    {
+        return implode('-',[
+            $this->family_name,
+            $this->given_name,
+            $this->middle_name,
+            $this->date_of_birth
+        ]);
     }
 }
