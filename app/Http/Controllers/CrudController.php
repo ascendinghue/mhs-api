@@ -8,7 +8,7 @@ use Laravel\Lumen\Routing\Controller as BaseController;
 
 class CrudController extends BaseController
 {
-    private $_model = null;
+    protected $model = null;
 
     /**
      * Set model based on interface
@@ -17,7 +17,7 @@ class CrudController extends BaseController
      */
     public function __construct(iCrudable $model)
     {
-        $this->_model = $model;
+        $this->model = $model;
     }
 
     /**
@@ -27,7 +27,7 @@ class CrudController extends BaseController
      */
     public function index()
     {
-        return response()->json($this->_model->all());
+        return response()->json($this->model->all());
     }
 
     /**
@@ -38,7 +38,7 @@ class CrudController extends BaseController
      */
     public function show($id)
     {
-        return response()->json($this->_model->findOrFail($id));
+        return response()->json($this->model->findOrFail($id));
     }
 
      /**
@@ -50,7 +50,7 @@ class CrudController extends BaseController
      */
     public function delete($id)
     {
-        $this->_model->findOrFail($id)->delete();
+        $this->model->findOrFail($id)->delete();
 
         return response('Deleted Successfully', 200);
     }
@@ -63,10 +63,10 @@ class CrudController extends BaseController
      */
     public function store(Request $request)
     {
-        $this->validate($request, $this->_model->getValidations());
+        $this->validate($request, $this->model->getValidations());
 
-        return $this->_model->create(
-            $request->only($this->_model->getFields())
+        return $this->model->create(
+            $request->only($this->model->getFields())
         );
     }
 
@@ -79,8 +79,8 @@ class CrudController extends BaseController
      */
     public function update(Request $request, $id)
     {
-        $this->_model->findOrFail($id)->update(
-            $request->only($this->_model->getFields())
+        $this->model->findOrFail($id)->update(
+            $request->only($this->model->getFields())
         );
     }
 }

@@ -35,7 +35,7 @@ class Project extends Model implements iCrudable
      */
     public function subjects()
     {
-        return $this->belongsToMany('Models\Subject', 'project_subject', 'id', 'id');
+        return $this->belongsToMany('Models\Subject');
     }
 
     /**

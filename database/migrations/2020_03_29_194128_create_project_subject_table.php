@@ -16,7 +16,7 @@ class CreateProjectSubjectTable extends Migration
         Schema::create('project_subject', function (Blueprint $table) {
             $table->id();
             $table->integer('project_id');
-            $table->integer('role_id');
+            $table->integer('subject_id');
             $table->timestamps();
         });
     }

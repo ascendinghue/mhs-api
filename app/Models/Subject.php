@@ -18,7 +18,8 @@ class Subject extends Model implements iCrudable
      */    
     protected $hidden = [
         'created_at',
-        'updated_at'
+        'updated_at',
+        'pivot'
     ];
 
     /**
@@ -33,7 +34,7 @@ class Subject extends Model implements iCrudable
      */
     public function projects()
     {
-        return $this->belongsToMany('Models\Project', 'project_subject', 'id', 'id');
+        return $this->belongsToMany('Models\Project');
     }
 
     /**

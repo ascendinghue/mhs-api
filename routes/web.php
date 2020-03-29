@@ -30,4 +30,7 @@ $router->group(['prefix'=>'api/v1'], function() use($router){
         $router->delete($endpoint.'/{id}', $controller.'@delete');
     }
 
+    $router->get('projects/{id}/subjects', 'ProjectController@getSubjects');
+    $router->post('projects/{id}/subjects', 'ProjectController@addSubject');
+    $router->delete('projects/{project_id}/subjects', 'ProjectController@removeSubject');
 });
