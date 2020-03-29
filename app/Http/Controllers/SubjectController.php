@@ -10,4 +10,15 @@ class SubjectController extends CrudController
     {
         parent::__construct($subject);
     }
+
+    /**
+     * Retrieve the projects for the specified subject
+     *
+     * @param  int  $id
+     * @return Response
+     */   
+    public function getProjects($id) 
+    {
+        return response()->json($this->model->findOrFail($id)->projects);
+    }
 }
