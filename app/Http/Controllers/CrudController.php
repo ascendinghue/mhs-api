@@ -2,15 +2,23 @@
 
 namespace App\Http\Controllers;
 
+use Illuminate\Http\Request;
+use App\Interfaces\iCrudable;
 use Laravel\Lumen\Routing\Controller as BaseController;
 
-use Illuminate\Http\Request;
-
-class Controller extends BaseController
+class CrudController extends BaseController
 {
-    public $_model = null;
-    public $_validations = [];
-    public $_fields = [];
+    private $_model = null;
+
+    /**
+     * Set model based on interface
+     *
+     * @return 
+     */
+    public function __construct(iCrudable $model)
+    {
+        $this->_model = $model;
+    }
 
     /**
      * Retrieve all for model.
@@ -55,10 +63,10 @@ class Controller extends BaseController
      */
     public function store(Request $request)
     {
-        $this->validate($request, $this->_validations);
+        $this->validate($request, $this->_model->getValidations());
 
         return $this->_model->create(
-            $request->only($this->_fields)
+            $request->only($this->_model->getFields())
         );
     }
 
@@ -72,7 +80,7 @@ class Controller extends BaseController
     public function update(Request $request, $id)
     {
         $this->_model->findOrFail($id)->update(
-            $request->only($this->_fields)
+            $request->only($this->_model->getFields())
         );
     }
 }

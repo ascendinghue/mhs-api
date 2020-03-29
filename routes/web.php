@@ -16,9 +16,17 @@ $router->get('/', function () use ($router) {
 });
 
 $router->group(['prefix'=>'api/v1'], function() use($router){
-    $router->get('projects', 'ProjectController@index');
-    $router->post('projects', 'ProjectController@store');
-    $router->get('projects/{id}', 'ProjectController@show');
-    $router->patch('projects/{id}', 'ProjectController@update');
-    $router->delete('projects/{id}', 'ProjectController@delete');
+    
+    $cruds = [
+        'projects' => 'ProjectController'
+    ];
+
+    foreach($cruds as $endpoint => $controller) {
+        $router->get($endpoint, $controller.'@index');
+        $router->post($endpoint, $controller.'@store');
+        $router->get($endpoint.'/{id}', $controller.'@show');
+        $router->patch($endpoint.'/{id}', $controller.'@update');
+        $router->delete($endpoint.'/{id}', $controller.'@delete');
+    }
+
 });
