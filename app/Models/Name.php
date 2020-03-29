@@ -37,8 +37,10 @@ class Name extends Model implements iCrudable
     public function getFields()
     {
         return [
+            'name_key',
             'family_name', 
             'given_name',
+            'maiden_name',
             'middle_name',
             'suffix',
             'keywords',
@@ -64,7 +66,10 @@ class Name extends Model implements iCrudable
             'suffix' => 'required',
             'keywords' => 'required',
             'date_of_birth' => 'required',
-            'date_of_death' => 'required'
+            'date_of_death' => 'required',
+            'public_notes' => 'required',
+            'staff_notes' => 'required',
+            'bio_filename' => 'required'
         ];
     }
 }

@@ -15,18 +15,18 @@ class CreateNamesTable extends Migration
     {
         Schema::create('names', function (Blueprint $table) {
             $table->id();
-            $table->string('name_key');
+            // $table->string('name_key');
             $table->string('family_name');
             $table->string('given_name');
-            $table->string('middle_name');
-            $table->string('maiden_name');
-            $table->string('suffix');
-            $table->string('keywords');
-            $table->string('date_of_birth');
-            $table->string('date_of_death');
-            $table->text('public_notes');
-            $table->text('staff_notes');
-            $table->string('bio_filename');
+            $table->string('middle_name')->nullable();
+            $table->string('maiden_name')->nullable();
+            $table->string('suffix')->nullable();
+            $table->string('keywords')->nullable();
+            $table->string('date_of_birth')->nullable();
+            $table->string('date_of_death')->nullable();
+            $table->text('public_notes')->nullable();
+            $table->text('staff_notes')->nullable();
+            $table->string('bio_filename')->nullable();
             $table->timestamps();
         });
     }
