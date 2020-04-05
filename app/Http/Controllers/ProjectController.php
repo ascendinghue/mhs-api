@@ -19,6 +19,7 @@ class ProjectController extends CrudController
      */    
     public function getSubjects($id)
     {
+        // return new $this->model->resource($this->model->findOrFail($id)->subjects);
         return response()->json($this->model->findOrFail($id)->subjects);
     }
 
@@ -35,7 +36,9 @@ class ProjectController extends CrudController
             'subject_id' => 'required|exists:subjects,id'
         ]);
 
-        return $this->model->findOrFail($id)->subjects()->attach($request->input('subject_id'));
+        $this->model->findOrFail($id)->subjects()->attach($request->input('subject_id'));
+
+        return response(null, 201);
     }
 
     /**
@@ -53,6 +56,6 @@ class ProjectController extends CrudController
 
         $this->model->findOrFail($id)->subjects()->detach($request->input('subject_id'));
 
-        return response('Deleted Successfully', 200);
+        return response(null, 204);
     }
 }

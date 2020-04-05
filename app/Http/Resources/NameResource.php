@@ -14,7 +14,7 @@ class NameResource extends JsonResource
      * @return array
      */
     public function toArray($request)
-    {        
+    {
         return array_merge(
             ['id' => $request->id], 
             $request->toArray(),

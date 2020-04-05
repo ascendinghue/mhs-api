@@ -14,27 +14,21 @@ class NameTest extends TestCase
 
         $this->get("/api/v1/names", []);
         $this->seeStatusCode(200);
-        $this->seeJsonStructure([
-            'data' => ['*' =>
-                [
-                    'id',
-                    'family_name',
-                    'given_name',
-                    'middle_name',
-                    'maiden_name',
-                    'suffix',
-                    'keywords',
-                    'date_of_birth',
-                    'date_of_death',
-                    'public_notes',
-                    'staff_notes',
-                    'bio_filename',
-                    'name_key',
-                    'aliases'
-                ]
-            ]
-        ]);
     }
+
+    /**
+     *      /names [POST]
+     */
+    public function testShouldCreateName(){
+
+        $payload = [
+            'family_name' => 'testing',
+            'given_name' => 'test'
+        ];
+
+        $this->post("/api/v1/names/", $payload, []);
+        $this->seeStatusCode(201);
+    }    
 
     /**
      *      /names/id [GET]
@@ -42,5 +36,27 @@ class NameTest extends TestCase
     public function testShouldReturnName(){
         $this->get("/api/v1/names/6", []);
         $this->seeStatusCode(200);        
+    }
+
+    /**
+     *      /names/id [PATCH]
+     */
+    public function testShouldUpdateName(){
+
+        $payload = [
+            'family_name' => 'testing',
+            'given_name' => 'test'
+        ];
+
+        $this->patch("/api/v1/names/6", $payload, []);
+        $this->seeStatusCode(204);
+    }
+
+    /**
+     *      /names/id [DELETE]
+     */
+    public function testShouldDeleteName(){
+        $this->delete("/api/v1/names/6", []);
+        $this->seeStatusCode(204);        
     }    
 }

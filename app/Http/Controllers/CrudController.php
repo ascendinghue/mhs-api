@@ -54,7 +54,7 @@ class CrudController extends BaseController
     {
         $this->model->findOrFail($id)->delete();
 
-        return response('Deleted Successfully', 200);
+        return response(null, 204);
     }
 
     /**
@@ -67,11 +67,9 @@ class CrudController extends BaseController
     {
         $this->validate($request, $this->model->getValidations());
 
-        return new $this->model->resource(
-            $this->model->create(
-                $request->only($this->model->getFields()
-            )
-        ));
+        $this->model->create($request->only($this->model->getFields()));
+
+        return response(null, 201);
     }
 
      /**
@@ -86,5 +84,7 @@ class CrudController extends BaseController
         $this->model->findOrFail($id)->update(
             $request->only($this->model->getFields())
         );
+
+        return response(null, 204);
     }
 }
