@@ -15,7 +15,7 @@ class CreateAliasesTable extends Migration
     {
         Schema::create('aliases', function (Blueprint $table) {
             $table->id();
-            $table->integer('name_id')->unsigned()->nullable();
+            $table->integer('name_id')->unsigned();
             $table->string('type');
             $table->string('family_name');
             $table->string('given_name')->nullable();

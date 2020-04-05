@@ -26,7 +26,7 @@ class Alias extends Model implements iCrudable
      *
      * @var array
      */
-    protected $with = [];
+    protected $with = ['name'];
 
     /**
      * Get all fields 
@@ -62,4 +62,12 @@ class Alias extends Model implements iCrudable
             'type' => 'required|in:spelling,role'
         ];
     }
+
+    /**
+     * Get the name that owns the alias.
+     */
+    public function name()
+    {
+        return $this->belongsTo('Models\Name');
+    }    
 }
