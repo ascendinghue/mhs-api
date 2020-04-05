@@ -9,6 +9,9 @@ class Project extends Model implements iCrudable
 {
     protected $table = 'projects';
 
+    public $resource = 'App\Http\Resources\CrudResource';
+    public $collection = 'App\Http\Resources\CrudCollection';
+
     protected $guarded = [];
 
     /**

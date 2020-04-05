@@ -9,6 +9,9 @@ class Alias extends Model implements iCrudable
 {
     protected $table = 'aliases';
 
+    public $resource = 'App\Http\Resources\CrudResource';
+    public $collection = 'App\Http\Resources\CrudCollection';
+
     protected $guarded = [];
 
     /**

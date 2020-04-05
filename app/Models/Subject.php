@@ -11,6 +11,10 @@ class Subject extends Model implements iCrudable
     use NodeTrait;
 
     protected $table = 'subjects';
+    protected $primaryKey = "id";
+    
+    public $resource = 'App\Http\Resources\CrudResource';
+    public $collection = 'App\Http\Resources\CrudCollection';
 
     protected $guarded = [];
 

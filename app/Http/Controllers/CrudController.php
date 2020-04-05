@@ -3,7 +3,9 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+
 use App\Interfaces\iCrudable;
+
 use Laravel\Lumen\Routing\Controller as BaseController;
 
 class CrudController extends BaseController
@@ -27,7 +29,7 @@ class CrudController extends BaseController
      */
     public function index()
     {
-        return response()->json($this->model->all());
+        return new $this->model->collection($this->model->all());
     }
 
     /**
@@ -38,7 +40,7 @@ class CrudController extends BaseController
      */
     public function show($id)
     {
-        return response()->json($this->model->findOrFail($id));
+        return new $this->model->resource($this->model->findOrFail($id));
     }
 
      /**
@@ -65,9 +67,11 @@ class CrudController extends BaseController
     {
         $this->validate($request, $this->model->getValidations());
 
-        return $this->model->create(
-            $request->only($this->model->getFields())
-        );
+        return new $this->model->resource(
+            $this->model->create(
+                $request->only($this->model->getFields()
+            )
+        ));
     }
 
      /**

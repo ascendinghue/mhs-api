@@ -9,6 +9,9 @@ class Name extends Model implements iCrudable
 {
     protected $table = 'names';
 
+    public $resource = 'App\Http\Resources\NameResource';
+    public $collection = 'App\Http\Resources\CrudCollection';
+
     protected $appends = ['name_key'];
     protected $guarded = [];
 
@@ -19,8 +22,7 @@ class Name extends Model implements iCrudable
      */    
     protected $hidden = [
         'created_at',
-        'updated_at',
-        'pivot'
+        'updated_at'
     ];
 
     /**
