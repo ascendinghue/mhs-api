@@ -28,7 +28,9 @@ class Name extends Model implements iCrudable
      *
      * @var array
      */
-    protected $with = [];
+    protected $with = [
+        'aliases'
+    ];
 
     /**
      * Get all fields 
@@ -80,5 +82,13 @@ class Name extends Model implements iCrudable
             strtolower($this->middle_name),
             strtolower($this->date_of_birth)
         ]);
+    }
+
+    /**
+     * Get the aliases for the name
+     */
+    public function aliases()
+    {
+        return $this->hasMany('Models\Alias');
     }
 }

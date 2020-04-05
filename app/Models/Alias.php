@@ -26,7 +26,7 @@ class Alias extends Model implements iCrudable
      *
      * @var array
      */
-    protected $with = ['name'];
+    protected $with = [];
 
     /**
      * Get all fields 
