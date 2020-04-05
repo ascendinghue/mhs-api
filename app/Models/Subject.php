@@ -3,10 +3,13 @@
 namespace Models;
 
 use App\Interfaces\iCrudable;
+use Kalnoy\Nestedset\NodeTrait;
 use Illuminate\Database\Eloquent\Model;
 
 class Subject extends Model implements iCrudable
 {
+    use NodeTrait;
+
     protected $table = 'subjects';
 
     protected $guarded = [];
@@ -19,7 +22,10 @@ class Subject extends Model implements iCrudable
     protected $hidden = [
         'created_at',
         'updated_at',
-        'pivot'
+        'pivot',
+        '_lft',
+        '_rgt',
+        'parent_id'
     ];
 
     /**
