@@ -26,6 +26,8 @@ class AlterSubjectsTableAddNestedSet extends Migration
      */
     public function down()
     {
-        //
+        Schema::table('table', function (Blueprint $table) {
+            NestedSet::dropColumns($table);
+        });
     }
 }
