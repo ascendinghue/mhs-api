@@ -31,7 +31,8 @@ class Name extends Model implements iCrudable
      * @var array
      */
     protected $with = [
-        'aliases'
+        'aliases',
+        'links'
     ];
 
     /**
@@ -93,4 +94,13 @@ class Name extends Model implements iCrudable
     {
         return $this->hasMany('Models\Alias');
     }
+
+    /**
+     * Get all of the Name's links.
+     */
+    public function links()
+    {
+        return $this->morphMany('Models\Link', 'linkable');
+    }    
+
 }

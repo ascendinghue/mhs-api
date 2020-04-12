@@ -37,7 +37,7 @@ class Subject extends Model implements iCrudable
      *
      * @var array
      */
-    protected $with = [];
+    protected $with = ['links'];
 
     /**
      * The projects that belong to the subject.
@@ -75,4 +75,12 @@ class Subject extends Model implements iCrudable
             'display_name' => 'required'
         ];
     }
+
+    /**
+     * Get all of the subject's links.
+     */
+    public function links()
+    {
+        return $this->morphMany('Models\Link', 'linkable');
+    }    
 }
