@@ -22,7 +22,8 @@ $router->group(['prefix'=>'api/v1'], function() use($router){
         'subjects' => 'SubjectController',
         'names' => 'NameController',
         'aliases' => 'AliasController',
-        'lists' => 'ProjectListController'
+        'lists' => 'ProjectListController',
+        'links' => 'LinkController'
     ];
 
     /*
