@@ -40,6 +40,8 @@ class Link extends Model implements iCrudable
     public function getFields()
     {
         return [
+            'linkable_id',
+            'linkable_type',
             'type',
             'authority',
             'authority_id', 
@@ -57,9 +59,14 @@ class Link extends Model implements iCrudable
     public function getValidations()
     {
         return [
-            // 'name' => 'required',
-            // 'project_id' => 'required',
-            // 'type' => 'required|in:subject,name'
+            'linkable_id' => 'required',
+            'linkable_type' => 'required',
+
+            'type' => 'required|in:source,authority',
+            'authority' => 'required|in:snac,loc',
+            'authority_id' => 'required',
+            'display_title' => 'required',
+            'url' => 'required'
         ];
     }  
 
