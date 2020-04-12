@@ -29,7 +29,10 @@ class ProjectList extends Model implements iCrudable
      *
      * @var array
      */
-    protected $with = [];
+    protected $with = [
+        'subjects',
+        'names'
+    ];
 
     /**
      * Get all fields 
@@ -39,6 +42,7 @@ class ProjectList extends Model implements iCrudable
     public function getFields()
     {
         return [
+            'project_id',
             'name', 
             'type',
             'description'
@@ -58,4 +62,20 @@ class ProjectList extends Model implements iCrudable
             'type' => 'required|in:subject,name'
         ];
     }  
+
+    /**
+     * Get all of the subjects that are assigned this list.
+     */
+    public function subjects()
+    {
+        return $this->morphedByMany('Models\Subject', 'listable');
+    }
+
+    /**
+     * Get all of the names that are assigned this list.
+     */
+    public function names()
+    {
+        return $this->morphedByMany('Models\Name', 'listable');
+    }    
 }
