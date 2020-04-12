@@ -51,4 +51,13 @@ $router->group(['prefix'=>'api/v1'], function() use($router){
     $router->get('projects/{id}/subjects', 'ProjectController@getSubjects');
     $router->post('projects/{id}/subjects', 'ProjectController@addSubject');
     $router->delete('projects/{project_id}/subjects', 'ProjectController@removeSubject');
+
+    
+    /*
+        Relationship Endpoints
+                  for
+                Aliases
+    */
+    $router->get('aliases/{id}/name', 'AliasController@getName');
+
 });

@@ -11,4 +11,14 @@ class AliasController extends CrudController
         parent::__construct($alias);
     }
 
+    /**
+     * Retrieve the name for the specified alias
+     *
+     * @param  int  $id
+     * @return Response
+     */   
+    public function getName($id) 
+    {
+        return response()->json($this->model->findOrFail($id)->name);
+    }
 }

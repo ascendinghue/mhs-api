@@ -40,6 +40,14 @@ class AliasTest extends TestCase
     }
 
     /**
+     *      /aliases/id/name [GET]
+     */
+    public function testShouldReturnAliasName(){
+        $this->get("/api/v1/aliases/3/name", []);
+        $this->seeStatusCode(200);        
+    }
+
+    /**
      *      /aliases/id [PATCH]
      */
     public function testShouldUpdateAlias(){
