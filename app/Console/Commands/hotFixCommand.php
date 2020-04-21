@@ -3,6 +3,7 @@
 namespace App\Console\Commands;
 
 use Illuminate\Console\Command;
+use Rap2hpoutre\FastExcel\FastExcel;
 use Illuminate\Support\Facades\Storage;
 
 class HotFixCommand extends Command
@@ -13,12 +14,16 @@ class HotFixCommand extends Command
 
     public function handle()
     {
-        $parent = \Models\Subject::findorfail('3');
-        // $child = \Models\Subject::findorfail('5');
-
-        // $parent->appendNode($child);
-
-        print_r($parent->descendants);exit();
+        $names = (new FastExcel)->import('docs/djqa-names-sample.xlsx');
+        foreach($names as $name){
+            if ($name['First Name'] != '??') {
+                Models\Name::create([
+                    'given_name' => $name['First Name'],
+                    'family_name' => $name['']
+                ])
+                dd($name);
+            }
+        }
     }
 
 }
