@@ -14,13 +14,14 @@ class HotFixCommand extends Command
 
     public function handle()
     {
+        echo app()->basePath('public/docs/images/mhs_logo.png');exit();
         $names = (new FastExcel)->import('docs/djqa-names-sample.xlsx');
         foreach($names as $name){
             if ($name['First Name'] != '??') {
                 Models\Name::create([
                     'given_name' => $name['First Name'],
                     'family_name' => $name['']
-                ])
+                ]);
                 dd($name);
             }
         }

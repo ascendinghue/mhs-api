@@ -9,6 +9,7 @@
         "doctrine/dbal": "^2.10",
         "kalnoy/nestedset": "^5.0",
         "laravel/lumen-framework": "^7.0",
+        "mpociot/laravel-apidoc-generator": "^4.7",
         "rap2hpoutre/fast-excel": "^1.7"
     },
     "require-dev": {

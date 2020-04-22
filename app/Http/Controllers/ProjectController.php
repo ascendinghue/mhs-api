@@ -12,6 +12,34 @@ class ProjectController extends CrudController
     }
 
     /**
+     * Retrieve all Projects
+     *
+     * @return Response
+     */
+    public function index()
+    {
+        return new $this->model->collection($this->model->all());
+    }
+
+    /**
+     * Store a new Project
+     *
+     * @param  Request  $request
+     * @bodyParam project_id string required The id of the project. Example: 123-4567-89
+     * @bodyParam name string required The name of the project. 
+     * @bodyParam description required The description of the project.
+     * @return Response
+     */
+    public function store(Request $request)
+    {
+        $this->validate($request, $this->model->getValidations());
+
+        $this->model->create($request->only($this->model->getFields()));
+
+        return response(null, 201);
+    }
+
+    /**
      * Retrieve the subjects for the specified project
      *
      * @param  int  $id

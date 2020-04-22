@@ -60,6 +60,7 @@ $app->singleton(
 */
 
 $app->configure('app');
+$app->configure('apidoc');
 
 /*
 |--------------------------------------------------------------------------
@@ -92,6 +93,7 @@ $app->configure('app');
 */
 
 $app->register(App\Providers\AppServiceProvider::class);
+$app->register(\Mpociot\ApiDoc\ApiDocGeneratorServiceProvider::class);
 // $app->register(App\Providers\AuthServiceProvider::class);
 // $app->register(App\Providers\EventServiceProvider::class);
 
