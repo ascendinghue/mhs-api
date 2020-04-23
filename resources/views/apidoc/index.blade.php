@@ -6,8 +6,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
     <title>API Reference</title>
 
-    <link rel="stylesheet" href="/docs/css/style.css" />
-    <script src="/docs/js/all.js"></script>
+    <link rel="stylesheet" href="{{ url('/docs/css/style.css') }}" />
+    <script src="{{ url('/docs/js/all.js') }}"></script>
 
 
           <script>
@@ -37,6 +37,7 @@
               <div id="toc">
       </div>
                     <ul class="toc-footer">
+                                  <li><a href='http://github.com/mpociot/documentarian'>Documentation Powered by Documentarian</a></li>
                             </ul>
             </div>
     <div class="page-wrapper">
@@ -166,7 +167,7 @@ fetch(url, {
     "https://mhs-api.azurewebsites.net/api/v1/aliases/3" \
     -H "Content-Type: application/json" \
     -H "Accept: application/json" \
-    -d '{"name_id":1,"type":"role","family_name":"Buren","given_name":"Martin","middle_name":"Van","suffix":"Mr.","title":"President","role":"id","public_notes":"velit","staff_notes":"nesciunt"}'
+    -d '{"name_id":1,"type":"role","family_name":"Buren","given_name":"Martin","middle_name":"Van","suffix":"Mr.","title":"President","role":"dolor","public_notes":"maiores","staff_notes":"ex"}'
 </code></pre>
 <pre><code class="language-javascript">const url = new URL(
     "https://mhs-api.azurewebsites.net/api/v1/aliases/3"
@@ -185,9 +186,9 @@ let body = {
     "middle_name": "Van",
     "suffix": "Mr.",
     "title": "President",
-    "role": "id",
-    "public_notes": "velit",
-    "staff_notes": "nesciunt"
+    "role": "dolor",
+    "public_notes": "maiores",
+    "staff_notes": "ex"
 }
 
 fetch(url, {
@@ -299,7 +300,7 @@ fetch(url, {
     "https://mhs-api.azurewebsites.net/api/v1/aliases" \
     -H "Content-Type: application/json" \
     -H "Accept: application/json" \
-    -d '{"name_id":3,"type":"role","family_name":"Buren","given_name":"Martin","middle_name":"Van","suffix":"Mr.","title":"President","role":"nostrum","public_notes":"perspiciatis","staff_notes":"veritatis"}'
+    -d '{"name_id":3,"type":"role","family_name":"Buren","given_name":"Martin","middle_name":"Van","suffix":"Mr.","title":"President","role":"velit","public_notes":"reprehenderit","staff_notes":"dolorem"}'
 </code></pre>
 <pre><code class="language-javascript">const url = new URL(
     "https://mhs-api.azurewebsites.net/api/v1/aliases"
@@ -318,9 +319,9 @@ let body = {
     "middle_name": "Van",
     "suffix": "Mr.",
     "title": "President",
-    "role": "nostrum",
-    "public_notes": "perspiciatis",
-    "staff_notes": "veritatis"
+    "role": "velit",
+    "public_notes": "reprehenderit",
+    "staff_notes": "dolorem"
 }
 
 fetch(url, {
@@ -1367,7 +1368,7 @@ fetch(url, {
     "https://mhs-api.azurewebsites.net/api/v1/projects" \
     -H "Content-Type: application/json" \
     -H "Accept: application/json" \
-    -d '{"project_id":"123-4567-89","name":"in","description":"quam"}'
+    -d '{"project_id":"123-4567-89","name":"ea","description":"aut"}'
 </code></pre>
 <pre><code class="language-javascript">const url = new URL(
     "https://mhs-api.azurewebsites.net/api/v1/projects"
@@ -1380,8 +1381,8 @@ let headers = {
 
 let body = {
     "project_id": "123-4567-89",
-    "name": "in",
-    "description": "quam"
+    "name": "ea",
+    "description": "aut"
 }
 
 fetch(url, {
