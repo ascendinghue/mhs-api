@@ -12,11 +12,14 @@
 */
 
 $router->get('/', function () use ($router) {
-    return $router->app->version();
+    return view('apidoc/index');
 });
 
 $router->group(['prefix'=>'api/v1'], function() use($router){
     
+    // Route::get('/projects', 'ProjectController@index')->name('project.list');
+    // $router->get('projects/', 'ProjectController@index')->name('project.list');
+
     $crudObjects = [
         'projects' => 'ProjectController',
         'subjects' => 'SubjectController',
@@ -31,9 +34,9 @@ $router->group(['prefix'=>'api/v1'], function() use($router){
     */
     foreach($crudObjects as $endpoint => $controller) {
         $router->get($endpoint, $controller.'@index');
-        $router->post($endpoint, $controller.'@store');
         $router->get($endpoint.'/{id}', $controller.'@show');
         $router->patch($endpoint.'/{id}', $controller.'@update');
+        $router->post($endpoint, $controller.'@store');
         $router->delete($endpoint.'/{id}', $controller.'@delete');
     }
 

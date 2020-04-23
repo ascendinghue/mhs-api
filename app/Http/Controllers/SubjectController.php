@@ -4,6 +4,11 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 
+/**
+ * @group Subjects
+ *
+ * APIs for managing subjects
+ */
 class SubjectController extends CrudController
 {
     public function __construct(\Models\Subject $subject)

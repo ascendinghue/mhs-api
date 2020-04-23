@@ -4,6 +4,11 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 
+/**
+ * @group Projects
+ *
+ * APIs for managing projects
+ */
 class ProjectController extends CrudController
 {
     public function __construct(\Models\Project $project)
@@ -18,7 +23,32 @@ class ProjectController extends CrudController
      */
     public function index()
     {
-        return new $this->model->collection($this->model->all());
+        return parent::index();
+    }
+
+
+    /**
+     * Retrieve the specified Project
+     *
+     * @param  int  $id
+     * @return Response
+     */
+    public function show($id)
+    {
+        return parent::show($id);
+    }
+
+
+     /**
+     * Delete the specified Project
+     *
+     * @param  Request  $request
+     * @param  string  $id
+     * @return Response
+     */
+    public function delete($id)
+    {
+        return parent::delete($id);
     }
 
     /**
@@ -32,15 +62,30 @@ class ProjectController extends CrudController
      */
     public function store(Request $request)
     {
-        $this->validate($request, $this->model->getValidations());
+        return parent::store($request);
+    }
 
-        $this->model->create($request->only($this->model->getFields()));
-
-        return response(null, 201);
+     /**
+     * Update the specified Project
+     *
+     * @param  Request  $request
+     * @param  string  $id
+     * @return Response
+     */
+    public function update(Request $request, $id)
+    {
+        return parent::update($request, $id);
     }
 
     /**
-     * Retrieve the subjects for the specified project
+     *      CUSTOM METHODS
+     *         OUTSIDE
+     *        BASIC CRUD
+     */
+
+
+    /**
+     * Retrieve subjects for a Project
      *
      * @param  int  $id
      * @return Response
@@ -52,7 +97,7 @@ class ProjectController extends CrudController
     }
 
     /**
-     * Create subject relationship for the specified project
+     * Add Subject to a Project
      *
      * @param  Request  $request
      * @param  int  $id
@@ -70,7 +115,7 @@ class ProjectController extends CrudController
     }
 
     /**
-     * Remove subject relationship for the specified project
+     * Remove subject from a Project
      *
      * @param  Request  $request
      * @param  int  $id
