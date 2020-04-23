@@ -6,8 +6,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
     <title>API Reference</title>
 
-    <link rel="stylesheet" href="{{ url('/docs/css/style.css') }}" />
-    <script src="{{ url('/docs/js/all.js') }}"></script>
+    <link rel="stylesheet" href="{{ url::asset('/docs/css/style.css') }}" />
+    <script src="{{ url::asset('/docs/js/all.js') }}"></script>
 
 
           <script>
