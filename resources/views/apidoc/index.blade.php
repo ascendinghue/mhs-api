@@ -6,8 +6,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
     <title>API Reference</title>
 
-    <link rel="stylesheet" href="{{ asset('/docs/css/style.css') }}" />
-    <script src="{{ asset('/docs/js/all.js') }}"></script>
+    <link rel="stylesheet" href="/docs/css/style.css" />
+    <script src="/docs/js/all.js"></script>
 
 
           <script>
@@ -37,7 +37,6 @@
               <div id="toc">
       </div>
                     <ul class="toc-footer">
-                                  <li><a href='http://github.com/mpociot/documentarian'>Documentation Powered by Documentarian</a></li>
                             </ul>
             </div>
     <div class="page-wrapper">
