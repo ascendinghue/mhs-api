@@ -157,7 +157,7 @@ curl -X PATCH \
     "https://mhs-api.azurewebsites.net/api/v1/aliases/3" \
     -H "Content-Type: application/json" \
     -H "Accept: application/json" \
-    -d '{"name_id":1,"type":"role","family_name":"Buren","given_name":"Martin","middle_name":"Van","suffix":"Mr.","title":"President","role":"dolor","public_notes":"maiores","staff_notes":"ex"}'
+    -d '{"name_id":1,"type":"role","family_name":"Buren","given_name":"Martin","middle_name":"Van","suffix":"Mr.","title":"President","role":"pariatur","public_notes":"eos","staff_notes":"pariatur"}'
 
 ```
 
@@ -179,9 +179,9 @@ let body = {
     "middle_name": "Van",
     "suffix": "Mr.",
     "title": "President",
-    "role": "dolor",
-    "public_notes": "maiores",
-    "staff_notes": "ex"
+    "role": "pariatur",
+    "public_notes": "eos",
+    "staff_notes": "pariatur"
 }
 
 fetch(url, {
@@ -229,7 +229,7 @@ curl -X POST \
     "https://mhs-api.azurewebsites.net/api/v1/aliases" \
     -H "Content-Type: application/json" \
     -H "Accept: application/json" \
-    -d '{"name_id":3,"type":"role","family_name":"Buren","given_name":"Martin","middle_name":"Van","suffix":"Mr.","title":"President","role":"velit","public_notes":"reprehenderit","staff_notes":"dolorem"}'
+    -d '{"name_id":3,"type":"role","family_name":"Buren","given_name":"Martin","middle_name":"Van","suffix":"Mr.","title":"President","role":"quae","public_notes":"assumenda","staff_notes":"officia"}'
 
 ```
 
@@ -251,9 +251,9 @@ let body = {
     "middle_name": "Van",
     "suffix": "Mr.",
     "title": "President",
-    "role": "velit",
-    "public_notes": "reprehenderit",
-    "staff_notes": "dolorem"
+    "role": "quae",
+    "public_notes": "assumenda",
+    "staff_notes": "officia"
 }
 
 fetch(url, {
@@ -1473,7 +1473,7 @@ curl -X POST \
     "https://mhs-api.azurewebsites.net/api/v1/projects" \
     -H "Content-Type: application/json" \
     -H "Accept: application/json" \
-    -d '{"project_id":"123-4567-89","name":"ea","description":"aut"}'
+    -d '{"project_id":"123-4567-89","name":"tempora","description":"dolor"}'
 
 ```
 
@@ -1489,8 +1489,8 @@ let headers = {
 
 let body = {
     "project_id": "123-4567-89",
-    "name": "ea",
-    "description": "aut"
+    "name": "tempora",
+    "description": "dolor"
 }
 
 fetch(url, {

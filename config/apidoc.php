@@ -7,12 +7,12 @@ return [
      * - "laravel" will generate the documentation as a Blade view,
      * so you can add routing and authentication.
      */
-    'type' => 'laravel',
+    'type' => 'static',
 
     /*
      * Static output folder: HTML documentation and assets will be generated in this folder.
      */
-   'output_folder' => 'public/docs',
+   'output_folder' => '../mhs-docs/public/docs',
 
     /*
      * Settings for `laravel` type output.
