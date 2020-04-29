@@ -16,22 +16,40 @@ $router->get('/', function () use ($router) {
 });
 
 $router->group(['prefix'=>'api/v1'], function() use($router){
-    
+
+    /*
+        Names
+    */
     $router->get('names', 'NameController@index');
     $router->get('names/{id}', 'NameController@show');
     $router->patch('names/{id}', 'NameController@update');
     $router->post('names', 'NameController@store');
     $router->delete('names/{id}', 'NameController@delete');
 
-    // Route::get('/projects', 'ProjectController@index')->name('project.list');
-    // $router->get('projects/', 'ProjectController@index')->name('project.list');
+    /*
+        Links
+    */
+    $router->get('links', 'LinkController@index');
+    $router->get('links/{id}', 'LinkController@show');
+    $router->patch('links/{id}', 'LinkController@update');
+    $router->post('links', 'LinkController@store');
+    $router->delete('links/{id}', 'LinkController@delete');
 
+    /*
+        Aliases
+    */
+    $router->get('aliases', 'AliasController@index');
+    $router->get('aliases/{id}', 'AliasController@show');
+    $router->patch('aliases/{id}', 'AliasController@update');
+    $router->post('aliases', 'AliasController@store');
+    $router->delete('aliases/{id}', 'AliasController@delete');
+
+
+    
     $crudObjects = [
         'projects' => 'ProjectController',
         'subjects' => 'SubjectController',
-        'aliases' => 'AliasController',
-        'lists' => 'ProjectListController',
-        'links' => 'LinkController'
+        'lists' => 'ProjectListController'
     ];
 
     /*

@@ -2,16 +2,15 @@
 
 namespace Models;
 
-use App\Interfaces\iCrudable;
 use Illuminate\Database\Eloquent\Model;
 
-class Link extends Model implements iCrudable
+class Link extends Model
 {
-    protected $table = 'links';
-
-    public $resource = 'App\Http\Resources\CrudResource';
-    public $collection = 'App\Http\Resources\CrudCollection';
-
+    /**
+     * The attributes that aren't mass assignable.
+     *
+     * @var array
+     */    
     protected $guarded = [];
 
     /**
@@ -29,45 +28,5 @@ class Link extends Model implements iCrudable
      *
      * @var array
      */
-    protected $with = [
-    ];
-
-    /**
-     * Get all fields 
-     *
-     * @return Array
-     */    
-    public function getFields()
-    {
-        return [
-            'linkable_id',
-            'linkable_type',
-            'type',
-            'authority',
-            'authority_id', 
-            'display_title',
-            'url',
-            'notes'
-        ];
-    }
-
-    /**
-     * Get all validations 
-     *
-     * @return Array
-     */    
-    public function getValidations()
-    {
-        return [
-            'linkable_id' => 'required',
-            'linkable_type' => 'required',
-
-            'type' => 'required|in:source,authority',
-            'authority' => 'required|in:snac,loc',
-            'authority_id' => 'required',
-            'display_title' => 'required',
-            'url' => 'required'
-        ];
-    }  
-
+    protected $with = [];
 }

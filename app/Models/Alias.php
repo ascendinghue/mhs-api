@@ -2,16 +2,15 @@
 
 namespace Models;
 
-use App\Interfaces\iCrudable;
 use Illuminate\Database\Eloquent\Model;
 
-class Alias extends Model implements iCrudable
+class Alias extends Model
 {
-    protected $table = 'aliases';
-
-    public $resource = 'App\Http\Resources\CrudResource';
-    public $collection = 'App\Http\Resources\CrudCollection';
-
+    /**
+     * The attributes that aren't mass assignable.
+     *
+     * @var array
+     */    
     protected $guarded = [];
 
     /**
@@ -30,41 +29,6 @@ class Alias extends Model implements iCrudable
      * @var array
      */
     protected $with = [];
-
-    /**
-     * Get all fields 
-     *
-     * @return Array
-     */    
-    public function getFields()
-    {
-        return [
-            'name_id', 
-            'type',
-            'family_name',
-            'given_name',
-            'middle_name',
-            'maiden_name',
-            'suffix',
-            'title',
-            'role',
-            'public_notes',
-            'staff_notes'
-        ];
-    }
-
-    /**
-     * Get all validations 
-     *
-     * @return Array
-     */    
-    public function getValidations()
-    {
-        return [
-            'family_name' => 'required',
-            'type' => 'required|in:spelling,role'
-        ];
-    }
 
     /**
      * Get the name that owns the alias.

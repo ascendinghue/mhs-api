@@ -2,20 +2,18 @@
 
 namespace App\Http\Controllers;
 
+use Models\Alias;
 use Illuminate\Http\Request;
+use App\Http\Resources\Alias as AliasResource;
+use Laravel\Lumen\Routing\Controller as BaseController;
 
 /**
  * @group Aliases
  *
  * APIs for managing aliases
  */
-class AliasController extends CrudController
+class AliasController extends BaseController
 {
-    public function __construct(\Models\Alias $alias)
-    {
-        parent::__construct($alias);
-    }
-
     /**
      * Browse
      * 
@@ -25,7 +23,7 @@ class AliasController extends CrudController
      */
     public function index()
     {
-        return parent::index();
+        return AliasResource::collection(Alias::paginate());
     }
 
     /**
@@ -40,8 +38,15 @@ class AliasController extends CrudController
      * @response {
      *      "id": "3",
      *      "family_name": "Jefferson",
+     *      "given_name": "Thomas",
+     *      "middle_name": null,
+     *      "maiden_name": null,
+     *      "suffix": null,
+     *      "title": null,
+     *      "role": null,
      *      "type": "role",
-     *      "name_id": 6
+     *      "public_notes": null,
+     *      "staff_notes": null
      * }
      * 
      * @response 404 {
@@ -50,7 +55,7 @@ class AliasController extends CrudController
      */
     public function show($id)
     {
-        return parent::show($id);
+        return new AliasResource(Alias::findorfail($id));
     }
 
      /**
@@ -73,7 +78,28 @@ class AliasController extends CrudController
      */
     public function update(Request $request, $id)
     {
-        return parent::update($request, $id);
+        $this->validate($request, [
+            'name_id' => 'sometimes|exists:names,id',
+            'type' => 'sometimes|in:spelling,role'
+        ]);
+
+        Alias::findOrFail($id)->update(
+            $request->only([
+                'name_id',
+                'type',
+                'family_name',
+                'given_name',
+                'middle_name',
+                'maiden_name',
+                'suffix',
+                'title',
+                'role',
+                'public_notes',
+                'staff_notes'
+            ])
+        );
+
+        return response(null, 204);
     }
 
     /**
@@ -91,14 +117,52 @@ class AliasController extends CrudController
      * @bodyParam public_notes text optional The public notes for the alias. 
      * @bodyParam staff_notes text optional The staff notes for the alias. 
      * @return Response
+     * 
+     * @response {
+     *      "id": "3",
+     *      "family_name": "Jefferson",
+     *      "given_name": "Thomas",
+     *      "middle_name": null,
+     *      "maiden_name": null,
+     *      "suffix": null,
+     *      "title": null,
+     *      "role": null,
+     *      "type": "role",
+     *      "public_notes": null,
+     *      "staff_notes": null
+     * }
      */
     public function store(Request $request)
     {
-        return parent::store($request);
+        $this->validate($request, [
+            'name_id' => 'required|exists:names,id',
+            'family_name' => 'required',
+            'type' => 'required|in:spelling,role'
+        ]);
+
+        $alias = Alias::create(
+            $request->only([    
+                'name_id',
+                'type',
+                'family_name',
+                'given_name',
+                'middle_name',
+                'maiden_name',
+                'suffix',
+                'title',
+                'role',
+                'public_notes',
+                'staff_notes'
+            ])
+        );
+
+        return response(new AliasResource($alias), 201);
     }
 
      /**
      * Delete 
+     * 
+     * Remove a specific alias 
      *
      * @param  Request  $request
      * @param  string  $id
@@ -107,7 +171,9 @@ class AliasController extends CrudController
      */
     public function delete($id)
     {
-        return parent::delete($id);
+        Alias::findOrFail($id)->delete();
+
+        return response(null, 204);
     }
 
 
