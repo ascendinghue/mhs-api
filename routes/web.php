@@ -62,6 +62,6 @@ $router->group(['prefix'=>'api/v1'], function() use($router){
                   for
                 Aliases
     */
-    $router->get('aliases/{id}/name', 'AliasController@getName');
+    // $router->get('aliases/{id}/name', 'AliasController@getName');
 
 });

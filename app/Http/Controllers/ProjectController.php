@@ -17,7 +17,9 @@ class ProjectController extends CrudController
     }
 
     /**
-     * Retrieve all Projects
+     * Browse
+     * 
+     * Retrieve a list of Projects
      *
      * @return Response
      */
@@ -26,38 +28,58 @@ class ProjectController extends CrudController
         return parent::index();
     }
 
-
     /**
+     * Read 
+     * 
      * Retrieve the specified Project
      *
      * @param  int  $id
+     * @urlParam id required The ID of the Project. Example: 3
      * @return Response
+     * 
+     * @response {
+     *   "id": "10",
+     *   "project_id": "111-5-585-156",
+     *   "name": "another test",
+     *   "description": "testing"
+     * }
+     * 
+     * @response 404 {
+     *      "message": "No query results for model"
+     * }
      */
     public function show($id)
     {
         return parent::show($id);
     }
 
-
      /**
-     * Delete the specified Project
+     * Edit 
+     * 
+     * Update the specified Project
      *
      * @param  Request  $request
      * @param  string  $id
+     * @urlParam id required The ID of the Project. Example: 3
+     * @bodyParam project_id string optional The project id of the Project. Example: 111-5-585-1566
+     * @bodyParam name string optional The name of the Project. Example: 1800s Project
+     * @bodyParam description string optional The description of the Project. 
      * @return Response
      */
-    public function delete($id)
+    public function update(Request $request, $id)
     {
-        return parent::delete($id);
+        return parent::update($request, $id);
     }
-
+    
     /**
-     * Store a new Project
+     * Add 
+     * 
+     * Create a new Project
      *
      * @param  Request  $request
-     * @bodyParam project_id string required The id of the project. Example: 123-4567-89
-     * @bodyParam name string required The name of the project. 
-     * @bodyParam description required The description of the project.
+     * @bodyParam project_id string required The project id of the Project. Example: 111-5-585-1566
+     * @bodyParam name string required The name of the Project. Example: 1800s Project
+     * @bodyParam description required optional The description of the Project. 
      * @return Response
      */
     public function store(Request $request)
@@ -66,16 +88,21 @@ class ProjectController extends CrudController
     }
 
      /**
-     * Update the specified Project
+     * Delete
+     * 
+     * Remove the specified Project
      *
      * @param  Request  $request
      * @param  string  $id
+     * @urlParam id required The ID of the Project. Example: 3
      * @return Response
      */
-    public function update(Request $request, $id)
+    public function delete($id)
     {
-        return parent::update($request, $id);
+        return parent::delete($id);
     }
+
+
 
     /**
      *      CUSTOM METHODS
@@ -85,6 +112,8 @@ class ProjectController extends CrudController
 
 
     /**
+     * Browse Subjects
+     * 
      * Retrieve subjects for a Project
      *
      * @param  int  $id
@@ -92,11 +121,12 @@ class ProjectController extends CrudController
      */    
     public function getSubjects($id)
     {
-        // return new $this->model->resource($this->model->findOrFail($id)->subjects);
         return response()->json($this->model->findOrFail($id)->subjects);
     }
 
     /**
+     * Add Subject
+     * 
      * Add Subject to a Project
      *
      * @param  Request  $request
@@ -115,6 +145,8 @@ class ProjectController extends CrudController
     }
 
     /**
+     * Delete Subject
+     * 
      * Remove subject from a Project
      *
      * @param  Request  $request

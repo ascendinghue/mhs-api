@@ -19,7 +19,7 @@ class AliasController extends CrudController
     /**
      * Browse
      * 
-     * Retrieve a list of all available aliases
+     * Retrieve a list of aliases
      *
      * @return Response
      */
@@ -122,6 +122,7 @@ class AliasController extends CrudController
      * Retrieve the name for an Alias
      *
      * @param  int  $id
+     * @urlParam id required The ID of the Alias. Example: 3
      * @return Response
      */   
     public function getName($id) 
