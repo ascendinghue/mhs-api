@@ -2,20 +2,18 @@
 
 namespace App\Http\Controllers;
 
+use Models\Subject;
 use Illuminate\Http\Request;
+use App\Http\Resources\Subject as SubjectResource;
+use Laravel\Lumen\Routing\Controller as BaseController;
 
 /**
  * @group Subjects
  *
  * APIs for managing subjects
  */
-class SubjectController extends CrudController
+class SubjectController extends BaseController
 {
-    public function __construct(\Models\Subject $subject)
-    {
-        parent::__construct($subject);
-    }
-
     /**
      * Browse
      * 
@@ -25,7 +23,7 @@ class SubjectController extends CrudController
      */
     public function index()
     {
-        return parent::index();
+        return SubjectResource::collection(Subject::paginate());
     }
 
     /**
@@ -49,7 +47,7 @@ class SubjectController extends CrudController
      */
     public function show($id)
     {
-        return parent::show($id);
+        return new SubjectResource(Subject::findorfail($id));
     }
 
      /**
@@ -62,11 +60,24 @@ class SubjectController extends CrudController
      * @urlParam id required The ID of the Subject. Example: 3
      * @bodyParam subject_name string optional The subject name of the Subject.
      * @bodyParam display_name string optional The display name of the Subject.
+     * @bodyParam staff_notes string optional The staff notes of the Subject.
+     * @bodyParam keywords string optional The keywords of the subject.
+     * @bodyParam loc string optional The loc of the subject.
      * @return Response
      */
     public function update(Request $request, $id)
     {
-        return parent::update($request, $id);
+        Subject::findOrFail($id)->update(
+            $request->only([
+                'subject_name', 
+                'display_name', 
+                'staff_notes',
+                'keywords',
+                'loc'
+            ])
+        );
+
+        return response(null, 204);
     }
     
     /**
@@ -75,13 +86,40 @@ class SubjectController extends CrudController
      * Create a new Subject
      *
      * @param  Request  $request
-     * @bodyParam subject_name string optional The subject name of the Subject.
-     * @bodyParam display_name string optional The display name of the Subject.
+     * @bodyParam subject_name string required The subject name of the Subject.
+     * @bodyParam display_name string required The display name of the Subject.
+     * @bodyParam staff_notes string optional The staff notes of the Subject.
+     * @bodyParam keywords string optional The keywords of the subject.
+     * @bodyParam loc string optional The loc of the subject.
      * @return Response
+     * 
+     * @response {
+     *   "id": "3",
+     *   "subject_name": "grandchild",
+     *   "display_name": "this is a grandchild"
+     *   "staff_notes": null,
+     *   "keywords": null,
+     *   "loc": null
+     * } 
      */
     public function store(Request $request)
     {
-        return parent::store($request);
+        $this->validate($request, [
+            'subject_name' => 'required',
+            'display_name' => 'required'
+        ]);
+
+        $subject = Subject::create(
+            $request->only([             
+                'subject_name', 
+                'display_name', 
+                'staff_notes',
+                'keywords',
+                'loc'
+            ])
+        );
+
+        return response(new SubjectResource($subject), 201);
     }
 
      /**
@@ -96,7 +134,9 @@ class SubjectController extends CrudController
      */
     public function delete($id)
     {
-        return parent::delete($id);
+        Subject::findOrFail($id)->delete();
+
+        return response(null, 204);
     }
 
 

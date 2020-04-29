@@ -53,10 +53,17 @@ $router->group(['prefix'=>'api/v1'], function() use($router){
     $router->post('aliases', 'AliasController@store');
     $router->delete('aliases/{id}', 'AliasController@delete');
 
+    /*
+        Subjects
+    */
+    $router->get('subjects', 'SubjectController@index');
+    $router->get('subjects/{id}', 'SubjectController@show');
+    $router->patch('subjects/{id}', 'SubjectController@update');
+    $router->post('subjects', 'SubjectController@store');
+    $router->delete('subjects/{id}', 'SubjectController@delete');
 
 
     $crudObjects = [
-        'subjects' => 'SubjectController',
         'lists' => 'ProjectListController'
     ];
 

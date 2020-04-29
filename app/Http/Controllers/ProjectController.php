@@ -66,7 +66,20 @@ class ProjectController extends BaseController
      */
     public function update(Request $request, $id)
     {
-        return parent::update($request, $id);
+        $this->validate($request, [
+            'project_id' => 'sometimes',
+            'name' => 'sometimes'
+        ]);
+
+        Project::findOrFail($id)->update(
+            $request->only([
+                'project_id', 
+                'name', 
+                'description'
+            ])
+        );
+
+        return response(null, 204);
     }
     
     /**
@@ -91,8 +104,7 @@ class ProjectController extends BaseController
     {
         $this->validate($request, [
             'project_id' => 'required',
-            'name' => 'required',
-            'description' => 'required'
+            'name' => 'required'
         ]);
 
         $project = Project::create(
