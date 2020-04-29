@@ -2,16 +2,22 @@
 
 namespace Models;
 
-use App\Interfaces\iCrudable;
 use Illuminate\Database\Eloquent\Model;
 
-class ProjectList extends Model implements iCrudable
+class ProjectList extends Model
 {
+    /**
+     * The table associated with the model.
+     *
+     * @var string
+     */
     protected $table = 'lists';
 
-    public $resource = 'App\Http\Resources\CrudResource';
-    public $collection = 'App\Http\Resources\CrudCollection';
-
+    /**
+     * The attributes that aren't mass assignable.
+     *
+     * @var array
+     */       
     protected $guarded = [];
 
     /**
@@ -33,35 +39,6 @@ class ProjectList extends Model implements iCrudable
         'subjects',
         'names'
     ];
-
-    /**
-     * Get all fields 
-     *
-     * @return Array
-     */    
-    public function getFields()
-    {
-        return [
-            'project_id',
-            'name', 
-            'type',
-            'description'
-        ];
-    }
-
-    /**
-     * Get all validations 
-     *
-     * @return Array
-     */    
-    public function getValidations()
-    {
-        return [
-            'name' => 'required',
-            'project_id' => 'required',
-            'type' => 'required|in:subject,name'
-        ];
-    }  
 
     /**
      * Get all of the subjects that are assigned this list.

@@ -62,21 +62,14 @@ $router->group(['prefix'=>'api/v1'], function() use($router){
     $router->post('subjects', 'SubjectController@store');
     $router->delete('subjects/{id}', 'SubjectController@delete');
 
-
-    $crudObjects = [
-        'lists' => 'ProjectListController'
-    ];
-
     /*
-        Generic CRUD Endpoints 
+        Lists
     */
-    foreach($crudObjects as $endpoint => $controller) {
-        $router->get($endpoint, $controller.'@index');
-        $router->get($endpoint.'/{id}', $controller.'@show');
-        $router->patch($endpoint.'/{id}', $controller.'@update');
-        $router->post($endpoint, $controller.'@store');
-        $router->delete($endpoint.'/{id}', $controller.'@delete');
-    }
+    $router->get('lists', 'ProjectListController@index');
+    $router->get('lists/{id}', 'ProjectListController@show');
+    $router->patch('lists/{id}', 'ProjectListController@update');
+    $router->post('lists', 'ProjectListController@store');
+    $router->delete('lists/{id}', 'ProjectListController@delete');
 
     /*
         Relationship Endpoints

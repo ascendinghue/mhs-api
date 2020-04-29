@@ -4,7 +4,7 @@ namespace App\Http\Resources;
 
 use Illuminate\Http\Resources\Json\JsonResource;
 
-class CrudResource extends JsonResource
+class ProjectList extends JsonResource
 {
     /**
      * Transform the resource into an array.
@@ -14,9 +14,12 @@ class CrudResource extends JsonResource
      */
     public function toArray($request)
     {
-        return array_merge(
-            ['id' => $request->id], 
-            $request->toArray()
-        );
+        return [
+            'id' => $this->id,
+            'project_id' => $this->project_id,
+            'name' => $this->name,
+            'type' => $this->type,
+            'description' => $this->description
+        ];
     }
 }

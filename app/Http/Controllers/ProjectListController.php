@@ -2,20 +2,18 @@
 
 namespace App\Http\Controllers;
 
+use Models\ProjectList;
 use Illuminate\Http\Request;
+use App\Http\Resources\ProjectList as ProjectListResource;
+use Laravel\Lumen\Routing\Controller as BaseController;
 
 /**
  * @group Lists
  *
  * APIs for managing project lists
  */
-class ProjectListController extends CrudController
+class ProjectListController extends BaseController
 {
-    public function __construct(\Models\ProjectList $list)
-    {
-        parent::__construct($list);
-    }
-
     /**
      * Browse
      * 
@@ -25,7 +23,7 @@ class ProjectListController extends CrudController
      */
     public function index()
     {
-        return parent::index();
+        return ProjectListResource::collection(ProjectList::paginate());
     }
 
     /**
@@ -41,7 +39,8 @@ class ProjectListController extends CrudController
      *   "id": "2",
      *   "project_id": "123-456-789",
      *   "name": "associated subjects",
-     *   "type": "subject"
+     *   "type": "subject",
+     *   "description": null
      * }
      * 
      * @response 404 {
@@ -50,7 +49,7 @@ class ProjectListController extends CrudController
      */
     public function show($id)
     {
-        return parent::show($id);
+        return new ProjectListResource(ProjectList::findorfail($id));
     }
 
      /**
@@ -68,7 +67,22 @@ class ProjectListController extends CrudController
      */
     public function update(Request $request, $id)
     {
-        return parent::update($request, $id);
+        $this->validate($request, [
+            'project_id' => 'sometimes',
+            'name' => 'sometimes',
+            'type' => 'sometimes|in:subject,name'
+        ]);
+
+        ProjectList::findOrFail($id)->update(
+            $request->only([
+                'project_id',
+                'name', 
+                'type',
+                'description'
+            ])
+        );
+
+        return response(null, 204);
     }    
 
     /**
@@ -77,14 +91,29 @@ class ProjectListController extends CrudController
      * Create a new list
      * 
      * @param  Request  $request
-     * @bodyParam project_id string optional The project id of the list. Example: 123-456-789
-     * @bodyParam name string optional The name of the list. Example: associated subjects
-     * @bodyParam type string optional The type of the list. Example: subject
+     * @bodyParam project_id string required The project id of the list. Example: 123-456-789
+     * @bodyParam name string required The name of the list. Example: associated subjects
+     * @bodyParam type string required The type of the list. Example: subject
      * @return Response
      */
     public function store(Request $request)
     {
-        return parent::store($request);
+        $this->validate($request, [
+            'name' => 'required',
+            'project_id' => 'required',
+            'type' => 'required|in:subject,name'
+        ]);
+
+        $projectList = ProjectList::create(
+            $request->only([             
+                'project_id',
+                'name', 
+                'type',
+                'description'
+            ])
+        );
+
+        return response(new ProjectListResource($projectList), 201);
     }
 
      /**
@@ -99,6 +128,8 @@ class ProjectListController extends CrudController
      */
     public function delete($id)
     {
-        return parent::delete($id);
+        ProjectList::findOrFail($id)->delete();
+
+        return response(null, 204);
     }    
 }
