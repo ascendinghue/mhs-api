@@ -18,6 +18,15 @@ $router->get('/', function () use ($router) {
 $router->group(['prefix'=>'api/v1'], function() use($router){
 
     /*
+        Projects
+    */
+    $router->get('projects', 'ProjectController@index');
+    $router->get('projects/{id}', 'ProjectController@show');
+    $router->patch('projects/{id}', 'ProjectController@update');
+    $router->post('projects', 'ProjectController@store');
+    $router->delete('projects/{id}', 'ProjectController@delete');
+
+    /*
         Names
     */
     $router->get('names', 'NameController@index');
@@ -45,9 +54,8 @@ $router->group(['prefix'=>'api/v1'], function() use($router){
     $router->delete('aliases/{id}', 'AliasController@delete');
 
 
-    
+
     $crudObjects = [
-        'projects' => 'ProjectController',
         'subjects' => 'SubjectController',
         'lists' => 'ProjectListController'
     ];

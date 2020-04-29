@@ -2,16 +2,15 @@
 
 namespace Models;
 
-use App\Interfaces\iCrudable;
 use Illuminate\Database\Eloquent\Model;
 
-class Project extends Model implements iCrudable
+class Project extends Model
 {
-    protected $table = 'projects';
-
-    public $resource = 'App\Http\Resources\CrudResource';
-    public $collection = 'App\Http\Resources\CrudCollection';
-
+    /**
+     * The attributes that aren't mass assignable.
+     *
+     * @var array
+     */       
     protected $guarded = [];
 
     /**
@@ -39,33 +38,5 @@ class Project extends Model implements iCrudable
     public function subjects()
     {
         return $this->belongsToMany('Models\Subject');
-    }
-
-    /**
-     * Get all fields 
-     *
-     * @return Array
-     */
-    public function getFields()
-    {
-        return [
-            'project_id', 
-            'name', 
-            'description'
-        ];
-    }
-
-    /**
-     * Get all validations 
-     *
-     * @return Array
-     */
-    public function getValidations()
-    {
-        return [
-            'project_id' => 'required',
-            'name' => 'required',
-            'description' => 'required'
-        ];
     }
 }

@@ -2,20 +2,18 @@
 
 namespace App\Http\Controllers;
 
+use Models\Project;
 use Illuminate\Http\Request;
+use App\Http\Resources\Project as ProjectResource;
+use Laravel\Lumen\Routing\Controller as BaseController;
 
 /**
  * @group Projects
  *
  * APIs for managing projects
  */
-class ProjectController extends CrudController
+class ProjectController extends BaseController
 {
-    public function __construct(\Models\Project $project)
-    {
-        parent::__construct($project);
-    }
-
     /**
      * Browse
      * 
@@ -25,7 +23,7 @@ class ProjectController extends CrudController
      */
     public function index()
     {
-        return parent::index();
+        return ProjectResource::collection(Project::paginate());
     }
 
     /**
@@ -50,7 +48,7 @@ class ProjectController extends CrudController
      */
     public function show($id)
     {
-        return parent::show($id);
+        return new ProjectResource(Project::findorfail($id));
     }
 
      /**
@@ -81,10 +79,31 @@ class ProjectController extends CrudController
      * @bodyParam name string required The name of the Project. Example: 1800s Project
      * @bodyParam description required optional The description of the Project. 
      * @return Response
+     * 
+     * @response {
+     *   "id": "10",
+     *   "project_id": "111-5-585-156",
+     *   "name": "another test",
+     *   "description": "testing"
+     * }
      */
     public function store(Request $request)
     {
-        return parent::store($request);
+        $this->validate($request, [
+            'project_id' => 'required',
+            'name' => 'required',
+            'description' => 'required'
+        ]);
+
+        $project = Project::create(
+            $request->only([             
+                'project_id', 
+                'name', 
+                'description'
+            ])
+        );
+
+        return response(new ProjectResource($project), 201);
     }
 
      /**
@@ -99,7 +118,9 @@ class ProjectController extends CrudController
      */
     public function delete($id)
     {
-        return parent::delete($id);
+        Project::findOrFail($id)->delete();
+
+        return response(null, 204);
     }
 
 
