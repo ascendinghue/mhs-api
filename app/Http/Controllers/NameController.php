@@ -5,19 +5,15 @@ namespace App\Http\Controllers;
 use Models\Name;
 use Illuminate\Http\Request;
 use App\Http\Resources\Name as NameResource;
+use Laravel\Lumen\Routing\Controller as BaseController;
 
 /**
  * @group Names
  *
  * APIs for managing names
  */
-class NameController extends CrudController
+class NameController extends BaseController
 {
-    public function __construct(Name $name)
-    {
-        parent::__construct($name);
-    }
-
     /**
      * Browse
      * 
@@ -100,11 +96,43 @@ class NameController extends CrudController
      */
     public function update(Request $request, $id)
     {
-        return parent::update($request, $id);
+        $this->validate($request, [
+            'family_name' => 'sometimes',
+            'given_name' => 'sometimes',
+            'maiden_name' => 'sometimes|nullable',
+            'middle_name' => 'sometimes|nullable',
+            'suffix' => 'sometimes|nullable',
+            'keywords' => 'sometimes|nullable',
+            'date_of_birth' => 'sometimes|nullable|date_format:Y-m-d',
+            'date_of_death' => 'sometimes|nullable|date_format:Y-m-d',
+            'public_notes' => 'sometimes|nullable',
+            'staff_notes' => 'sometimes|nullable',
+            'bio_filename' => 'sometimes|nullable'
+        ]);
+
+        Name::findOrFail($id)->update(
+            $request->only([
+                'family_name',
+                'given_name',
+                'maiden_name',
+                'middle_name',
+                'suffix',
+                'keywords',
+                'date_of_birth',
+                'date_of_death',
+                'public_notes',
+                'staff_notes',
+                'bio_filename'
+            ])
+        );
+
+        return response(null, 204);
     }    
 
     /**
      * Add
+     * 
+     * Create a new name
      *
      * @param  Request  $request
      * @bodyParam family_name string optional The family name of the name. Example: John
@@ -119,14 +147,61 @@ class NameController extends CrudController
      * @bodyParam staff_notes string optional The staff notes of the name.
      * @bodyParam bio_filename string optional The bio filename of the name.
      * @return Response
+     * 
+     * @response {
+     *   "id": "6",
+     *   "family_name": "testing",
+     *   "given_name": "another test",
+     *   "maiden_name": "",
+     *   "middle_name": "",
+     *   "suffix": "",
+     *   "keywords": "",
+     *   "date_of_birth": "1968-04-23",
+     *   "date_of_death": null,
+     *   "public_notes": null,
+     *   "staff_notes": null,
+     *   "bio_filename": null
+     * }
      */
     public function store(Request $request)
     {
-        return parent::store($request);
+        $this->validate($request, [
+            'family_name' => 'required',
+            'given_name' => 'required',
+            'maiden_name' => 'nullable',
+            'middle_name' => 'nullable',
+            'suffix' => 'nullable',
+            'keywords' => 'nullable',
+            'date_of_birth' => 'nullable|date_format:Y-m-d',
+            'date_of_death' => 'nullable|date_format:Y-m-d',
+            'public_notes' => 'nullable',
+            'staff_notes' => 'nullable',
+            'bio_filename' => 'nullable'
+        ]);
+
+        $name = Name::create(
+            $request->only([
+                'family_name',
+                'given_name',
+                'maiden_name',
+                'middle_name',
+                'suffix',
+                'keywords',
+                'date_of_birth',
+                'date_of_death',
+                'public_notes',
+                'staff_notes',
+                'bio_filename'
+            ])
+        );
+
+        return response(new NameResource($name), 201);
     }
 
      /**
      * Delete 
+     * 
+     * Remove a specific name 
      *
      * @param  Request  $request
      * @param  string  $id
@@ -135,6 +210,8 @@ class NameController extends CrudController
      */
     public function delete($id)
     {
-        return parent::delete($id);
+        Name::findOrFail($id)->delete();
+
+        return response(null, 204);
     }
 }

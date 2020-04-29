@@ -2,17 +2,22 @@
 
 namespace Models;
 
-use App\Interfaces\iCrudable;
 use Illuminate\Database\Eloquent\Model;
 
-class Name extends Model implements iCrudable
+class Name extends Model
 {
-    protected $table = 'names';
-
-    public $resource = 'App\Http\Resources\NameResource';
-    public $collection = 'App\Http\Resources\CrudCollection';
-
+    /**
+     * The accessors to append to the model's array form.
+     *
+     * @var array
+     */    
     protected $appends = ['name_key'];
+    
+    /**
+     * The attributes that aren't mass assignable.
+     *
+     * @var array
+     */    
     protected $guarded = [];
 
     /**
@@ -34,43 +39,6 @@ class Name extends Model implements iCrudable
         'aliases',
         'links'
     ];
-
-    /**
-     * Get all fields 
-     *
-     * @return Array
-     */    
-    public function getFields()
-    {
-        return [
-            'family_name', 
-            'given_name',
-            'maiden_name',
-            'middle_name',
-            'suffix',
-            'keywords',
-            'date_of_birth',
-            'date_of_death',
-            'public_notes',
-            'staff_notes',
-            'bio_filename'
-        ];
-    }
-
-    /**
-     * Get all validations 
-     *
-     * @return Array
-     */    
-    public function getValidations()
-    {
-        return [
-            'family_name' => 'required',
-            'given_name' => 'required',
-            'date_of_birth' => 'nullable|date_format:Y-m-d',
-            'date_of_death' => 'nullable|date_format:Y-m-d'
-        ];
-    }
 
     /**
      * Get the Name's name_key

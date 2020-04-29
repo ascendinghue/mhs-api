@@ -17,13 +17,18 @@ $router->get('/', function () use ($router) {
 
 $router->group(['prefix'=>'api/v1'], function() use($router){
     
+    $router->get('names', 'NameController@index');
+    $router->get('names/{id}', 'NameController@show');
+    $router->patch('names/{id}', 'NameController@update');
+    $router->post('names', 'NameController@store');
+    $router->delete('names/{id}', 'NameController@delete');
+
     // Route::get('/projects', 'ProjectController@index')->name('project.list');
     // $router->get('projects/', 'ProjectController@index')->name('project.list');
 
     $crudObjects = [
         'projects' => 'ProjectController',
         'subjects' => 'SubjectController',
-        'names' => 'NameController',
         'aliases' => 'AliasController',
         'lists' => 'ProjectListController',
         'links' => 'LinkController'
