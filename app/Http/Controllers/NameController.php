@@ -2,7 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use Models\Name;
 use Illuminate\Http\Request;
+use App\Http\Resources\Name as NameResource;
 
 /**
  * @group Names
@@ -11,7 +13,7 @@ use Illuminate\Http\Request;
  */
 class NameController extends CrudController
 {
-    public function __construct(\Models\Name $name)
+    public function __construct(Name $name)
     {
         parent::__construct($name);
     }
@@ -25,7 +27,7 @@ class NameController extends CrudController
      */
     public function index()
     {
-        return parent::index();
+        return NameResource::collection(Name::paginate());
     }
 
     /**
@@ -74,7 +76,7 @@ class NameController extends CrudController
      */
     public function show($id)
     {
-        return parent::show($id);
+        return new NameResource(Name::findorfail($id));
     }
     
      /**

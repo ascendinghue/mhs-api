@@ -15,7 +15,7 @@ class HotFixCommand extends Command
 
     public function handle(Faker $faker)
     {
-        echo $faker->dateTimeBetween('this week', '+6 days');
+        echo $faker->suffix;
     }
 
 }
