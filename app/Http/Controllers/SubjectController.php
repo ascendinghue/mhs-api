@@ -38,7 +38,8 @@ class SubjectController extends BaseController
      * @response {
      *   "id": "3",
      *   "subject_name": "grandchild",
-     *   "display_name": "this is a grandchild"
+     *   "display_name": "this is a grandchild",
+     *   "children": []
      * }
      * 
      * @response 404 {
@@ -47,7 +48,7 @@ class SubjectController extends BaseController
      */
     public function show($id)
     {
-        return new SubjectResource(Subject::findorfail($id));
+        return new SubjectResource(Subject::with('descendants')->findorfail($id));
     }
 
      /**
@@ -63,6 +64,7 @@ class SubjectController extends BaseController
      * @bodyParam staff_notes string optional The staff notes of the Subject.
      * @bodyParam keywords string optional The keywords of the subject.
      * @bodyParam loc string optional The loc of the subject.
+     * @bodyParam parent_id string optional The parent id of the subject.
      * @return Response
      */
     public function update(Request $request, $id)
@@ -73,7 +75,8 @@ class SubjectController extends BaseController
                 'display_name', 
                 'staff_notes',
                 'keywords',
-                'loc'
+                'loc',
+                'parent_id'
             ])
         );
 
@@ -91,6 +94,7 @@ class SubjectController extends BaseController
      * @bodyParam staff_notes string optional The staff notes of the Subject.
      * @bodyParam keywords string optional The keywords of the subject.
      * @bodyParam loc string optional The loc of the subject.
+     * @bodyParam parent_id string optional The parent id of the subject.
      * @return Response
      * 
      * @response {
@@ -115,7 +119,8 @@ class SubjectController extends BaseController
                 'display_name', 
                 'staff_notes',
                 'keywords',
-                'loc'
+                'loc',
+                'parent_id'
             ])
         );
 
@@ -147,18 +152,4 @@ class SubjectController extends BaseController
      *        BASIC CRUD
      */
 
-
-
-    /**
-     * Browse Subject's Projects
-     * Retrieve the projects for the specified subject
-     *
-     * @param  int  $id
-     * @urlParam id required The ID of the Subject. Example: 3
-     * @return Response
-     */   
-    public function getProjects($id) 
-    {
-        return response()->json($this->model->findOrFail($id)->projects);
-    }
 }

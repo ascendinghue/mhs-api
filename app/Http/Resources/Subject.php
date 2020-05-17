@@ -20,7 +20,8 @@ class Subject extends JsonResource
             'display_name' => $this->display_name,
             'staff_notes' => $this->staff_notes,
             'keywords' => $this->keywords,
-            'loc' => $this->loc
+            'loc' => $this->loc,
+            'children' => $this->whenLoaded('descendants')
         ];
     }
 }

@@ -71,4 +71,11 @@ class Name extends Model
         return $this->morphMany('Models\Link', 'linkable');
     }    
 
+    /**
+     * The projects that belong to the name.
+     */
+    public function projects()
+    {
+        return $this->belongsToMany('Models\Project');
+    }
 }

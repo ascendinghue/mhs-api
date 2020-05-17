@@ -76,13 +76,17 @@ $router->group(['prefix'=>'api/v1'], function() use($router){
                   for 
                 Subjects
     */
-    $router->get('subjects/{id}/projects', 'SubjectController@getProjects');
+    // $router->get('subjects/{id}/projects', 'SubjectController@getProjects');
 
     /*
         Relationship Endpoints
                   for
                 Projects
     */
+    $router->get('projects/{id}/lists', 'ProjectController@getLists');
+    $router->get('projects/{id}/names', 'ProjectController@getNames');
+    $router->post('projects/{id}/names', 'ProjectController@addName');
+    $router->delete('projects/{project_id}/names', 'ProjectController@removeName');
     $router->get('projects/{id}/subjects', 'ProjectController@getSubjects');
     $router->post('projects/{id}/subjects', 'ProjectController@addSubject');
     $router->delete('projects/{project_id}/subjects', 'ProjectController@removeSubject');

@@ -4,7 +4,10 @@ namespace App\Http\Controllers;
 
 use Models\Project;
 use Illuminate\Http\Request;
+use App\Http\Resources\Name as NameResource;
+use App\Http\Resources\Subject as SubjectResource;
 use App\Http\Resources\Project as ProjectResource;
+use App\Http\Resources\ProjectList as ProjectListResource;
 use Laravel\Lumen\Routing\Controller as BaseController;
 
 /**
@@ -143,6 +146,31 @@ class ProjectController extends BaseController
      *        BASIC CRUD
      */
 
+    /**
+     * Browse Lists
+     * 
+     * Retrieve lists for a Project
+     *
+     * @param  int  $id
+     * @return Response
+     */    
+    public function getLists($id)
+    {
+        return ProjectListResource::collection(Project::findorfail($id)->lists);
+    }
+
+    /**
+     * Browse Names
+     * 
+     * Retrieve names for a Project
+     *
+     * @param  int  $id
+     * @return Response
+     */    
+    public function getNames($id)
+    {
+        return NameResource::collection(Project::findorfail($id)->names);
+    }
 
     /**
      * Browse Subjects
@@ -154,7 +182,27 @@ class ProjectController extends BaseController
      */    
     public function getSubjects($id)
     {
-        return response()->json($this->model->findOrFail($id)->subjects);
+        return SubjectResource::collection(Project::findorfail($id)->subjects);
+    }
+
+    /**
+     * Add Name
+     * 
+     * Add Name to a Project
+     *
+     * @param  Request  $request
+     * @param  int  $id
+     * @return Response
+     */        
+    public function addName(Request $request, $id)
+    {
+        $this->validate($request, [
+            'name_id' => 'required|exists:names,id'
+        ]);
+
+        Project::findorfail($id)->names()->attach($request->input('name_id'));
+
+        return response(null, 201);
     }
 
     /**
@@ -172,9 +220,29 @@ class ProjectController extends BaseController
             'subject_id' => 'required|exists:subjects,id'
         ]);
 
-        $this->model->findOrFail($id)->subjects()->attach($request->input('subject_id'));
+        Project::findorfail($id)->subjects()->attach($request->input('subject_id'));
 
         return response(null, 201);
+    }
+
+    /**
+     * Delete Name
+     * 
+     * Remove name from a Project
+     *
+     * @param  Request  $request
+     * @param  int  $id
+     * @return Response
+     */         
+    public function removeName(Request $request, $id)
+    {
+        $this->validate($request, [
+            'name_id' => 'required|exists:names,id'
+        ]);
+
+        Project::findorfail($id)->names()->detach($request->input('name_id'));
+
+        return response(null, 204);
     }
 
     /**
@@ -192,7 +260,7 @@ class ProjectController extends BaseController
             'subject_id' => 'required|exists:subjects,id'
         ]);
 
-        $this->model->findOrFail($id)->subjects()->detach($request->input('subject_id'));
+        Project::findorfail($id)->subjects()->detach($request->input('subject_id'));
 
         return response(null, 204);
     }
