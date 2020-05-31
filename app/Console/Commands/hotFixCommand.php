@@ -15,7 +15,7 @@ class HotFixCommand extends Command
 
     public function handle(Faker $faker)
     {
-        echo $faker->suffix;
+        echo $faker->words($nb = 3, $asText = true);
     }
 
 }
