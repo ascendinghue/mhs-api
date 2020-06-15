@@ -11,14 +11,14 @@ class ProjectsTableSeeder extends Seeder
      */
     public function run()
     {
-        factory(Models\Project::class, 5)->create()->each(function ($name) {
-            // $name->aliases()->save(
-            //     factory(Models\Alias::class)->make()
-            // );
+        factory(Models\Project::class, 5)->create()->each(function ($project) {
+            $project->lists()->save(
+                factory(Models\ProjectList::class)->make()
+            );
 
-            // $name->links()->createMany(
-            //     factory(Models\Link::class, mt_rand(1,6))->make()->toArray()
-            // );            
+            $project->subjects()->createMany(
+                factory(Models\Subject::class, mt_rand(1,6))->make()->toArray()
+            );            
         });
     }
 }
