@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Models\Name;
 use Illuminate\Http\Request;
 use App\Http\Resources\Name as NameResource;
+use App\Http\Resources\Link as LinkResource;
 use Laravel\Lumen\Routing\Controller as BaseController;
 
 /**
@@ -214,4 +215,28 @@ class NameController extends BaseController
 
         return response(null, 204);
     }
+
+    /**
+     *      CUSTOM METHODS
+     *         OUTSIDE
+     *        BASIC CRUD
+     */
+    
+    /**
+     * Browse Links
+     * 
+     * Retrieve a list of links for a specific name
+     *
+     * @param  int  $id
+     * @urlParam id required The ID of the name. Example: 3
+     * @return Response
+     * 
+     * @response 404 {
+     *      "message": "No query results for model"
+     * }
+     */     
+     public function getLinks($id)
+     {
+        return LinkResource::collection(Name::findorfail($id)->links);
+     }
 }

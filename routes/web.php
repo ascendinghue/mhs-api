@@ -31,6 +31,7 @@ $router->group(['prefix'=>'api/v1'], function() use($router){
     */
     $router->get('names', 'NameController@index');
     $router->get('names/{id}', 'NameController@show');
+    $router->get('names/{id}/links', 'NameController@getLinks');
     $router->patch('names/{id}', 'NameController@update');
     $router->post('names', 'NameController@store');
     $router->delete('names/{id}', 'NameController@delete');
