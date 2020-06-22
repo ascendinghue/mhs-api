@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Models\Subject;
 use Illuminate\Http\Request;
+use App\Http\Resources\Link as LinkResource;
 use App\Http\Resources\Subject as SubjectResource;
 use Laravel\Lumen\Routing\Controller as BaseController;
 
@@ -152,4 +153,34 @@ class SubjectController extends BaseController
      *        BASIC CRUD
      */
 
+    /**
+     * Browse Links
+     * 
+     * Retrieve a list of links for a specific subject
+     *
+     * @param  int  $id
+     * @urlParam id required The ID of the subject. Example: 3
+     * 
+     * @return Response
+     * 
+     * @response [{
+     *      "id": "3",
+     *      "linkable_id": "4",
+     *      "linkable_type": "Models\\Subject",
+     *      "type": "source",
+     *      "authority": "snac",
+     *      "authority_id": "12345",
+     *      "display_title": "this is a link",
+     *      "url": "www.yahoo.com",
+     *      "notes": "n/a"
+     * }]
+     * 
+     * @response 404 {
+     *      "message": "No query results for model"
+     * }
+     */     
+    public function getLinks($id)
+    {
+       return LinkResource::collection(Subject::findorfail($id)->links);
+    }
 }

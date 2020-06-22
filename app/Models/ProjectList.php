@@ -35,10 +35,7 @@ class ProjectList extends Model
      *
      * @var array
      */
-    protected $with = [
-        'subjects',
-        'names'
-    ];
+    protected $with = [];
 
     /**
      * Get all of the subjects that are assigned this list.

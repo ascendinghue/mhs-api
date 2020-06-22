@@ -4,6 +4,9 @@ namespace App\Http\Resources;
 
 use Illuminate\Http\Resources\Json\JsonResource;
 
+use App\Http\Resources\Name as NameResource;
+use App\Http\Resources\Subject as SubjectResource;
+
 class ProjectList extends JsonResource
 {
     /**
@@ -19,7 +22,9 @@ class ProjectList extends JsonResource
             'project_id' => $this->project_id,
             'name' => $this->name,
             'type' => $this->type,
-            'description' => $this->description
+            'description' => $this->description,
+            'subjects' => SubjectResource::collection($this->whenLoaded('subjects')),
+            'names' => NameResource::collection($this->whenLoaded('names'))
         ];
     }
 }

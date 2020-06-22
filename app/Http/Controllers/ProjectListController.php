@@ -49,7 +49,7 @@ class ProjectListController extends BaseController
      */
     public function show($id)
     {
-        return new ProjectListResource(ProjectList::findorfail($id));
+        return new ProjectListResource(ProjectList::with(['subjects', 'names'])->findorfail($id));
     }
 
      /**
@@ -131,5 +131,55 @@ class ProjectListController extends BaseController
         ProjectList::findOrFail($id)->delete();
 
         return response(null, 204);
-    }    
+    }
+
+    /**
+     *      CUSTOM METHODS
+     *         OUTSIDE
+     *        BASIC CRUD
+     */
+    
+     /**
+     * Name Toggle
+     *
+     * Toggle a name for a specific list
+     * 
+     * @param  Request  $request
+     * @param  string  $id
+     * @urlParam id required The ID of the List. Example: 3
+     * @bodyParam name_id string required The name id to be toggled for the list. Example: 28
+     * @return Response
+     */     
+     public function nameToggle(Request $request, $id)
+    {
+        $this->validate($request, [
+            'name_id' => 'required|exists:names,id'
+        ]);
+
+        ProjectList::findOrFail($id)->names()->toggle($request->name_id);
+
+        return response(null, 204);
+    }
+
+     /**
+     * Subject Toggle
+     *
+     * Toggle a subject for a specific list
+     * 
+     * @param  Request  $request
+     * @param  string  $id
+     * @urlParam id required The ID of the List. Example: 3
+     * @bodyParam subject_id string required The subject id to be toggled for the list. Example: 28
+     * @return Response
+     */        
+    public function subjectToggle(Request $request, $id)
+    {
+        $this->validate($request, [
+            'subject_id' => 'required|exists:subjects,id'
+        ]);
+
+        ProjectList::findOrFail($id)->subjects()->toggle($request->subject_id);
+
+        return response(null, 204);
+    }
 }

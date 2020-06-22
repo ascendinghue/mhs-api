@@ -31,10 +31,10 @@ $router->group(['prefix'=>'api/v1'], function() use($router){
     */
     $router->get('names', 'NameController@index');
     $router->get('names/{id}', 'NameController@show');
-    $router->get('names/{id}/links', 'NameController@getLinks');
     $router->patch('names/{id}', 'NameController@update');
     $router->post('names', 'NameController@store');
     $router->delete('names/{id}', 'NameController@delete');
+    $router->get('names/{id}/links', 'NameController@getLinks');
 
     /*
         Links
@@ -62,6 +62,7 @@ $router->group(['prefix'=>'api/v1'], function() use($router){
     $router->patch('subjects/{id}', 'SubjectController@update');
     $router->post('subjects', 'SubjectController@store');
     $router->delete('subjects/{id}', 'SubjectController@delete');
+    $router->get('subjects/{id}/links', 'SubjectController@getLinks');
 
     /*
         Lists
@@ -71,6 +72,8 @@ $router->group(['prefix'=>'api/v1'], function() use($router){
     $router->patch('lists/{id}', 'ProjectListController@update');
     $router->post('lists', 'ProjectListController@store');
     $router->delete('lists/{id}', 'ProjectListController@delete');
+    $router->patch('lists/{id}/name', 'ProjectListController@nameToggle');
+    $router->patch('lists/{id}/subject', 'ProjectListController@subjectToggle');
 
     /*
         Relationship Endpoints

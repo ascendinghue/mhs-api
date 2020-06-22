@@ -229,7 +229,20 @@ class NameController extends BaseController
      *
      * @param  int  $id
      * @urlParam id required The ID of the name. Example: 3
+     * 
      * @return Response
+     * 
+     * @response [{
+     *      "id": "3",
+     *      "linkable_id": "4",
+     *      "linkable_type": "Models\\Name",
+     *      "type": "source",
+     *      "authority": "snac",
+     *      "authority_id": "12345",
+     *      "display_title": "this is a link",
+     *      "url": "www.yahoo.com",
+     *      "notes": "n/a"
+     * }]
      * 
      * @response 404 {
      *      "message": "No query results for model"
