@@ -72,8 +72,10 @@ $router->group(['prefix'=>'api/v1'], function() use($router){
     $router->patch('lists/{id}', 'ProjectListController@update');
     $router->post('lists', 'ProjectListController@store');
     $router->delete('lists/{id}', 'ProjectListController@delete');
+    $router->post('lists/copy', 'ProjectListController@copy');
     $router->patch('lists/{id}/name', 'ProjectListController@nameToggle');
     $router->patch('lists/{id}/subject', 'ProjectListController@subjectToggle');
+    
 
     /*
         Relationship Endpoints

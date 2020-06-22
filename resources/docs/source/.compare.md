@@ -360,7 +360,7 @@ curl -X PATCH \
     "https://mhs-api.azurewebsites.net/api/v1/aliases/3" \
     -H "Content-Type: application/json" \
     -H "Accept: application/json" \
-    -d '{"name_id":1,"type":"role","family_name":"Buren","given_name":"Martin","middle_name":"Van","suffix":"Mr.","title":"President","role":"ea","public_notes":"quia","staff_notes":"consequatur"}'
+    -d '{"name_id":1,"type":"role","family_name":"Buren","given_name":"Martin","middle_name":"Van","suffix":"Mr.","title":"President","role":"cupiditate","public_notes":"repellendus","staff_notes":"neque"}'
 
 ```
 
@@ -382,9 +382,9 @@ let body = {
     "middle_name": "Van",
     "suffix": "Mr.",
     "title": "President",
-    "role": "ea",
-    "public_notes": "quia",
-    "staff_notes": "consequatur"
+    "role": "cupiditate",
+    "public_notes": "repellendus",
+    "staff_notes": "neque"
 }
 
 fetch(url, {
@@ -432,7 +432,7 @@ curl -X POST \
     "https://mhs-api.azurewebsites.net/api/v1/aliases" \
     -H "Content-Type: application/json" \
     -H "Accept: application/json" \
-    -d '{"name_id":3,"type":"role","family_name":"Buren","given_name":"Martin","middle_name":"Van","suffix":"Mr.","title":"President","role":"reiciendis","public_notes":"ipsum","staff_notes":"sed"}'
+    -d '{"name_id":3,"type":"role","family_name":"Buren","given_name":"Martin","middle_name":"Van","suffix":"Mr.","title":"President","role":"numquam","public_notes":"quaerat","staff_notes":"quo"}'
 
 ```
 
@@ -454,9 +454,9 @@ let body = {
     "middle_name": "Van",
     "suffix": "Mr.",
     "title": "President",
-    "role": "reiciendis",
-    "public_notes": "ipsum",
-    "staff_notes": "sed"
+    "role": "numquam",
+    "public_notes": "quaerat",
+    "staff_notes": "quo"
 }
 
 fetch(url, {
@@ -972,20 +972,6 @@ fetch(url, {
 {
     "data": [
         {
-            "id": 28,
-            "project_id": "63",
-            "name": "ullam consequatur",
-            "type": "subject",
-            "description": null
-        },
-        {
-            "id": 29,
-            "project_id": "64",
-            "name": "sunt quod",
-            "type": "subject",
-            "description": null
-        },
-        {
             "id": 30,
             "project_id": "65",
             "name": "repudiandae provident",
@@ -1003,6 +989,20 @@ fetch(url, {
             "id": 32,
             "project_id": "67",
             "name": "non minus",
+            "type": "subject",
+            "description": null
+        },
+        {
+            "id": 33,
+            "project_id": "123-456-789",
+            "name": "associated subjects",
+            "type": "subject",
+            "description": null
+        },
+        {
+            "id": 34,
+            "project_id": "123-456-789",
+            "name": "associated subjects",
             "type": "subject",
             "description": null
         }
@@ -1253,6 +1253,63 @@ Parameter | Status | Description
     `id` |  required  | The ID of the List.
 
 <!-- END_1001bf95d9727bed33119c4e7901ecfd -->
+
+<!-- START_47f6c20800b07aedb864e1a3f113762b -->
+## Copy
+
+Create a new list and copies associations from a specific list
+
+> Example request:
+
+```bash
+curl -X POST \
+    "https://mhs-api.azurewebsites.net/api/v1/lists/copy" \
+    -H "Content-Type: application/json" \
+    -H "Accept: application/json" \
+    -d '{"project_id":"123-456-789","name":"associated subjects","type":"subject","list_id":"28"}'
+
+```
+
+```javascript
+const url = new URL(
+    "https://mhs-api.azurewebsites.net/api/v1/lists/copy"
+);
+
+let headers = {
+    "Content-Type": "application/json",
+    "Accept": "application/json",
+};
+
+let body = {
+    "project_id": "123-456-789",
+    "name": "associated subjects",
+    "type": "subject",
+    "list_id": "28"
+}
+
+fetch(url, {
+    method: "POST",
+    headers: headers,
+    body: body
+})
+    .then(response => response.json())
+    .then(json => console.log(json));
+```
+
+
+
+### HTTP Request
+`POST api/v1/lists/copy`
+
+#### Body Parameters
+Parameter | Type | Status | Description
+--------- | ------- | ------- | ------- | -----------
+    `project_id` | string |  required  | The project id of the list.
+        `name` | string |  required  | The name of the list.
+        `type` | string |  required  | The type of the list.
+        `list_id` | string |  required  | The list id to copy associations from.
+    
+<!-- END_47f6c20800b07aedb864e1a3f113762b -->
 
 <!-- START_3a98c55a42d773ee9c643effe7f97e5a -->
 ## Name Toggle
@@ -2621,7 +2678,7 @@ curl -X PATCH \
     "https://mhs-api.azurewebsites.net/api/v1/names/3" \
     -H "Content-Type: application/json" \
     -H "Accept: application/json" \
-    -d '{"family_name":"John","given_name":"Doe","maiden_name":"ab","middle_name":"odio","suffix":"debitis","keywords":"corporis","date_of_birth":"est","date_of_death":"ullam","public_notes":"consequatur","staff_notes":"dolores","bio_filename":"blanditiis"}'
+    -d '{"family_name":"John","given_name":"Doe","maiden_name":"quia","middle_name":"placeat","suffix":"et","keywords":"autem","date_of_birth":"et","date_of_death":"sit","public_notes":"voluptatem","staff_notes":"vel","bio_filename":"sed"}'
 
 ```
 
@@ -2638,15 +2695,15 @@ let headers = {
 let body = {
     "family_name": "John",
     "given_name": "Doe",
-    "maiden_name": "ab",
-    "middle_name": "odio",
-    "suffix": "debitis",
-    "keywords": "corporis",
-    "date_of_birth": "est",
-    "date_of_death": "ullam",
-    "public_notes": "consequatur",
-    "staff_notes": "dolores",
-    "bio_filename": "blanditiis"
+    "maiden_name": "quia",
+    "middle_name": "placeat",
+    "suffix": "et",
+    "keywords": "autem",
+    "date_of_birth": "et",
+    "date_of_death": "sit",
+    "public_notes": "voluptatem",
+    "staff_notes": "vel",
+    "bio_filename": "sed"
 }
 
 fetch(url, {
@@ -2697,7 +2754,7 @@ curl -X POST \
     "https://mhs-api.azurewebsites.net/api/v1/names" \
     -H "Content-Type: application/json" \
     -H "Accept: application/json" \
-    -d '{"family_name":"John","given_name":"Doe","maiden_name":"voluptas","middle_name":"ab","suffix":"iste","keywords":"dicta","date_of_birth":"dolore","date_of_death":"excepturi","public_notes":"facilis","staff_notes":"dolorem","bio_filename":"rerum"}'
+    -d '{"family_name":"John","given_name":"Doe","maiden_name":"non","middle_name":"est","suffix":"eos","keywords":"enim","date_of_birth":"laudantium","date_of_death":"accusamus","public_notes":"dolor","staff_notes":"repudiandae","bio_filename":"tempora"}'
 
 ```
 
@@ -2714,15 +2771,15 @@ let headers = {
 let body = {
     "family_name": "John",
     "given_name": "Doe",
-    "maiden_name": "voluptas",
-    "middle_name": "ab",
-    "suffix": "iste",
-    "keywords": "dicta",
-    "date_of_birth": "dolore",
-    "date_of_death": "excepturi",
-    "public_notes": "facilis",
-    "staff_notes": "dolorem",
-    "bio_filename": "rerum"
+    "maiden_name": "non",
+    "middle_name": "est",
+    "suffix": "eos",
+    "keywords": "enim",
+    "date_of_birth": "laudantium",
+    "date_of_death": "accusamus",
+    "public_notes": "dolor",
+    "staff_notes": "repudiandae",
+    "bio_filename": "tempora"
 }
 
 fetch(url, {
@@ -3059,7 +3116,7 @@ curl -X PATCH \
     "https://mhs-api.azurewebsites.net/api/v1/projects/3" \
     -H "Content-Type: application/json" \
     -H "Accept: application/json" \
-    -d '{"project_id":"111-5-585-1566","name":"1800s Project","description":"enim"}'
+    -d '{"project_id":"111-5-585-1566","name":"1800s Project","description":"ut"}'
 
 ```
 
@@ -3076,7 +3133,7 @@ let headers = {
 let body = {
     "project_id": "111-5-585-1566",
     "name": "1800s Project",
-    "description": "enim"
+    "description": "ut"
 }
 
 fetch(url, {
@@ -3119,7 +3176,7 @@ curl -X POST \
     "https://mhs-api.azurewebsites.net/api/v1/projects" \
     -H "Content-Type: application/json" \
     -H "Accept: application/json" \
-    -d '{"project_id":"111-5-585-1566","name":"1800s Project","description":"qui"}'
+    -d '{"project_id":"111-5-585-1566","name":"1800s Project","description":"consectetur"}'
 
 ```
 
@@ -3136,7 +3193,7 @@ let headers = {
 let body = {
     "project_id": "111-5-585-1566",
     "name": "1800s Project",
-    "description": "qui"
+    "description": "consectetur"
 }
 
 fetch(url, {
@@ -3765,7 +3822,7 @@ curl -X PATCH \
     "https://mhs-api.azurewebsites.net/api/v1/subjects/3" \
     -H "Content-Type: application/json" \
     -H "Accept: application/json" \
-    -d '{"subject_name":"dolore","display_name":"sint","staff_notes":"fugit","keywords":"exercitationem","loc":"qui","parent_id":"est"}'
+    -d '{"subject_name":"consequatur","display_name":"autem","staff_notes":"ab","keywords":"et","loc":"accusamus","parent_id":"tempore"}'
 
 ```
 
@@ -3780,12 +3837,12 @@ let headers = {
 };
 
 let body = {
-    "subject_name": "dolore",
-    "display_name": "sint",
-    "staff_notes": "fugit",
-    "keywords": "exercitationem",
-    "loc": "qui",
-    "parent_id": "est"
+    "subject_name": "consequatur",
+    "display_name": "autem",
+    "staff_notes": "ab",
+    "keywords": "et",
+    "loc": "accusamus",
+    "parent_id": "tempore"
 }
 
 fetch(url, {
@@ -3831,7 +3888,7 @@ curl -X POST \
     "https://mhs-api.azurewebsites.net/api/v1/subjects" \
     -H "Content-Type: application/json" \
     -H "Accept: application/json" \
-    -d '{"subject_name":"magnam","display_name":"distinctio","staff_notes":"iusto","keywords":"odit","loc":"dicta","parent_id":"voluptatem"}'
+    -d '{"subject_name":"consequatur","display_name":"voluptas","staff_notes":"qui","keywords":"praesentium","loc":"nihil","parent_id":"quis"}'
 
 ```
 
@@ -3846,12 +3903,12 @@ let headers = {
 };
 
 let body = {
-    "subject_name": "magnam",
-    "display_name": "distinctio",
-    "staff_notes": "iusto",
-    "keywords": "odit",
-    "loc": "dicta",
-    "parent_id": "voluptatem"
+    "subject_name": "consequatur",
+    "display_name": "voluptas",
+    "staff_notes": "qui",
+    "keywords": "praesentium",
+    "loc": "nihil",
+    "parent_id": "quis"
 }
 
 fetch(url, {

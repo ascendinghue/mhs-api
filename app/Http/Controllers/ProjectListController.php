@@ -128,7 +128,10 @@ class ProjectListController extends BaseController
      */
     public function delete($id)
     {
-        ProjectList::findOrFail($id)->delete();
+        $list = ProjectList::findOrFail($id);
+        $list->subjects()->detach();
+        $list->names()->detach();
+        $list->delete();
 
         return response(null, 204);
     }
@@ -138,7 +141,44 @@ class ProjectListController extends BaseController
      *         OUTSIDE
      *        BASIC CRUD
      */
-    
+
+    /**
+     * Copy
+     *
+     * Create a new list and copies associations from a specific list
+     * 
+     * @param  Request  $request
+     * @bodyParam project_id string required The project id of the list. Example: 123-456-789
+     * @bodyParam name string required The name of the list. Example: associated subjects
+     * @bodyParam type string required The type of the list. Example: subject
+     * @bodyParam list_id string required The list id to copy associations from. Example: 28
+     * @return Response
+     */
+    public function copy(Request $request)
+    {
+        $this->validate($request, [
+            'name' => 'required',
+            'project_id' => 'required',
+            'type' => 'required|in:subject,name',
+            'list_id' => 'sometimes|exists:lists,id'
+        ]);
+
+        $projectList = ProjectList::create(
+            $request->only([             
+                'project_id',
+                'name', 
+                'type',
+                'description'
+            ])
+        );
+
+        $list = ProjectList::findOrFail($request->list_id);
+        $projectList->names()->toggle($list->names()->pluck('listable_id'));
+        $projectList->subjects()->toggle($list->subjects()->pluck('listable_id'));
+        
+        return response(new ProjectListResource($projectList), 201);
+    }
+
      /**
      * Name Toggle
      *
