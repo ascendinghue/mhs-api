@@ -19,11 +19,14 @@ class AliasController extends BaseController
      * 
      * Retrieve a list of aliases
      *
+     * @urlParam per_page optional Limit page results. Example: 5
+     * @urlParam page optional Page number to load: Example: 2
+     * 
      * @return Response
      */
-    public function index()
+    public function index(Request $request)
     {
-        return AliasResource::collection(Alias::paginate());
+        return AliasResource::collection(Alias::paginate($request->query('per_page') ?? 10));
     }
 
     /**

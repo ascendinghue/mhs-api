@@ -20,11 +20,14 @@ class SubjectController extends BaseController
      * 
      * Retrieve a list of Subjects
      *
+     * @urlParam per_page optional Limit page results. Example: 5
+     * @urlParam page optional Page number to load: Example: 2
+     * 
      * @return Response
      */
-    public function index()
+    public function index(Request $request)
     {
-        return SubjectResource::collection(Subject::paginate());
+        return SubjectResource::collection(Subject::paginate($request->query('per_page') ?? 10));
     }
 
     /**

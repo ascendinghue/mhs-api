@@ -19,11 +19,14 @@ class LinkController extends BaseController
      * 
      * Retrieve a list of links
      *
+     * @urlParam per_page optional Limit page results. Example: 5
+     * @urlParam page optional Page number to load: Example: 2
+     * 
      * @return Response
      */
-    public function index()
+    public function index(Request $request)
     {
-        return LinkResource::collection(Link::paginate());
+        return LinkResource::collection(Link::paginate($request->query('per_page') ?? 10));
     }
 
     /**
