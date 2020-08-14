@@ -190,86 +190,21 @@ fetch(url, {
             "type": "role",
             "public_notes": "Eligendi ab earum odio. Rerum est hic voluptas fuga mollitia mollitia. Ad voluptatem libero molestias aperiam animi optio minus.",
             "staff_notes": "Omnis reiciendis eveniet facilis quam quae non. Ea doloribus et consectetur aliquam ullam culpa."
-        },
-        {
-            "id": 301,
-            "family_name": "Haag",
-            "given_name": "Jayce",
-            "middle_name": null,
-            "maiden_name": null,
-            "suffix": "DDS",
-            "title": null,
-            "role": null,
-            "type": "role",
-            "public_notes": "Ut ut animi nulla aut quo. Tenetur et nobis et est. Esse hic aperiam inventore rerum nihil. Reprehenderit corrupti impedit non quia eos.",
-            "staff_notes": "Delectus harum est dolorum possimus nostrum. Voluptatem iure eligendi repellendus necessitatibus. Quia quas culpa mollitia mollitia voluptas. Aut iste aliquam dolorem veritatis ipsa."
-        },
-        {
-            "id": 302,
-            "family_name": "Cronin",
-            "given_name": "Lauren",
-            "middle_name": null,
-            "maiden_name": null,
-            "suffix": "MD",
-            "title": null,
-            "role": null,
-            "type": "role",
-            "public_notes": "Nostrum aperiam aut facilis. Dolorem id optio aut consectetur. Accusantium ea exercitationem rerum quia et. Expedita numquam in nostrum nulla ratione.",
-            "staff_notes": "Eius et nulla expedita praesentium. Nemo earum iste et officia ut dolor. Eaque molestias dolorem et quidem dolores eos quia eos. Hic vel natus sint ut."
-        },
-        {
-            "id": 303,
-            "family_name": "Effertz",
-            "given_name": "Ralph",
-            "middle_name": null,
-            "maiden_name": null,
-            "suffix": "I",
-            "title": null,
-            "role": null,
-            "type": "role",
-            "public_notes": "Cum asperiores alias ex cum et. Exercitationem nostrum omnis totam. Explicabo atque culpa iste assumenda. Quod omnis aliquam magnam quasi.",
-            "staff_notes": "Architecto aut velit qui a harum enim deleniti distinctio. Ut enim qui iure possimus qui. Ut accusantium et earum et. Aut molestias nesciunt ab autem ut voluptatem."
-        },
-        {
-            "id": 304,
-            "family_name": "Durgan",
-            "given_name": "Arely",
-            "middle_name": null,
-            "maiden_name": null,
-            "suffix": "V",
-            "title": null,
-            "role": null,
-            "type": "role",
-            "public_notes": "Sunt dignissimos temporibus officia perferendis molestias et. Aut aut quidem consectetur aliquam. Qui exercitationem quia sint autem eius quas.",
-            "staff_notes": "Enim in et nostrum aliquam. Molestias fugiat in ipsam repudiandae qui rem officia. Rerum quaerat perspiciatis animi perspiciatis numquam. Similique sapiente est incidunt neque sapiente."
-        },
-        {
-            "id": 305,
-            "family_name": "Pagac",
-            "given_name": "Kiana",
-            "middle_name": null,
-            "maiden_name": null,
-            "suffix": "II",
-            "title": null,
-            "role": null,
-            "type": "role",
-            "public_notes": "Aut sed consectetur perspiciatis perspiciatis a autem. Quam tempore quibusdam ab non amet aut fuga.",
-            "staff_notes": "Laboriosam explicabo possimus inventore. Id in aspernatur enim ut eveniet expedita sint. Recusandae voluptas sit soluta corrupti."
         }
     ],
     "links": {
         "first": "http:\/\/localhost?page=1",
-        "last": "http:\/\/localhost?page=4",
+        "last": "http:\/\/localhost?page=5",
         "prev": null,
         "next": "http:\/\/localhost?page=2"
     },
     "meta": {
         "current_page": 1,
         "from": 1,
-        "last_page": 4,
+        "last_page": 5,
         "path": "http:\/\/localhost",
-        "per_page": 15,
-        "to": 15,
+        "per_page": 10,
+        "to": 10,
         "total": 50
     }
 }
@@ -278,6 +213,12 @@ fetch(url, {
 ### HTTP Request
 `GET api/v1/aliases`
 
+#### URL Parameters
+
+Parameter | Status | Description
+--------- | ------- | ------- | -------
+    `per_page` |  optional  | optional Limit page results.
+    `page` |  optional  | optional Page number to load:
 
 <!-- END_cfd537a33df77d89af88a3218de5584e -->
 
@@ -360,7 +301,7 @@ curl -X PATCH \
     "https://mhs-api.azurewebsites.net/api/v1/aliases/3" \
     -H "Content-Type: application/json" \
     -H "Accept: application/json" \
-    -d '{"name_id":1,"type":"role","family_name":"Buren","given_name":"Martin","middle_name":"Van","suffix":"Mr.","title":"President","role":"cupiditate","public_notes":"repellendus","staff_notes":"neque"}'
+    -d '{"name_id":1,"type":"role","family_name":"Buren","given_name":"Martin","middle_name":"Van","suffix":"Mr.","title":"President","role":"accusantium","public_notes":"tenetur","staff_notes":"qui"}'
 
 ```
 
@@ -382,9 +323,9 @@ let body = {
     "middle_name": "Van",
     "suffix": "Mr.",
     "title": "President",
-    "role": "cupiditate",
-    "public_notes": "repellendus",
-    "staff_notes": "neque"
+    "role": "accusantium",
+    "public_notes": "tenetur",
+    "staff_notes": "qui"
 }
 
 fetch(url, {
@@ -432,7 +373,7 @@ curl -X POST \
     "https://mhs-api.azurewebsites.net/api/v1/aliases" \
     -H "Content-Type: application/json" \
     -H "Accept: application/json" \
-    -d '{"name_id":3,"type":"role","family_name":"Buren","given_name":"Martin","middle_name":"Van","suffix":"Mr.","title":"President","role":"numquam","public_notes":"quaerat","staff_notes":"quo"}'
+    -d '{"name_id":3,"type":"role","family_name":"Buren","given_name":"Martin","middle_name":"Van","suffix":"Mr.","title":"President","role":"dolor","public_notes":"non","staff_notes":"quia"}'
 
 ```
 
@@ -454,9 +395,9 @@ let body = {
     "middle_name": "Van",
     "suffix": "Mr.",
     "title": "President",
-    "role": "numquam",
-    "public_notes": "quaerat",
-    "staff_notes": "quo"
+    "role": "dolor",
+    "public_notes": "non",
+    "staff_notes": "quia"
 }
 
 fetch(url, {
@@ -550,6 +491,598 @@ Parameter | Status | Description
     `id` |  required  | The ID of the Alias.
 
 <!-- END_03b79615cdc57d7ec10e04ab8f0d0e25 -->
+
+#Document
+
+
+APIs for managing dopcuments
+<!-- START_f9f46754ae9a48ce4e10a68541a0704e -->
+## Browse
+
+Retrieve a list of documents
+
+> Example request:
+
+```bash
+curl -X GET \
+    -G "https://mhs-api.azurewebsites.net/api/v1/documents" \
+    -H "Content-Type: application/json" \
+    -H "Accept: application/json"
+```
+
+```javascript
+const url = new URL(
+    "https://mhs-api.azurewebsites.net/api/v1/documents"
+);
+
+let headers = {
+    "Content-Type": "application/json",
+    "Accept": "application/json",
+};
+
+fetch(url, {
+    method: "GET",
+    headers: headers,
+})
+    .then(response => response.json())
+    .then(json => console.log(json));
+```
+
+
+> Example response (200):
+
+```json
+{
+    "data": [
+        {
+            "id": 5,
+            "filename": "this is a test",
+            "project_id": "63",
+            "notes": null,
+            "author": "Test Author",
+            "document_date": null,
+            "document_type": "test-document-type",
+            "published": "0",
+            "publish_date": "2020-08-29 00:00:00.000",
+            "checked_out": "0",
+            "steps": []
+        },
+        {
+            "id": 6,
+            "filename": "this is a test",
+            "project_id": "63",
+            "notes": null,
+            "author": "Test Author",
+            "document_date": null,
+            "document_type": "test-document-type",
+            "published": "0",
+            "publish_date": "2020-08-29 00:00:00.000",
+            "checked_out": "0",
+            "steps": []
+        },
+        {
+            "id": 7,
+            "filename": "this is a test",
+            "project_id": "63",
+            "notes": null,
+            "author": "Test Author",
+            "document_date": null,
+            "document_type": "test-document-type",
+            "published": "0",
+            "publish_date": "2020-08-29 00:00:00.000",
+            "checked_out": "0",
+            "steps": []
+        },
+        {
+            "id": 8,
+            "filename": "this is a test",
+            "project_id": "63",
+            "notes": null,
+            "author": "Test Author",
+            "document_date": null,
+            "document_type": "test-document-type",
+            "published": "0",
+            "publish_date": "2020-08-29 00:00:00.000",
+            "checked_out": "0",
+            "steps": []
+        },
+        {
+            "id": 9,
+            "filename": "this is a test",
+            "project_id": "63",
+            "notes": null,
+            "author": "Test Author",
+            "document_date": null,
+            "document_type": "test-document-type",
+            "published": "0",
+            "publish_date": "2020-08-29 00:00:00.000",
+            "checked_out": "0",
+            "steps": []
+        },
+        {
+            "id": 10,
+            "filename": "this is a test",
+            "project_id": "63",
+            "notes": null,
+            "author": "Test Author",
+            "document_date": null,
+            "document_type": "test-document-type",
+            "published": "0",
+            "publish_date": "2020-08-29 00:00:00.000",
+            "checked_out": "0",
+            "steps": []
+        },
+        {
+            "id": 11,
+            "filename": "this is a test",
+            "project_id": "63",
+            "notes": null,
+            "author": "Test Author",
+            "document_date": null,
+            "document_type": "test-document-type",
+            "published": "0",
+            "publish_date": "2020-08-29 00:00:00.000",
+            "checked_out": "0",
+            "steps": [
+                {
+                    "id": 5,
+                    "name": "First Read",
+                    "order": "1",
+                    "project_id": "63",
+                    "short_name": null,
+                    "description": null,
+                    "status": "1"
+                },
+                {
+                    "id": 6,
+                    "name": "Second Read",
+                    "order": "1",
+                    "project_id": "63",
+                    "short_name": null,
+                    "description": null,
+                    "status": null
+                },
+                {
+                    "id": 7,
+                    "name": "Encoding",
+                    "order": "1",
+                    "project_id": "63",
+                    "short_name": null,
+                    "description": null,
+                    "status": null
+                },
+                {
+                    "id": 8,
+                    "name": "Editorial Check",
+                    "order": "1",
+                    "project_id": "63",
+                    "short_name": null,
+                    "description": null,
+                    "status": null
+                }
+            ]
+        }
+    ],
+    "links": {
+        "first": "http:\/\/localhost?page=1",
+        "last": "http:\/\/localhost?page=1",
+        "prev": null,
+        "next": null
+    },
+    "meta": {
+        "current_page": 1,
+        "from": 1,
+        "last_page": 1,
+        "path": "http:\/\/localhost",
+        "per_page": 10,
+        "to": 7,
+        "total": 7
+    }
+}
+```
+
+### HTTP Request
+`GET api/v1/documents`
+
+#### URL Parameters
+
+Parameter | Status | Description
+--------- | ------- | ------- | -------
+    `per_page` |  optional  | optional Limit page results.
+    `page` |  optional  | optional Page number to load:
+
+<!-- END_f9f46754ae9a48ce4e10a68541a0704e -->
+
+<!-- START_05fbb9368027b9755fb85930c94d1a97 -->
+## Read
+
+Retrieve a specific document
+
+> Example request:
+
+```bash
+curl -X GET \
+    -G "https://mhs-api.azurewebsites.net/api/v1/documents/3" \
+    -H "Content-Type: application/json" \
+    -H "Accept: application/json"
+```
+
+```javascript
+const url = new URL(
+    "https://mhs-api.azurewebsites.net/api/v1/documents/3"
+);
+
+let headers = {
+    "Content-Type": "application/json",
+    "Accept": "application/json",
+};
+
+fetch(url, {
+    method: "GET",
+    headers: headers,
+})
+    .then(response => response.json())
+    .then(json => console.log(json));
+```
+
+
+> Example response (200):
+
+```json
+{
+    "id": "3",
+    "filename": "this is a test",
+    "project_id": "63",
+    "notes": null,
+    "author": "Test Author",
+    "document_date": null,
+    "document_type": "test-document-type",
+    "published": "0",
+    "publish_date": "2020-08-29 00:00:00.000",
+    "checked_out": "0"
+}
+```
+> Example response (404):
+
+```json
+{
+    "message": "No query results for model"
+}
+```
+
+### HTTP Request
+`GET api/v1/documents/{id}`
+
+#### URL Parameters
+
+Parameter | Status | Description
+--------- | ------- | ------- | -------
+    `id` |  required  | The ID of the Document.
+
+<!-- END_05fbb9368027b9755fb85930c94d1a97 -->
+
+<!-- START_3b1c5bcf8825e8f0027c1993de7a58f9 -->
+## Edit
+
+Update the specified Document
+
+> Example request:
+
+```bash
+curl -X PATCH \
+    "https://mhs-api.azurewebsites.net/api/v1/documents/3" \
+    -H "Content-Type: application/json" \
+    -H "Accept: application/json" \
+    -d '{"name_id":1,"type":"role","family_name":"Buren","given_name":"Martin","middle_name":"Van","suffix":"Mr.","title":"President","role":"sunt","public_notes":"eos","staff_notes":"suscipit"}'
+
+```
+
+```javascript
+const url = new URL(
+    "https://mhs-api.azurewebsites.net/api/v1/documents/3"
+);
+
+let headers = {
+    "Content-Type": "application/json",
+    "Accept": "application/json",
+};
+
+let body = {
+    "name_id": 1,
+    "type": "role",
+    "family_name": "Buren",
+    "given_name": "Martin",
+    "middle_name": "Van",
+    "suffix": "Mr.",
+    "title": "President",
+    "role": "sunt",
+    "public_notes": "eos",
+    "staff_notes": "suscipit"
+}
+
+fetch(url, {
+    method: "PATCH",
+    headers: headers,
+    body: body
+})
+    .then(response => response.json())
+    .then(json => console.log(json));
+```
+
+
+
+### HTTP Request
+`PATCH api/v1/documents/{id}`
+
+#### URL Parameters
+
+Parameter | Status | Description
+--------- | ------- | ------- | -------
+    `id` |  required  | The ID of the Alias.
+#### Body Parameters
+Parameter | Type | Status | Description
+--------- | ------- | ------- | ------- | -----------
+    `name_id` | integer |  optional  | optional The id of the name.
+        `type` | string |  optional  | optional The type of alias.
+        `family_name` | string |  optional  | optional The family name for the alias.
+        `given_name` | string |  optional  | optional The given name for the alias.
+        `middle_name` | string |  optional  | optional The middle name for the alias.
+        `suffix` | string |  optional  | optional The suffix for the alias.
+        `title` | string |  optional  | optional The title for the alias.
+        `role` | string |  optional  | optional The role for the alias.
+        `public_notes` | text |  optional  | optional The public notes for the alias.
+        `staff_notes` | text |  optional  | optional The staff notes for the alias.
+    
+<!-- END_3b1c5bcf8825e8f0027c1993de7a58f9 -->
+
+<!-- START_9a662d6576f482a2d605a8647f32f2fb -->
+## Add
+
+> Example request:
+
+```bash
+curl -X POST \
+    "https://mhs-api.azurewebsites.net/api/v1/documents" \
+    -H "Content-Type: application/json" \
+    -H "Accept: application/json" \
+    -d '{"name_id":3,"type":"role","family_name":"Buren","given_name":"Martin","middle_name":"Van","suffix":"Mr.","title":"President","role":"saepe","public_notes":"ad","staff_notes":"non"}'
+
+```
+
+```javascript
+const url = new URL(
+    "https://mhs-api.azurewebsites.net/api/v1/documents"
+);
+
+let headers = {
+    "Content-Type": "application/json",
+    "Accept": "application/json",
+};
+
+let body = {
+    "name_id": 3,
+    "type": "role",
+    "family_name": "Buren",
+    "given_name": "Martin",
+    "middle_name": "Van",
+    "suffix": "Mr.",
+    "title": "President",
+    "role": "saepe",
+    "public_notes": "ad",
+    "staff_notes": "non"
+}
+
+fetch(url, {
+    method: "POST",
+    headers: headers,
+    body: body
+})
+    .then(response => response.json())
+    .then(json => console.log(json));
+```
+
+
+> Example response (200):
+
+```json
+{
+    "id": "3",
+    "filename": "this is a test",
+    "project_id": "63",
+    "notes": null,
+    "author": "Test Author",
+    "document_date": null,
+    "document_type": "test-document-type",
+    "published": "0",
+    "publish_date": "2020-08-29 00:00:00.000",
+    "checked_out": "0"
+}
+```
+
+### HTTP Request
+`POST api/v1/documents`
+
+#### Body Parameters
+Parameter | Type | Status | Description
+--------- | ------- | ------- | ------- | -----------
+    `name_id` | integer |  required  | The id of the name.
+        `type` | string |  required  | The type of alias.
+        `family_name` | string |  required  | The family name for the alias.
+        `given_name` | string |  optional  | optional The given name for the alias.
+        `middle_name` | string |  optional  | optional The middle name for the alias.
+        `suffix` | string |  optional  | optional The suffix for the alias.
+        `title` | string |  optional  | optional The title for the alias.
+        `role` | string |  optional  | optional The role for the alias.
+        `public_notes` | text |  optional  | optional The public notes for the alias.
+        `staff_notes` | text |  optional  | optional The staff notes for the alias.
+    
+<!-- END_9a662d6576f482a2d605a8647f32f2fb -->
+
+<!-- START_ca86226ecaf750d353707394843b6755 -->
+## Delete
+
+Remove a specific document
+
+> Example request:
+
+```bash
+curl -X DELETE \
+    "https://mhs-api.azurewebsites.net/api/v1/documents/3" \
+    -H "Content-Type: application/json" \
+    -H "Accept: application/json"
+```
+
+```javascript
+const url = new URL(
+    "https://mhs-api.azurewebsites.net/api/v1/documents/3"
+);
+
+let headers = {
+    "Content-Type": "application/json",
+    "Accept": "application/json",
+};
+
+fetch(url, {
+    method: "DELETE",
+    headers: headers,
+})
+    .then(response => response.json())
+    .then(json => console.log(json));
+```
+
+
+
+### HTTP Request
+`DELETE api/v1/documents/{id}`
+
+#### URL Parameters
+
+Parameter | Status | Description
+--------- | ------- | ------- | -------
+    `id` |  required  | The ID of the document.
+
+<!-- END_ca86226ecaf750d353707394843b6755 -->
+
+<!-- START_0729550b636d050d0bbbeadb9d02b4ea -->
+## Update Document Step
+
+Update the specified Document Step
+
+> Example request:
+
+```bash
+curl -X PATCH \
+    "https://mhs-api.azurewebsites.net/api/v1/documents/1/steps" \
+    -H "Content-Type: application/json" \
+    -H "Accept: application/json" \
+    -d '{"step_id":3,"status":2}'
+
+```
+
+```javascript
+const url = new URL(
+    "https://mhs-api.azurewebsites.net/api/v1/documents/1/steps"
+);
+
+let headers = {
+    "Content-Type": "application/json",
+    "Accept": "application/json",
+};
+
+let body = {
+    "step_id": 3,
+    "status": 2
+}
+
+fetch(url, {
+    method: "PATCH",
+    headers: headers,
+    body: body
+})
+    .then(response => response.json())
+    .then(json => console.log(json));
+```
+
+
+
+### HTTP Request
+`PATCH api/v1/documents/{id}/steps`
+
+#### Body Parameters
+Parameter | Type | Status | Description
+--------- | ------- | ------- | ------- | -----------
+    `step_id` | integer |  required  | The id of the step.
+        `status` | integer |  required  | The status of the step.
+    
+<!-- END_0729550b636d050d0bbbeadb9d02b4ea -->
+
+<!-- START_60255e698446cbe0fa278b5f284d5719 -->
+## Read
+
+Retrieve a specific document
+
+> Example request:
+
+```bash
+curl -X GET \
+    -G "https://mhs-api.azurewebsites.net/api/v1/document-step/3" \
+    -H "Content-Type: application/json" \
+    -H "Accept: application/json"
+```
+
+```javascript
+const url = new URL(
+    "https://mhs-api.azurewebsites.net/api/v1/document-step/3"
+);
+
+let headers = {
+    "Content-Type": "application/json",
+    "Accept": "application/json",
+};
+
+fetch(url, {
+    method: "GET",
+    headers: headers,
+})
+    .then(response => response.json())
+    .then(json => console.log(json));
+```
+
+
+> Example response (200):
+
+```json
+{
+    "id": "3",
+    "filename": "this is a test",
+    "project_id": "63",
+    "notes": null,
+    "author": "Test Author",
+    "document_date": null,
+    "document_type": "test-document-type",
+    "published": "0",
+    "publish_date": "2020-08-29 00:00:00.000",
+    "checked_out": "0"
+}
+```
+> Example response (404):
+
+```json
+{
+    "message": "No query results for model"
+}
+```
+
+### HTTP Request
+`GET api/v1/document-step/{id}`
+
+#### URL Parameters
+
+Parameter | Status | Description
+--------- | ------- | ------- | -------
+    `id` |  required  | The ID of the Document.
+
+<!-- END_60255e698446cbe0fa278b5f284d5719 -->
 
 #Links
 
@@ -682,67 +1215,22 @@ fetch(url, {
             "display_title": "oconnell.com",
             "url": "http:\/\/reilly.com\/voluptates-molestias-rerum-nisi-voluptates-voluptatem.html",
             "notes": "Quia amet quod sed et."
-        },
-        {
-            "id": 399,
-            "type": "source",
-            "authority": "snac",
-            "authority_id": "12345",
-            "display_title": "kutch.com",
-            "url": "http:\/\/www.gleichner.com\/animi-ea-qui-quae-sint-voluptas-ducimus-possimus.html",
-            "notes": "Ut atque in non facere."
-        },
-        {
-            "id": 400,
-            "type": "source",
-            "authority": "snac",
-            "authority_id": "12345",
-            "display_title": "kiehn.com",
-            "url": "http:\/\/cassin.biz\/",
-            "notes": "Id sequi et molestiae."
-        },
-        {
-            "id": 401,
-            "type": "source",
-            "authority": "snac",
-            "authority_id": "12345",
-            "display_title": "powlowski.net",
-            "url": "http:\/\/eichmann.com\/",
-            "notes": "Dolores aut non est."
-        },
-        {
-            "id": 402,
-            "type": "source",
-            "authority": "snac",
-            "authority_id": "12345",
-            "display_title": "hammes.biz",
-            "url": "http:\/\/beahan.net\/",
-            "notes": "Eius omnis enim quo et."
-        },
-        {
-            "id": 403,
-            "type": "source",
-            "authority": "snac",
-            "authority_id": "12345",
-            "display_title": "romaguera.org",
-            "url": "https:\/\/johns.com\/eveniet-excepturi-magnam-illo-aliquid-in-placeat-nihil-velit.html",
-            "notes": "Et labore et magnam."
         }
     ],
     "links": {
         "first": "http:\/\/localhost?page=1",
-        "last": "http:\/\/localhost?page=13",
+        "last": "http:\/\/localhost?page=20",
         "prev": null,
         "next": "http:\/\/localhost?page=2"
     },
     "meta": {
         "current_page": 1,
         "from": 1,
-        "last_page": 13,
+        "last_page": 20,
         "path": "http:\/\/localhost",
-        "per_page": 15,
-        "to": 15,
-        "total": 192
+        "per_page": 10,
+        "to": 10,
+        "total": 193
     }
 }
 ```
@@ -750,6 +1238,12 @@ fetch(url, {
 ### HTTP Request
 `GET api/v1/links`
 
+#### URL Parameters
+
+Parameter | Status | Description
+--------- | ------- | ------- | -------
+    `per_page` |  optional  | optional Limit page results.
+    `page` |  optional  | optional Page number to load:
 
 <!-- END_5abf710e926abfce98a2456aa6b223f5 -->
 
@@ -883,6 +1377,86 @@ Parameter | Type | Status | Description
         `notes` | string |  optional  | optional The notes of the link.
     
 <!-- END_b5208241d490e2668223c8fa6eed60c2 -->
+
+<!-- START_4a3fbb251b3780a0b3a359c3276aa216 -->
+## Add
+
+Create a new link
+
+> Example request:
+
+```bash
+curl -X POST \
+    "https://mhs-api.azurewebsites.net/api/v1/links" \
+    -H "Content-Type: application/json" \
+    -H "Accept: application/json" \
+    -d '{"type":"source","authority":"snac","authority_id":"123456","display_title":"Click me","url":"www.yahoo.com","notes":"n\/a","linkable_id":"quis","linkable_type":"voluptatem"}'
+
+```
+
+```javascript
+const url = new URL(
+    "https://mhs-api.azurewebsites.net/api/v1/links"
+);
+
+let headers = {
+    "Content-Type": "application/json",
+    "Accept": "application/json",
+};
+
+let body = {
+    "type": "source",
+    "authority": "snac",
+    "authority_id": "123456",
+    "display_title": "Click me",
+    "url": "www.yahoo.com",
+    "notes": "n\/a",
+    "linkable_id": "quis",
+    "linkable_type": "voluptatem"
+}
+
+fetch(url, {
+    method: "POST",
+    headers: headers,
+    body: body
+})
+    .then(response => response.json())
+    .then(json => console.log(json));
+```
+
+
+> Example response (200):
+
+```json
+{
+    "id": "3",
+    "linkable_id": "4",
+    "linkable_type": "Models\\Subject",
+    "type": "source",
+    "authority": "snac",
+    "authority_id": "12345",
+    "display_title": "this is a link",
+    "url": "www.yahoo.com",
+    "notes": "n\/a"
+}
+```
+
+### HTTP Request
+`POST api/v1/links`
+
+#### Body Parameters
+Parameter | Type | Status | Description
+--------- | ------- | ------- | ------- | -----------
+    `type` | string |  required  | The type of the link.
+        `authority` | string |  required  | The authority of the link.
+        `authority_id` | string |  required  | The authority id of the link.
+        `display_title` | string |  required  | The display title of the link.
+        `url` | string |  required  | The url of the link.
+        `notes` | string |  optional  | optional The notes of the link.
+        `linkable_id` | string |  optional  | optional
+        `linkable_type` | string |  optional  | optional
+    
+<!-- END_4a3fbb251b3780a0b3a359c3276aa216 -->
 
 <!-- START_3e24df97e7dbb5049e63f12aeb042e46 -->
 ## Delete
@@ -1018,7 +1592,7 @@ fetch(url, {
         "from": 1,
         "last_page": 1,
         "path": "http:\/\/localhost",
-        "per_page": 15,
+        "per_page": 10,
         "to": 5,
         "total": 5
     }
@@ -1028,6 +1602,12 @@ fetch(url, {
 ### HTTP Request
 `GET api/v1/lists`
 
+#### URL Parameters
+
+Parameter | Status | Description
+--------- | ------- | ------- | -------
+    `per_page` |  optional  | optional Limit page results.
+    `page` |  optional  | optional Page number to load:
 
 <!-- END_f1b8eb2943d95c92b42a3439d853d551 -->
 
@@ -2198,379 +2778,21 @@ fetch(url, {
                     "notes": "Dicta laborum id et."
                 }
             ]
-        },
-        {
-            "id": 671,
-            "family_name": "Daniel",
-            "given_name": "Ava",
-            "middle_name": null,
-            "maiden_name": null,
-            "suffix": "Jr.",
-            "keywords": null,
-            "date_of_birth": "1894-07-04",
-            "date_of_death": "1893-11-06",
-            "public_notes": "Laborum molestias aliquam numquam blanditiis incidunt eaque. Commodi culpa suscipit officia dicta nemo iure et.",
-            "staff_notes": "Autem quibusdam voluptatem eos voluptatum. Tempore asperiores rerum ex quod quia qui. Est sit ipsa accusantium expedita libero. Occaecati aspernatur pariatur ad et quas provident aut.",
-            "bio_filename": null,
-            "name_key": "daniel-ava--1894-07-04",
-            "aliases": [
-                {
-                    "id": 301,
-                    "family_name": "Haag",
-                    "given_name": "Jayce",
-                    "middle_name": null,
-                    "maiden_name": null,
-                    "suffix": "DDS",
-                    "title": null,
-                    "role": null,
-                    "type": "role",
-                    "public_notes": "Ut ut animi nulla aut quo. Tenetur et nobis et est. Esse hic aperiam inventore rerum nihil. Reprehenderit corrupti impedit non quia eos.",
-                    "staff_notes": "Delectus harum est dolorum possimus nostrum. Voluptatem iure eligendi repellendus necessitatibus. Quia quas culpa mollitia mollitia voluptas. Aut iste aliquam dolorem veritatis ipsa."
-                }
-            ],
-            "links": [
-                {
-                    "id": 435,
-                    "type": "source",
-                    "authority": "snac",
-                    "authority_id": "12345",
-                    "display_title": "armstrong.com",
-                    "url": "http:\/\/www.bogan.net\/facere-vero-qui-doloremque-non",
-                    "notes": "Quia et velit nisi et."
-                }
-            ]
-        },
-        {
-            "id": 672,
-            "family_name": "Kutch",
-            "given_name": "Rosanna",
-            "middle_name": null,
-            "maiden_name": null,
-            "suffix": "IV",
-            "keywords": null,
-            "date_of_birth": "1886-02-24",
-            "date_of_death": "1860-02-26",
-            "public_notes": "Necessitatibus quis numquam quae blanditiis est voluptas. Ea tempora placeat aliquam perspiciatis. Unde impedit nisi quis. Sed illum perferendis eos.",
-            "staff_notes": "Est culpa dolorem et repellendus magnam nemo rerum. Voluptas aliquam fugiat voluptas. Impedit placeat nemo vero iste aliquam.",
-            "bio_filename": null,
-            "name_key": "kutch-rosanna--1886-02-24",
-            "aliases": [
-                {
-                    "id": 302,
-                    "family_name": "Cronin",
-                    "given_name": "Lauren",
-                    "middle_name": null,
-                    "maiden_name": null,
-                    "suffix": "MD",
-                    "title": null,
-                    "role": null,
-                    "type": "role",
-                    "public_notes": "Nostrum aperiam aut facilis. Dolorem id optio aut consectetur. Accusantium ea exercitationem rerum quia et. Expedita numquam in nostrum nulla ratione.",
-                    "staff_notes": "Eius et nulla expedita praesentium. Nemo earum iste et officia ut dolor. Eaque molestias dolorem et quidem dolores eos quia eos. Hic vel natus sint ut."
-                }
-            ],
-            "links": [
-                {
-                    "id": 436,
-                    "type": "source",
-                    "authority": "snac",
-                    "authority_id": "12345",
-                    "display_title": "graham.com",
-                    "url": "http:\/\/www.swaniawski.com\/",
-                    "notes": "Dolorem sit itaque sunt."
-                },
-                {
-                    "id": 437,
-                    "type": "source",
-                    "authority": "snac",
-                    "authority_id": "12345",
-                    "display_title": "jaskolski.com",
-                    "url": "https:\/\/www.bauch.org\/ratione-vel-repellendus-rem-dolorem-iure-et-sunt",
-                    "notes": "Rem rem enim nihil."
-                },
-                {
-                    "id": 438,
-                    "type": "source",
-                    "authority": "snac",
-                    "authority_id": "12345",
-                    "display_title": "mueller.com",
-                    "url": "http:\/\/www.considine.net\/atque-et-quibusdam-unde-quis-ut-ea",
-                    "notes": "Fugit maiores a quasi."
-                },
-                {
-                    "id": 439,
-                    "type": "source",
-                    "authority": "snac",
-                    "authority_id": "12345",
-                    "display_title": "prohaska.biz",
-                    "url": "http:\/\/www.hansen.biz\/ex-facere-illo-qui-atque-ipsum-vero",
-                    "notes": "Est id ut dicta tempora."
-                },
-                {
-                    "id": 440,
-                    "type": "source",
-                    "authority": "snac",
-                    "authority_id": "12345",
-                    "display_title": "ward.com",
-                    "url": "http:\/\/bruen.info\/",
-                    "notes": "Est autem aut eligendi."
-                },
-                {
-                    "id": 441,
-                    "type": "source",
-                    "authority": "snac",
-                    "authority_id": "12345",
-                    "display_title": "gleichner.net",
-                    "url": "http:\/\/www.friesen.org\/sit-ad-deserunt-sit-ex-rerum",
-                    "notes": "Ut eum nam itaque."
-                }
-            ]
-        },
-        {
-            "id": 673,
-            "family_name": "White",
-            "given_name": "Coy",
-            "middle_name": null,
-            "maiden_name": null,
-            "suffix": "V",
-            "keywords": null,
-            "date_of_birth": "1864-03-05",
-            "date_of_death": "1855-07-20",
-            "public_notes": "Dolorem ab assumenda et consequatur. Commodi dolor voluptates voluptas qui ad at. Voluptatum et vitae nihil veritatis magnam blanditiis qui.",
-            "staff_notes": "Ut et velit est unde dolor exercitationem. Voluptates quia ut commodi magnam asperiores qui dicta dolor.",
-            "bio_filename": null,
-            "name_key": "white-coy--1864-03-05",
-            "aliases": [
-                {
-                    "id": 303,
-                    "family_name": "Effertz",
-                    "given_name": "Ralph",
-                    "middle_name": null,
-                    "maiden_name": null,
-                    "suffix": "I",
-                    "title": null,
-                    "role": null,
-                    "type": "role",
-                    "public_notes": "Cum asperiores alias ex cum et. Exercitationem nostrum omnis totam. Explicabo atque culpa iste assumenda. Quod omnis aliquam magnam quasi.",
-                    "staff_notes": "Architecto aut velit qui a harum enim deleniti distinctio. Ut enim qui iure possimus qui. Ut accusantium et earum et. Aut molestias nesciunt ab autem ut voluptatem."
-                }
-            ],
-            "links": [
-                {
-                    "id": 442,
-                    "type": "source",
-                    "authority": "snac",
-                    "authority_id": "12345",
-                    "display_title": "botsford.info",
-                    "url": "http:\/\/www.stokes.org\/quod-voluptatem-et-aut-quo.html",
-                    "notes": "Quod minus id quia sit."
-                },
-                {
-                    "id": 443,
-                    "type": "source",
-                    "authority": "snac",
-                    "authority_id": "12345",
-                    "display_title": "wyman.com",
-                    "url": "http:\/\/www.boehm.com\/nobis-ut-aliquam-quas-molestiae-ipsa-voluptatum-similique",
-                    "notes": "Velit non sint ad qui."
-                },
-                {
-                    "id": 444,
-                    "type": "source",
-                    "authority": "snac",
-                    "authority_id": "12345",
-                    "display_title": "ritchie.net",
-                    "url": "http:\/\/www.kirlin.com\/",
-                    "notes": "Quia magnam ex quam."
-                },
-                {
-                    "id": 445,
-                    "type": "source",
-                    "authority": "snac",
-                    "authority_id": "12345",
-                    "display_title": "green.com",
-                    "url": "http:\/\/www.hickle.com\/fugit-iste-molestiae-ea-impedit-esse-voluptate.html",
-                    "notes": "Aut ab alias sit."
-                },
-                {
-                    "id": 446,
-                    "type": "source",
-                    "authority": "snac",
-                    "authority_id": "12345",
-                    "display_title": "kerluke.com",
-                    "url": "https:\/\/yost.com\/qui-sit-vero-omnis-id.html",
-                    "notes": "Quo et officiis sit."
-                },
-                {
-                    "id": 447,
-                    "type": "source",
-                    "authority": "snac",
-                    "authority_id": "12345",
-                    "display_title": "mcclure.com",
-                    "url": "http:\/\/www.kub.net\/",
-                    "notes": "Sint debitis maiores ea."
-                }
-            ]
-        },
-        {
-            "id": 674,
-            "family_name": "Jenkins",
-            "given_name": "Jerrell",
-            "middle_name": null,
-            "maiden_name": null,
-            "suffix": "DDS",
-            "keywords": null,
-            "date_of_birth": "1886-04-30",
-            "date_of_death": "1854-01-10",
-            "public_notes": "Laboriosam ullam nulla natus rerum ratione corrupti ut dignissimos. Similique facere vitae libero impedit. Alias odit soluta magnam. Saepe fugiat rerum consectetur suscipit tempora quidem est.",
-            "staff_notes": "Eum exercitationem tempora illo. Necessitatibus incidunt quisquam quis non. Illum et omnis omnis dolorum blanditiis neque fugit. Ut voluptas mollitia odio magnam consequatur.",
-            "bio_filename": null,
-            "name_key": "jenkins-jerrell--1886-04-30",
-            "aliases": [
-                {
-                    "id": 304,
-                    "family_name": "Durgan",
-                    "given_name": "Arely",
-                    "middle_name": null,
-                    "maiden_name": null,
-                    "suffix": "V",
-                    "title": null,
-                    "role": null,
-                    "type": "role",
-                    "public_notes": "Sunt dignissimos temporibus officia perferendis molestias et. Aut aut quidem consectetur aliquam. Qui exercitationem quia sint autem eius quas.",
-                    "staff_notes": "Enim in et nostrum aliquam. Molestias fugiat in ipsam repudiandae qui rem officia. Rerum quaerat perspiciatis animi perspiciatis numquam. Similique sapiente est incidunt neque sapiente."
-                }
-            ],
-            "links": [
-                {
-                    "id": 448,
-                    "type": "source",
-                    "authority": "snac",
-                    "authority_id": "12345",
-                    "display_title": "gleason.com",
-                    "url": "http:\/\/www.jones.com\/repudiandae-doloremque-explicabo-et-iure-voluptatibus-iure-eveniet",
-                    "notes": "Quas eos odio rerum sit."
-                },
-                {
-                    "id": 449,
-                    "type": "source",
-                    "authority": "snac",
-                    "authority_id": "12345",
-                    "display_title": "rutherford.info",
-                    "url": "http:\/\/www.mcglynn.com\/",
-                    "notes": "Commodi quasi id animi."
-                },
-                {
-                    "id": 450,
-                    "type": "source",
-                    "authority": "snac",
-                    "authority_id": "12345",
-                    "display_title": "predovic.com",
-                    "url": "http:\/\/frami.com\/quibusdam-facilis-aut-ab",
-                    "notes": "Suscipit at cumque modi."
-                }
-            ]
-        },
-        {
-            "id": 675,
-            "family_name": "Langosh",
-            "given_name": "Mollie",
-            "middle_name": null,
-            "maiden_name": null,
-            "suffix": "Sr.",
-            "keywords": null,
-            "date_of_birth": "1885-10-20",
-            "date_of_death": "1875-11-05",
-            "public_notes": "Ratione praesentium dolores est quidem. Dolorem voluptas nihil id minima aut. Perferendis iusto dolore debitis ut amet.",
-            "staff_notes": "Quaerat consequatur qui tempore incidunt quas vel facere. Atque similique nostrum error et. Nesciunt dolores aperiam non. Corporis voluptatem est sint ipsam.",
-            "bio_filename": null,
-            "name_key": "langosh-mollie--1885-10-20",
-            "aliases": [
-                {
-                    "id": 305,
-                    "family_name": "Pagac",
-                    "given_name": "Kiana",
-                    "middle_name": null,
-                    "maiden_name": null,
-                    "suffix": "II",
-                    "title": null,
-                    "role": null,
-                    "type": "role",
-                    "public_notes": "Aut sed consectetur perspiciatis perspiciatis a autem. Quam tempore quibusdam ab non amet aut fuga.",
-                    "staff_notes": "Laboriosam explicabo possimus inventore. Id in aspernatur enim ut eveniet expedita sint. Recusandae voluptas sit soluta corrupti."
-                }
-            ],
-            "links": [
-                {
-                    "id": 451,
-                    "type": "source",
-                    "authority": "snac",
-                    "authority_id": "12345",
-                    "display_title": "harvey.com",
-                    "url": "http:\/\/brekke.com\/commodi-illo-quos-vel-quaerat-dicta-ut-natus.html",
-                    "notes": "Et omnis quis molestiae."
-                },
-                {
-                    "id": 452,
-                    "type": "source",
-                    "authority": "snac",
-                    "authority_id": "12345",
-                    "display_title": "anderson.com",
-                    "url": "http:\/\/fahey.com\/unde-quis-odio-recusandae-est-repellendus-molestiae-omnis",
-                    "notes": "Ut ut nobis perferendis."
-                },
-                {
-                    "id": 453,
-                    "type": "source",
-                    "authority": "snac",
-                    "authority_id": "12345",
-                    "display_title": "aufderhar.com",
-                    "url": "http:\/\/daugherty.com\/exercitationem-sed-facere-praesentium-est-commodi",
-                    "notes": "Est dolor qui eum id."
-                },
-                {
-                    "id": 454,
-                    "type": "source",
-                    "authority": "snac",
-                    "authority_id": "12345",
-                    "display_title": "kunze.com",
-                    "url": "http:\/\/www.prohaska.net\/repellat-architecto-praesentium-est-suscipit-culpa-enim",
-                    "notes": "Esse eos nostrum sequi."
-                },
-                {
-                    "id": 455,
-                    "type": "source",
-                    "authority": "snac",
-                    "authority_id": "12345",
-                    "display_title": "ruecker.com",
-                    "url": "http:\/\/quigley.com\/autem-et-quaerat-voluptas-enim-quia-culpa-maxime",
-                    "notes": "Dolor commodi vero quas."
-                },
-                {
-                    "id": 456,
-                    "type": "source",
-                    "authority": "snac",
-                    "authority_id": "12345",
-                    "display_title": "kerluke.com",
-                    "url": "https:\/\/block.net\/id-corporis-fuga-quam-aut-earum-soluta.html",
-                    "notes": "Placeat minus atque id."
-                }
-            ]
         }
     ],
     "links": {
         "first": "http:\/\/localhost?page=1",
-        "last": "http:\/\/localhost?page=4",
+        "last": "http:\/\/localhost?page=5",
         "prev": null,
         "next": "http:\/\/localhost?page=2"
     },
     "meta": {
         "current_page": 1,
         "from": 1,
-        "last_page": 4,
+        "last_page": 5,
         "path": "http:\/\/localhost",
-        "per_page": 15,
-        "to": 15,
+        "per_page": 10,
+        "to": 10,
         "total": 50
     }
 }
@@ -2579,6 +2801,12 @@ fetch(url, {
 ### HTTP Request
 `GET api/v1/names`
 
+#### URL Parameters
+
+Parameter | Status | Description
+--------- | ------- | ------- | -------
+    `per_page` |  optional  | optional Limit page results.
+    `page` |  optional  | optional Page number to load:
 
 <!-- END_1e0430434c304b4be8f4ee1a04e6a251 -->
 
@@ -2678,7 +2906,7 @@ curl -X PATCH \
     "https://mhs-api.azurewebsites.net/api/v1/names/3" \
     -H "Content-Type: application/json" \
     -H "Accept: application/json" \
-    -d '{"family_name":"John","given_name":"Doe","maiden_name":"quia","middle_name":"placeat","suffix":"et","keywords":"autem","date_of_birth":"et","date_of_death":"sit","public_notes":"voluptatem","staff_notes":"vel","bio_filename":"sed"}'
+    -d '{"family_name":"John","given_name":"Doe","maiden_name":"qui","middle_name":"nam","suffix":"reprehenderit","keywords":"repellendus","date_of_birth":"esse","date_of_death":"et","public_notes":"excepturi","staff_notes":"perferendis","bio_filename":"qui"}'
 
 ```
 
@@ -2695,15 +2923,15 @@ let headers = {
 let body = {
     "family_name": "John",
     "given_name": "Doe",
-    "maiden_name": "quia",
-    "middle_name": "placeat",
-    "suffix": "et",
-    "keywords": "autem",
-    "date_of_birth": "et",
-    "date_of_death": "sit",
-    "public_notes": "voluptatem",
-    "staff_notes": "vel",
-    "bio_filename": "sed"
+    "maiden_name": "qui",
+    "middle_name": "nam",
+    "suffix": "reprehenderit",
+    "keywords": "repellendus",
+    "date_of_birth": "esse",
+    "date_of_death": "et",
+    "public_notes": "excepturi",
+    "staff_notes": "perferendis",
+    "bio_filename": "qui"
 }
 
 fetch(url, {
@@ -2754,7 +2982,7 @@ curl -X POST \
     "https://mhs-api.azurewebsites.net/api/v1/names" \
     -H "Content-Type: application/json" \
     -H "Accept: application/json" \
-    -d '{"family_name":"John","given_name":"Doe","maiden_name":"non","middle_name":"est","suffix":"eos","keywords":"enim","date_of_birth":"laudantium","date_of_death":"accusamus","public_notes":"dolor","staff_notes":"repudiandae","bio_filename":"tempora"}'
+    -d '{"family_name":"John","given_name":"Doe","maiden_name":"odit","middle_name":"omnis","suffix":"autem","keywords":"iusto","date_of_birth":"quo","date_of_death":"voluptatum","public_notes":"odio","staff_notes":"aut","bio_filename":"quod"}'
 
 ```
 
@@ -2771,15 +2999,15 @@ let headers = {
 let body = {
     "family_name": "John",
     "given_name": "Doe",
-    "maiden_name": "non",
-    "middle_name": "est",
-    "suffix": "eos",
-    "keywords": "enim",
-    "date_of_birth": "laudantium",
-    "date_of_death": "accusamus",
-    "public_notes": "dolor",
-    "staff_notes": "repudiandae",
-    "bio_filename": "tempora"
+    "maiden_name": "odit",
+    "middle_name": "omnis",
+    "suffix": "autem",
+    "keywords": "iusto",
+    "date_of_birth": "quo",
+    "date_of_death": "voluptatum",
+    "public_notes": "odio",
+    "staff_notes": "aut",
+    "bio_filename": "quod"
 }
 
 fetch(url, {
@@ -3029,7 +3257,7 @@ fetch(url, {
         "from": 1,
         "last_page": 1,
         "path": "http:\/\/localhost",
-        "per_page": 15,
+        "per_page": 10,
         "to": 5,
         "total": 5
     }
@@ -3039,6 +3267,12 @@ fetch(url, {
 ### HTTP Request
 `GET api/v1/projects`
 
+#### URL Parameters
+
+Parameter | Status | Description
+--------- | ------- | ------- | -------
+    `per_page` |  optional  | optional Limit page results.
+    `page` |  optional  | optional Page number to load:
 
 <!-- END_d4bb0000cd4525b356d3f4e604741ee1 -->
 
@@ -3116,7 +3350,7 @@ curl -X PATCH \
     "https://mhs-api.azurewebsites.net/api/v1/projects/3" \
     -H "Content-Type: application/json" \
     -H "Accept: application/json" \
-    -d '{"project_id":"111-5-585-1566","name":"1800s Project","description":"ut"}'
+    -d '{"project_id":"111-5-585-1566","name":"1800s Project","description":"quia"}'
 
 ```
 
@@ -3133,7 +3367,7 @@ let headers = {
 let body = {
     "project_id": "111-5-585-1566",
     "name": "1800s Project",
-    "description": "ut"
+    "description": "quia"
 }
 
 fetch(url, {
@@ -3176,7 +3410,7 @@ curl -X POST \
     "https://mhs-api.azurewebsites.net/api/v1/projects" \
     -H "Content-Type: application/json" \
     -H "Accept: application/json" \
-    -d '{"project_id":"111-5-585-1566","name":"1800s Project","description":"consectetur"}'
+    -d '{"project_id":"111-5-585-1566","name":"1800s Project","description":"sit"}'
 
 ```
 
@@ -3193,7 +3427,7 @@ let headers = {
 let body = {
     "project_id": "111-5-585-1566",
     "name": "1800s Project",
-    "description": "consectetur"
+    "description": "sit"
 }
 
 fetch(url, {
@@ -3569,6 +3803,348 @@ fetch(url, {
 
 <!-- END_1276459bba6bc7a6f4396200acdf2741 -->
 
+#Step
+
+
+APIs for managing dopcuments
+<!-- START_46c5093d67e4e7dd0abba9cfd9e16999 -->
+## Browse
+
+Retrieve a list of steps
+
+> Example request:
+
+```bash
+curl -X GET \
+    -G "https://mhs-api.azurewebsites.net/api/v1/steps" \
+    -H "Content-Type: application/json" \
+    -H "Accept: application/json"
+```
+
+```javascript
+const url = new URL(
+    "https://mhs-api.azurewebsites.net/api/v1/steps"
+);
+
+let headers = {
+    "Content-Type": "application/json",
+    "Accept": "application/json",
+};
+
+fetch(url, {
+    method: "GET",
+    headers: headers,
+})
+    .then(response => response.json())
+    .then(json => console.log(json));
+```
+
+
+> Example response (200):
+
+```json
+{
+    "data": [
+        {
+            "id": 5,
+            "name": "First Read",
+            "order": "1",
+            "project_id": "63",
+            "short_name": null,
+            "description": null
+        },
+        {
+            "id": 6,
+            "name": "Second Read",
+            "order": "1",
+            "project_id": "63",
+            "short_name": null,
+            "description": null
+        },
+        {
+            "id": 7,
+            "name": "Encoding",
+            "order": "1",
+            "project_id": "63",
+            "short_name": null,
+            "description": null
+        },
+        {
+            "id": 8,
+            "name": "Editorial Check",
+            "order": "1",
+            "project_id": "63",
+            "short_name": null,
+            "description": null
+        }
+    ],
+    "links": {
+        "first": "http:\/\/localhost?page=1",
+        "last": "http:\/\/localhost?page=1",
+        "prev": null,
+        "next": null
+    },
+    "meta": {
+        "current_page": 1,
+        "from": 1,
+        "last_page": 1,
+        "path": "http:\/\/localhost",
+        "per_page": 10,
+        "to": 4,
+        "total": 4
+    }
+}
+```
+
+### HTTP Request
+`GET api/v1/steps`
+
+#### URL Parameters
+
+Parameter | Status | Description
+--------- | ------- | ------- | -------
+    `per_page` |  optional  | optional Limit page results.
+    `page` |  optional  | optional Page number to load:
+
+<!-- END_46c5093d67e4e7dd0abba9cfd9e16999 -->
+
+<!-- START_3b9481a6355fdc50fecde4f987b98c2a -->
+## Read
+
+Retrieve a specific step
+
+> Example request:
+
+```bash
+curl -X GET \
+    -G "https://mhs-api.azurewebsites.net/api/v1/steps/3" \
+    -H "Content-Type: application/json" \
+    -H "Accept: application/json"
+```
+
+```javascript
+const url = new URL(
+    "https://mhs-api.azurewebsites.net/api/v1/steps/3"
+);
+
+let headers = {
+    "Content-Type": "application/json",
+    "Accept": "application/json",
+};
+
+fetch(url, {
+    method: "GET",
+    headers: headers,
+})
+    .then(response => response.json())
+    .then(json => console.log(json));
+```
+
+
+> Example response (200):
+
+```json
+{
+    "id": "3",
+    "name": "Step 1",
+    "order": "1",
+    "project_id": "11-124-11246",
+    "short_name": null,
+    "description": null
+}
+```
+> Example response (404):
+
+```json
+{
+    "message": "No query results for model"
+}
+```
+
+### HTTP Request
+`GET api/v1/steps/{id}`
+
+#### URL Parameters
+
+Parameter | Status | Description
+--------- | ------- | ------- | -------
+    `id` |  required  | The ID of the Step.
+
+<!-- END_3b9481a6355fdc50fecde4f987b98c2a -->
+
+<!-- START_828a2e4e332e219c455e1945045afaf7 -->
+## Edit
+
+Update the specified Step
+
+> Example request:
+
+```bash
+curl -X PATCH \
+    "https://mhs-api.azurewebsites.net/api/v1/steps/1" \
+    -H "Content-Type: application/json" \
+    -H "Accept: application/json" \
+    -d '{"project_id":"123-456-789","name":"Step 1","short_name":"aut","order":4,"description":"quia"}'
+
+```
+
+```javascript
+const url = new URL(
+    "https://mhs-api.azurewebsites.net/api/v1/steps/1"
+);
+
+let headers = {
+    "Content-Type": "application/json",
+    "Accept": "application/json",
+};
+
+let body = {
+    "project_id": "123-456-789",
+    "name": "Step 1",
+    "short_name": "aut",
+    "order": 4,
+    "description": "quia"
+}
+
+fetch(url, {
+    method: "PATCH",
+    headers: headers,
+    body: body
+})
+    .then(response => response.json())
+    .then(json => console.log(json));
+```
+
+
+
+### HTTP Request
+`PATCH api/v1/steps/{id}`
+
+#### Body Parameters
+Parameter | Type | Status | Description
+--------- | ------- | ------- | ------- | -----------
+    `project_id` | string |  required  | The project id of the list.
+        `name` | string |  required  | The name of the step.
+        `short_name` | string |  optional  | optional The short name of the step.
+        `order` | integer |  required  | The order of the step.
+        `description` | string |  optional  | optional The description of the step.
+    
+<!-- END_828a2e4e332e219c455e1945045afaf7 -->
+
+<!-- START_102555aea6a991a9f6728e93531de053 -->
+## Add
+
+> Example request:
+
+```bash
+curl -X POST \
+    "https://mhs-api.azurewebsites.net/api/v1/steps" \
+    -H "Content-Type: application/json" \
+    -H "Accept: application/json" \
+    -d '{"project_id":"123-456-789","name":"Step 1","short_name":"cumque","order":19,"description":"est"}'
+
+```
+
+```javascript
+const url = new URL(
+    "https://mhs-api.azurewebsites.net/api/v1/steps"
+);
+
+let headers = {
+    "Content-Type": "application/json",
+    "Accept": "application/json",
+};
+
+let body = {
+    "project_id": "123-456-789",
+    "name": "Step 1",
+    "short_name": "cumque",
+    "order": 19,
+    "description": "est"
+}
+
+fetch(url, {
+    method: "POST",
+    headers: headers,
+    body: body
+})
+    .then(response => response.json())
+    .then(json => console.log(json));
+```
+
+
+> Example response (200):
+
+```json
+{
+    "id": "3",
+    "name": "Step 1",
+    "order": "1",
+    "project_id": "11-124-11246",
+    "short_name": null,
+    "description": null
+}
+```
+
+### HTTP Request
+`POST api/v1/steps`
+
+#### Body Parameters
+Parameter | Type | Status | Description
+--------- | ------- | ------- | ------- | -----------
+    `project_id` | string |  required  | The project id of the list.
+        `name` | string |  required  | The name of the step.
+        `short_name` | string |  optional  | optional The short name of the step.
+        `order` | integer |  required  | The order of the step.
+        `description` | string |  optional  | optional The description of the step.
+    
+<!-- END_102555aea6a991a9f6728e93531de053 -->
+
+<!-- START_859912055c5b9cb7d2baab5edbb8bf25 -->
+## Delete
+
+Remove a specific step
+
+> Example request:
+
+```bash
+curl -X DELETE \
+    "https://mhs-api.azurewebsites.net/api/v1/steps/3" \
+    -H "Content-Type: application/json" \
+    -H "Accept: application/json"
+```
+
+```javascript
+const url = new URL(
+    "https://mhs-api.azurewebsites.net/api/v1/steps/3"
+);
+
+let headers = {
+    "Content-Type": "application/json",
+    "Accept": "application/json",
+};
+
+fetch(url, {
+    method: "DELETE",
+    headers: headers,
+})
+    .then(response => response.json())
+    .then(json => console.log(json));
+```
+
+
+
+### HTTP Request
+`DELETE api/v1/steps/{id}`
+
+#### URL Parameters
+
+Parameter | Status | Description
+--------- | ------- | ------- | -------
+    `id` |  required  | The ID of the step.
+
+<!-- END_859912055c5b9cb7d2baab5edbb8bf25 -->
+
 #Subjects
 
 
@@ -3690,53 +4266,21 @@ fetch(url, {
             "staff_notes": null,
             "keywords": null,
             "loc": null
-        },
-        {
-            "id": 70,
-            "subject_name": "ut ut",
-            "display_name": "dolorem numquam",
-            "staff_notes": null,
-            "keywords": null,
-            "loc": null
-        },
-        {
-            "id": 71,
-            "subject_name": "recusandae eveniet",
-            "display_name": "mollitia autem",
-            "staff_notes": null,
-            "keywords": null,
-            "loc": null
-        },
-        {
-            "id": 72,
-            "subject_name": "ut repellat",
-            "display_name": "autem enim",
-            "staff_notes": null,
-            "keywords": null,
-            "loc": null
-        },
-        {
-            "id": 73,
-            "subject_name": "qui unde",
-            "display_name": "nostrum rem",
-            "staff_notes": null,
-            "keywords": null,
-            "loc": null
         }
     ],
     "links": {
         "first": "http:\/\/localhost?page=1",
-        "last": "http:\/\/localhost?page=1",
+        "last": "http:\/\/localhost?page=2",
         "prev": null,
-        "next": null
+        "next": "http:\/\/localhost?page=2"
     },
     "meta": {
         "current_page": 1,
         "from": 1,
-        "last_page": 1,
+        "last_page": 2,
         "path": "http:\/\/localhost",
-        "per_page": 15,
-        "to": 14,
+        "per_page": 10,
+        "to": 10,
         "total": 14
     }
 }
@@ -3745,6 +4289,12 @@ fetch(url, {
 ### HTTP Request
 `GET api/v1/subjects`
 
+#### URL Parameters
+
+Parameter | Status | Description
+--------- | ------- | ------- | -------
+    `per_page` |  optional  | optional Limit page results.
+    `page` |  optional  | optional Page number to load:
 
 <!-- END_451cd228b1ef6fa32ccba39a38733061 -->
 
@@ -3822,7 +4372,7 @@ curl -X PATCH \
     "https://mhs-api.azurewebsites.net/api/v1/subjects/3" \
     -H "Content-Type: application/json" \
     -H "Accept: application/json" \
-    -d '{"subject_name":"consequatur","display_name":"autem","staff_notes":"ab","keywords":"et","loc":"accusamus","parent_id":"tempore"}'
+    -d '{"subject_name":"laborum","display_name":"reprehenderit","staff_notes":"asperiores","keywords":"architecto","loc":"quaerat","parent_id":"voluptate"}'
 
 ```
 
@@ -3837,12 +4387,12 @@ let headers = {
 };
 
 let body = {
-    "subject_name": "consequatur",
-    "display_name": "autem",
-    "staff_notes": "ab",
-    "keywords": "et",
-    "loc": "accusamus",
-    "parent_id": "tempore"
+    "subject_name": "laborum",
+    "display_name": "reprehenderit",
+    "staff_notes": "asperiores",
+    "keywords": "architecto",
+    "loc": "quaerat",
+    "parent_id": "voluptate"
 }
 
 fetch(url, {
@@ -3888,7 +4438,7 @@ curl -X POST \
     "https://mhs-api.azurewebsites.net/api/v1/subjects" \
     -H "Content-Type: application/json" \
     -H "Accept: application/json" \
-    -d '{"subject_name":"consequatur","display_name":"voluptas","staff_notes":"qui","keywords":"praesentium","loc":"nihil","parent_id":"quis"}'
+    -d '{"subject_name":"sit","display_name":"facilis","staff_notes":"laudantium","keywords":"eum","loc":"accusamus","parent_id":"earum"}'
 
 ```
 
@@ -3903,12 +4453,12 @@ let headers = {
 };
 
 let body = {
-    "subject_name": "consequatur",
-    "display_name": "voluptas",
-    "staff_notes": "qui",
-    "keywords": "praesentium",
-    "loc": "nihil",
-    "parent_id": "quis"
+    "subject_name": "sit",
+    "display_name": "facilis",
+    "staff_notes": "laudantium",
+    "keywords": "eum",
+    "loc": "accusamus",
+    "parent_id": "earum"
 }
 
 fetch(url, {

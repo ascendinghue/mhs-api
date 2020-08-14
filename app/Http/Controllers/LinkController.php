@@ -110,8 +110,8 @@ class LinkController extends BaseController
      * @bodyParam display_title string required The display title of the link. Example: Click me
      * @bodyParam url string required The url of the link. Example: www.yahoo.com
      * @bodyParam notes string optional The notes of the link. Example: n/a
-     * @bodyParam linkable_id 
-     * @bodyParam linkable_type
+     * @bodyParam linkable_id string optional
+     * @bodyParam linkable_type string optional
      * @return Response
      * 
      * @response {

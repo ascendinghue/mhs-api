@@ -76,6 +76,32 @@ $router->group(['prefix'=>'api/v1'], function() use($router){
     $router->patch('lists/{id}/name', 'ProjectListController@nameToggle');
     $router->patch('lists/{id}/subject', 'ProjectListController@subjectToggle');
     
+    /*
+        Documents
+    */    
+    $router->get('documents', 'DocumentController@index');
+    $router->get('documents/{id}', 'DocumentController@show');
+    $router->patch('documents/{id}', 'DocumentController@update');
+    $router->post('documents', 'DocumentController@store');
+    $router->delete('documents/{id}', 'DocumentController@delete');
+    $router->patch('documents/{id}/steps', 'DocumentController@updateDocumentStep');
+
+    /*
+        Steps
+    */
+    $router->get('steps', 'StepController@index');
+    $router->get('steps/{id}', 'StepController@show');
+    $router->patch('steps/{id}', 'StepController@update');
+    $router->post('steps', 'StepController@store');
+    $router->delete('steps/{id}', 'StepController@delete');
+
+    /*
+        Document Steps
+    */    
+    $router->get('document-step/{id}', 'DocumentController@show');
+    $router->patch('documents/{id}', 'DocumentController@update');
+    $router->post('documents', 'DocumentController@store');
+    $router->delete('documents/{id}', 'DocumentController@delete');
 
     /*
         Relationship Endpoints
