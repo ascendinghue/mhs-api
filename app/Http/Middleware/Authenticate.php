@@ -1,44 +1,28 @@
 <?php
 
-// namespace App\Http\Middleware;
+namespace App\Http\Middleware;
 
-// use Closure;
-// use Illuminate\Contracts\Auth\Factory as Auth;
+use Closure;
 
-// class Authenticate
-// {
-//     /**
-//      * The authentication guard factory instance.
-//      *
-//      * @var \Illuminate\Contracts\Auth\Factory
-//      */
-//     protected $auth;
+class Authenticate
+{
+    /**
+     * Handle an incoming request.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @param  \Closure  $next
+     * @return mixed
+     */
+    public function handle($request, Closure $next)
+    {
+      $session = ["username" => false, "role" => false, "sitename" => "", "display_name" => ""];
 
-//     /**
-//      * Create a new middleware instance.
-//      *
-//      * @param  \Illuminate\Contracts\Auth\Factory  $auth
-//      * @return void
-//      */
-//     public function __construct(Auth $auth)
-//     {
-//         $this->auth = $auth;
-//     }
+      if (!$session['username'] && !$session['role']) {
+        return response('Unauthorized.', 401);
+      }
 
-//     /**
-//      * Handle an incoming request.
-//      *
-//      * @param  \Illuminate\Http\Request  $request
-//      * @param  \Closure  $next
-//      * @param  string|null  $guard
-//      * @return mixed
-//      */
-//     public function handle($request, Closure $next, $guard = null)
-//     {
-//         if ($this->auth->guard($guard)->guest()) {
-//             return response('Unauthorized.', 401);
-//         }
+      $request->identity = (object) $session;
 
-//         return $next($request);
-//     }
-// }
+      return $next($request);
+    }
+}

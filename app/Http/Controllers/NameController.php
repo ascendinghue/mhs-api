@@ -199,6 +199,12 @@ class NameController extends BaseController
             ])
         );
 
+        $name->update([
+            'first_created_by' => $request->identity->username
+        ]);
+
+        $name = $name->fresh();
+
         return response(new NameResource($name), 201);
     }
 

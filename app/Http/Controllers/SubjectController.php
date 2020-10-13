@@ -118,7 +118,7 @@ class SubjectController extends BaseController
         ]);
 
         $subject = Subject::create(
-            $request->only([             
+            $request->only([
                 'subject_name', 
                 'display_name', 
                 'staff_notes',
@@ -128,6 +128,11 @@ class SubjectController extends BaseController
             ])
         );
 
+        $subject->update([
+            'first_created_by' => $request->identity->username
+        ]);
+
+        $subject = $subject->fresh();
         return response(new SubjectResource($subject), 201);
     }
 
