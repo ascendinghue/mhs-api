@@ -15,6 +15,9 @@ class HotFixCommand extends Command
 
     public function handle(Faker $faker)
     {
+	echo $_SERVER['DOCUMENT_ROOT'];exit();
+
+
         $document = \Models\Document::find(11);
         $document->steps()->updateExistingPivot(5, ['status' => 2]);
         foreach($document->steps as $step) {

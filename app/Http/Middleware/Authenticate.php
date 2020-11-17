@@ -2,6 +2,8 @@
 
 namespace App\Http\Middleware;
 
+include("/psc/www/html/publications/lib/classes/publications/staffuser.php");
+
 use Closure;
 
 class Authenticate
@@ -15,7 +17,11 @@ class Authenticate
      */
     public function handle($request, Closure $next)
     {
-      $session = ["username" => false, "role" => false, "sitename" => "", "display_name" => ""];
+      //$session = ["username" => false, "role" => false, "sitename" => "", "display_name" => ""];
+
+	$session = \Publications\StaffUser::currentUser();
+
+$session = ["username" => "mojojojo", "role" => "editor", "sitename" => "", "display_name" => ""];
 
       if (!$session['username'] && !$session['role']) {
         return response('Unauthorized.', 401);
