@@ -15,7 +15,10 @@ class Authenticate
      */
     public function handle($request, Closure $next)
     {
-      $session = ["username" => false, "role" => false, "sitename" => "", "display_name" => ""];
+//      $session = ["username" => false, "role" => false, "sitename" => "", "display_name" => ""];
+
+
+$session = ["username" => false, "role" => false, "sitename" => "", "display_name" => ""];
 
       if (!$session['username'] && !$session['role']) {
         return response('Unauthorized.', 401);
