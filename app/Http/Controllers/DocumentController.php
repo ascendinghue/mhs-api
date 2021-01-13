@@ -83,9 +83,17 @@ class DocumentController extends BaseController
     public function update(Request $request, $id)
     {
         $this->validate($request, [
-            'name_id' => 'sometimes|exists:names,id',
-            'type' => 'sometimes|in:spelling,role'
+            'filename' => '',
+            'project_id' => 'required|exists:projects,id',
+            'notes' => 'present|nullable',
+            'author' => 'required',
+            'document_date' => 'present|nullable',
+            'document_type' => 'required',
+            'published' => 'sometimes|boolean',
+            'publish_date' => 'sometimes|date_format:Y-m-d',
+            'checked_out' => 'sometimes|boolean'
         ]);
+
 
         Alias::findOrFail($id)->update(
             $request->only([
