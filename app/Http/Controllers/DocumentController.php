@@ -67,23 +67,22 @@ class DocumentController extends BaseController
      *
      * @param  Request  $request
      * @param  string  $id
-     * @urlParam id required The ID of the Alias. Example: 3
-     * @bodyParam name_id int optional The id of the name. Example: 1
-     * @bodyParam type string optional The type of alias. Example: role
-     * @bodyParam family_name string optional The family name for the alias. Example: Buren
-     * @bodyParam given_name string optional The given name for the alias. Example: Martin  
-     * @bodyParam middle_name string optional The middle name for the alias. Example: Van 
-     * @bodyParam suffix string optional The suffix for the alias. Example: Mr.
-     * @bodyParam title string optional The title for the alias. Example: President
-     * @bodyParam role string optional The role for the alias.
-     * @bodyParam public_notes text optional The public notes for the alias. 
-     * @bodyParam staff_notes text optional The staff notes for the alias. 
+     * @urlParam id required The ID of the Document. Example: 3
+     * @bodyParam filename string required The filename of the Document. Example: file.pdf
+     * @bodyParam project_id int required The project id of Document. Example: 6
+     * @bodyParam notes string optional The notes for the document.
+     * @bodyParam author string required The author for the document.
+     * @bodyParam document_date date required The date for the document.
+     * @bodyParam document_type string required The type of the document.
+     * @bodyParam published boolean optional The published status for the document.
+     * @bodyParam publish_date date optional The publish date for the document.
+     * @bodyParam checked_out boolean optional The checked out status for the document. 
      * @return Response
      */
     public function update(Request $request, $id)
     {
         $this->validate($request, [
-            'filename' => '',
+            'filename' => 'required',
             'project_id' => 'required|exists:projects,id',
             'notes' => 'present|nullable',
             'author' => 'required',
@@ -94,20 +93,17 @@ class DocumentController extends BaseController
             'checked_out' => 'sometimes|boolean'
         ]);
 
-
-        Alias::findOrFail($id)->update(
+        Document::findOrFail($id)->update(
             $request->only([
-                'name_id',
-                'type',
-                'family_name',
-                'given_name',
-                'middle_name',
-                'maiden_name',
-                'suffix',
-                'title',
-                'role',
-                'public_notes',
-                'staff_notes'
+                'filename',
+                'project_id',
+                'notes',
+                'author',
+                'document_date',
+                'document_type',
+                'published',
+                'publish_date',
+                'checked_out'
             ])
         );
 
@@ -118,16 +114,15 @@ class DocumentController extends BaseController
      * Add
      *
      * @param  Request  $request
-     * @bodyParam name_id int required The id of the name. Example: 3
-     * @bodyParam type string required The type of alias. Example: role
-     * @bodyParam family_name string required The family name for the alias. Example: Buren
-     * @bodyParam given_name string optional The given name for the alias. Example: Martin  
-     * @bodyParam middle_name string optional The middle name for the alias. Example: Van 
-     * @bodyParam suffix string optional The suffix for the alias. Example: Mr.
-     * @bodyParam title string optional The title for the alias. Example: President
-     * @bodyParam role string optional The role for the alias.
-     * @bodyParam public_notes text optional The public notes for the alias. 
-     * @bodyParam staff_notes text optional The staff notes for the alias. 
+     * @bodyParam filename string required The filename of the Document. Example: file.pdf
+     * @bodyParam project_id int required The project id of Document. Example: 6
+     * @bodyParam notes string optional The notes for the document.
+     * @bodyParam author string required The author for the document.
+     * @bodyParam document_date date required The date for the document.
+     * @bodyParam document_type string required The type of the document.
+     * @bodyParam published boolean optional The published status for the document.
+     * @bodyParam publish_date date optional The publish date for the document.
+     * @bodyParam checked_out boolean optional The checked out status for the document. 
      * @return Response
      * 
      * @response {
