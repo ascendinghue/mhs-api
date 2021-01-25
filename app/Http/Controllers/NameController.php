@@ -183,6 +183,16 @@ class NameController extends BaseController
             'bio_filename' => 'nullable'
         ]);
 
+        $i = null;
+        $nameKey = strtolower($request->given_name).'-'.strtolower($request->family_name);
+        $nameKeyAppend = '';
+        $nameKeyResults = Name::where('name_key', $nameKey . $nameKeyAppend)->first();
+        while (!is_null($nameKeyResults)) {
+            $i = $i + 1;
+            $nameKeyAppend = '-' . $i;
+            $nameKeyResults = Name::where('name_key', $nameKey . $nameKeyAppend)->first();
+        }
+
         $name = Name::create(
             $request->only([
                 'family_name',
@@ -200,6 +210,7 @@ class NameController extends BaseController
         );
 
         $name->update([
+            'name_key' => $nameKey . $nameKeyAppend,
             'first_created_by' => $request->identity->username
         ]);
 
