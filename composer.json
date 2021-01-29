@@ -7,6 +7,7 @@
     "require": {
         "php": "^7.2.5",
         "doctrine/dbal": "^2.10",
+        "fruitcake/laravel-cors": "^2.0",
         "kalnoy/nestedset": "^5.0",
         "laravel/lumen-framework": "^7.0",
         "mpociot/laravel-apidoc-generator": "^4.7",
