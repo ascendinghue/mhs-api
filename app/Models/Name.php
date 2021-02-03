@@ -11,7 +11,7 @@ class Name extends Model
      *
      * @var array
      */    
-    protected $appends = ['name_key'];
+    protected $appends = [];
     
     /**
      * The attributes that aren't mass assignable.
@@ -39,21 +39,6 @@ class Name extends Model
         'aliases',
         'links'
     ];
-
-    /**
-     * Get the Name's name_key
-     *
-     * @return string
-     */    
-    public function getNameKeyAttribute()
-    {
-        return implode('-',[
-            strtolower($this->family_name),
-            strtolower($this->given_name),
-            strtolower($this->middle_name),
-            strtolower($this->date_of_birth)
-        ]);
-    }
 
     /**
      * Get the aliases for the name
