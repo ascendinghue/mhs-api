@@ -7,6 +7,9 @@ use Illuminate\Http\Request;
 use App\Http\Resources\Name as NameResource;
 use App\Http\Resources\Link as LinkResource;
 use Laravel\Lumen\Routing\Controller as BaseController;
+use Illuminate\Support\Facades\Schema;
+use App\Http\Middleware\QueryParams as QueryParams;
+
 
 /**
  * @group Names
@@ -27,8 +30,23 @@ class NameController extends BaseController
      */
     public function index(Request $request)
     {
+		//find any fields
+		$queryStrArr = $request->query();
+
+		$query = Name::query();
+
+		foreach($queryStrArr as $param => $value){
+			if(Schema::hasColumn('names', $param)){
+				$query->where($param, QueryParams::getOperator($value), QueryParams::cleanValue($value));
+			}
+		}
+
+		return NameResource::collection($query->get());
+
         return NameResource::collection(Name::paginate($request->query('per_page') ?? 10));
     }
+
+
 
     /**
      * Read
@@ -76,9 +94,17 @@ class NameController extends BaseController
      */
     public function show($id)
     {
-        return new NameResource(Name::findorfail($id));
+		if(is_numeric($id)) return new NameResource(Name::findorfail($id));
+
+		$name_key = $id;
+
+		//treat $id as name_key
+		return new NameResource(Name::where('name_key', "=", $name_key)->first());
     }
     
+
+
+
      /**
      * Edit
      *
@@ -111,7 +137,10 @@ class NameController extends BaseController
             'date_of_death' => 'sometimes|nullable|date_format:Y-m-d',
             'public_notes' => 'sometimes|nullable',
             'staff_notes' => 'sometimes|nullable',
-            'bio_filename' => 'sometimes|nullable'
+            'bio_filename' => 'sometimes|nullable',
+			'variants' => 'sometimes',
+			'professions' => 'sometimes',
+			'title' => 'sometimes'
         ]);
 
         Name::findOrFail($id)->update(
@@ -126,7 +155,10 @@ class NameController extends BaseController
                 'date_of_death',
                 'public_notes',
                 'staff_notes',
-                'bio_filename'
+                'bio_filename',
+				'variants',
+				'professions',
+				'title'
             ])
         );
 
@@ -180,7 +212,10 @@ class NameController extends BaseController
             'date_of_death' => 'nullable|date_format:Y-m-d',
             'public_notes' => 'nullable',
             'staff_notes' => 'nullable',
-            'bio_filename' => 'nullable'
+            'bio_filename' => 'nullable',
+			'variants' => 'nullable',
+			'professions' => 'nullable',
+			'title' => 'nullable'
         ]);
 
         $i = null;
@@ -205,7 +240,10 @@ class NameController extends BaseController
                 'date_of_death',
                 'public_notes',
                 'staff_notes',
-                'bio_filename'
+                'bio_filename',
+				'variants',
+				'professions',
+				'title'
             ])
         );
 

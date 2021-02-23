@@ -30,6 +30,12 @@ class Name extends JsonResource
             'staff_notes' => $this->staff_notes,
             'bio_filename' => $this->bio_filename,
             'name_key' => $this->name_key,
+			'variants' => $this->variants,
+			'professions' => $this->professions,
+			'title' => $this->title,
+			'created_at' => $this->created_at,
+			'updated_at' => $this->updated_at,
+			'first_created_by' => $this->first_created_by,
             'aliases' => AliasResource::collection($this->whenLoaded('aliases')),
             'links' => LinkResource::collection($this->whenLoaded('links'))
         ];
