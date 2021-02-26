@@ -14,9 +14,12 @@ class ChangeDocumentsProjectId extends Migration
     public function up() {
         Schema::table('documents', function (Blueprint $table) {
 			$table->string('project_sitename')->default("");
-			$table->dropColumn('project_id');
         });
-    }
+ 
+		Schema::table('projects', function (Blueprint $table) {
+			$table->string('project_sitename')->default("");
+        });
+ }
 
     /**
      * Reverse the migrations.
@@ -27,7 +30,9 @@ class ChangeDocumentsProjectId extends Migration
     {
         Schema::table('documents', function (Blueprint $table) {
 			$table->dropColumn('project_sitename');
-			$table->unsignedBigInteger('project_id');
+        });
+        Schema::table('projects', function (Blueprint $table) {
+			$table->dropColumn('project_sitename');
         });
     }
 }
