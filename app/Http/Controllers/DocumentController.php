@@ -6,6 +6,8 @@ use Models\Document;
 use Illuminate\Http\Request;
 use App\Http\Resources\Document as DocumentResource;
 use Laravel\Lumen\Routing\Controller as BaseController;
+use Illuminate\Support\Facades\Schema;
+use App\Http\Middleware\QueryParams as QueryParams;
 
 /**
  * @group Document
@@ -26,7 +28,20 @@ class DocumentController extends BaseController
      */
     public function index(Request $request)
     {
-        return DocumentResource::collection(Document::paginate($request->query('per_page') ?? 10));
+		//find any fields
+		$queryStrArr = $request->query();
+
+		$query = Document::query();
+
+		foreach($queryStrArr as $param => $value){
+			if(Schema::hasColumn('documents', $param)){
+				$query->where($param, QueryParams::getOperator($value), QueryParams::cleanValue($value));
+			}
+		}
+
+		return DocumentResource::collection($query->paginate($request->query('per_page') ?? 10));
+
+//        return DocumentResource::collection(Document::paginate($request->query('per_page') ?? 10));
     }
 
     /**
@@ -152,6 +167,11 @@ class DocumentController extends BaseController
             'checked_out' => 'sometimes|boolean'
         ]);
 
+/*
+		$this->steps()->updateExistingPivot($step_id, [
+    		'status' => $status,
+		]);
+*/
         $document = Document::create(
             $request->only([    
                 'filename',

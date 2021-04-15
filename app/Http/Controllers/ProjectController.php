@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Models\Project;
 use Illuminate\Http\Request;
 use App\Http\Resources\Name as NameResource;
+use App\Http\Resources\Document as DocumentResource;
 use App\Http\Resources\Subject as SubjectResource;
 use App\Http\Resources\Project as ProjectResource;
 use App\Http\Resources\ProjectList as ProjectListResource;
@@ -173,6 +174,19 @@ class ProjectController extends BaseController
     public function getNames($id)
     {
         return NameResource::collection(Project::findorfail($id)->names);
+    }
+
+	    /**
+     * Browse Documents
+     * 
+     * Retrieve Documents for a Project
+     *
+     * @param  int  $id
+     * @return Response
+     */    
+    public function getDocuments($id)
+    {
+        return DocumentResource::collection(Project::findorfail($id)->documents);
     }
 
     /**

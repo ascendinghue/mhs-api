@@ -30,7 +30,8 @@ class Project extends Model
      */
     protected $with = [
         'subjects',
-        'names'
+        'names',
+		'documents',
     ];
 
     /**
@@ -40,6 +41,15 @@ class Project extends Model
     {
         return $this->belongsToMany('Models\Subject');
     }
+
+	    /**
+     * The subjects that belong to the project.
+     */
+    public function documents()
+    {
+        return $this->hasMany('Models\Document');
+    }
+
 
     /**
      * The names that belong to the project.

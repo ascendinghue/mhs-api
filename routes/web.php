@@ -133,6 +133,7 @@ $router->group(['prefix'=>'v1', 'middleware' => 'auth'], function() use($router)
     */
     $router->get('projects/{id}/lists', 'ProjectController@getLists');
     $router->get('projects/{id}/names', 'ProjectController@getNames');
+    $router->get('projects/{id}/documents', 'ProjectController@getDocuments');
     $router->get('projects/{id}/subjects', 'ProjectController@getSubjects');
     $router->group(['middleware' => 'permission:edit'], function()  use($router){
         $router->post('projects/{id}/names', 'ProjectController@addName');

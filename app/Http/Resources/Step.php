@@ -21,9 +21,14 @@ class Step extends JsonResource
             'project_id' => $this->project_id,
             'short_name' => $this->short_name,
             'description' => $this->description,
+			'color' => $this->color,
             'status' => $this->whenPivotLoaded('document_step', function () {
                 return $this->pivot->status;
+            }),
+			'document_step_id' => $this->whenPivotLoaded('document_step', function () {
+                return $this->pivot->id;
             })
+
         ];
     }
 }
