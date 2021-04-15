@@ -13,6 +13,7 @@ class DocumentProjectnameToHasManyKey extends Migration
      */
     public function up()
     {
+		if(!Schema::hasColumn('documents', 'project_id'))
 		Schema::table('documents', function (Blueprint $table) {
 			$table->integer('project_id');
         });
@@ -31,6 +32,7 @@ class DocumentProjectnameToHasManyKey extends Migration
 		Schema::table('documents', function (Blueprint $table) {
 			$table->string('project_sitename')->default("");
         });
+		if(Schema::hasColumn('documents', 'project_id')) 
 		Schema::table('documents', function (Blueprint $table) {
 			$table->dropColumn('project_id');
         });
