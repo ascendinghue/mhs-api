@@ -202,6 +202,16 @@ class ProjectController extends BaseController
         return SubjectResource::collection(Project::findorfail($id)->subjects);
     }
 
+
+    public function toggleNames(Request $request, $id)
+    {
+	Project::findorfail($id)->names()->toggle($request->input('name_ids'));
+	
+	return response(null, 200);
+    }
+
+
+
     /**
      * Add Name
      * 
