@@ -97,15 +97,18 @@ class DocumentController extends BaseController
     public function update(Request $request, $id)
     {
         $this->validate($request, [
-            'filename' => 'required',
+ /*           'filename' => 'required',
             'project_id' => 'required|exists:projects,id',
-            'notes' => 'present|nullable',
-            'author' => 'required',
+*/
+/*            'author' => 'required',
             'document_date' => 'present|nullable',
             'document_type' => 'required',
-            'published' => 'sometimes|boolean',
+*/
+			'notes' => 'sometimes|nullable',
+			'published' => 'sometimes|boolean',
             'publish_date' => 'sometimes|date_format:Y-m-d',
-            'checked_out' => 'sometimes|boolean'
+            'checked_outin_by' => 'sometimes',
+			'checked_outin_date' => 'sometimes|date_format:Y-m-d'
         ]);
 
         Document::findOrFail($id)->update(
@@ -113,12 +116,10 @@ class DocumentController extends BaseController
                 'filename',
                 'project_id',
                 'notes',
-                'author',
-                'document_date',
-                'document_type',
-                'published',
+				'published',
                 'publish_date',
-                'checked_out'
+                'checked_outin_date',
+				'checked_outin_by'
             ])
         );
 
@@ -156,16 +157,19 @@ class DocumentController extends BaseController
     public function store(Request $request)
     {
         $this->validate($request, [
+/*
             'filename' => 'required',
             'project_id' => 'required|exists:projects,id',
-            'notes' => 'present|nullable',
-            'author' => 'required',
+			'author' => 'required',
             'document_date' => 'present|nullable',
             'document_type' => 'required',
-            'published' => 'sometimes|boolean',
-            'publish_date' => 'sometimes|date_format:Y-m-d',
-            'checked_out' => 'sometimes|boolean'
-        ]);
+*/
+			'notes' => 'present|nullable',
+			'published' => 'sometimes|boolean',
+			'publish_date' => 'sometimes|date_format:Y-m-d',
+			'checked_outin_by' => 'sometimes',
+			'checked_outin_date' => 'sometimes|date_format:Y-m-d'
+		]);
 
 /*
 		$this->steps()->updateExistingPivot($step_id, [
@@ -177,9 +181,12 @@ class DocumentController extends BaseController
                 'filename',
                 'project_id',
                 'notes',
-                'author',
-                'document_date',
-                'document_type',
+                'authors',
+                'recipients',
+                'date_from',
+                'date_to',
+                'title',
+                'teaser',
                 'published',
                 'publish_date',
                 'checked_out'

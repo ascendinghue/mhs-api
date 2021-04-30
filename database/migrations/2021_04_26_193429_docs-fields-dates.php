@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class MakeProfessionDefault extends Migration
+class DocsFieldsDates extends Migration
 {
     /**
      * Run the migrations.
@@ -13,9 +13,10 @@ class MakeProfessionDefault extends Migration
      */
     public function up()
     {
-        if(Schema::hasColumn("names", "professions") == false ) Schema::table('names', function (Blueprint $table) { 
-		$table->string('professions')->default("");
-	});
+        Schema::table('documents', function (Blueprint $table) {
+			$table->string('date_from')->default("");
+			$table->string('date_to')->default("");
+        });
 
     }
 
@@ -26,6 +27,9 @@ class MakeProfessionDefault extends Migration
      */
     public function down()
     {
-        //
+		Schema::table('documents', function (Blueprint $table) {
+			$table->dropColumn('date_from');
+			$table->dropColumn('date_to');
+        });
     }
 }
