@@ -77,7 +77,7 @@ class LinkController extends BaseController
     {
         $this->validate($request, [
             'type' => 'sometimes|in:source,authority',
-            'authority' => 'sometimes|in:snac,loc',
+            'authority' => 'sometimes|in:SNAC,LCNAF',
             'authority_id' => 'sometimes',
             'display_title' => 'sometimes',
             'url' => 'sometimes',
@@ -130,7 +130,7 @@ class LinkController extends BaseController
     {
         $this->validate($request, [
             'type' => 'required|in:source,authority',
-            'authority' => 'required|in:snac,loc',
+            'authority' => 'sometimes|in:SNAC,LCNAF',
             'authority_id' => 'required',
             'display_title' => 'required',
             'url' => 'required',
