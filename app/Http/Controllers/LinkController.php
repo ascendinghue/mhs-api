@@ -130,10 +130,10 @@ class LinkController extends BaseController
     {
         $this->validate($request, [
             'type' => 'required|in:source,authority',
-            'authority' => 'sometimes|in:SNAC,LCNAF',
-            'authority_id' => 'required',
-            'display_title' => 'required',
-            'url' => 'required',
+            'authority' => 'sometimes|in:SNAC,LCNAF|nullable',
+            'authority_id' => 'sometimes|nullable',
+            'display_title' => 'sometimes|nullable',
+            'url' => 'sometimes|nullable',
             'notes' => 'nullable',
             
             'linkable_id' => 'required',
