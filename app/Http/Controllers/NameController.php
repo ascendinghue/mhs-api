@@ -41,7 +41,7 @@ class NameController extends BaseController
 			}
 		}
 
-		return NameResource::collection($query->paginate($request->query('per_page') ?? 10));
+		return NameResource::collection($query->orderBy('created_at', 'desc')->paginate($request->query('per_page') ?? 10));
 
 //        return NameResource::collection(Name::paginate($request->query('per_page') ?? 10));
     }
