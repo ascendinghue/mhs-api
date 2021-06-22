@@ -107,25 +107,86 @@ class DocumentController extends BaseController
 			'notes' => 'sometimes|nullable',
 			'published' => 'sometimes|boolean',
             'publish_date' => 'sometimes|date_format:Y-m-d',
-            'checked_outin_by' => 'sometimes',
-			'checked_outin_date' => 'sometimes|date_format:Y-m-d'
         ]);
 
-        Document::findOrFail($id)->update(
+		Document::findOrFail($id)->update(
             $request->only([
-                'filename',
-                'project_id',
                 'notes',
 				'published',
                 'publish_date',
-                'checked_outin_date',
-				'checked_outin_by'
             ])
         );
 
         return response(null, 204);
-    }    
+    }   
+	
+	
+
+
+	  /**
+     * Checkout
+     * 
+     * Checkout the specified Document
+     *
+     * @param  Request  $request
+     * @param  string  $id
+     * @urlParam id required The ID of the Document. Example: 3
+     * @bodyParam checked_out boolean optional The checked out status for the document. 
+     * @return Response
+     */
+    public function checkout(Request $request, $id)
+    {
+		$doc = Document::findOrFail($id);
+		
+		if($doc->checked_out){
+			return response(["success" => 0, "message" => "Document is already checked out."], 200);
+		}
+
+		$doc->checked_out = 1;
+		$doc->checked_outin_by = $_SESSION["PSC_USER"];
+		$doc->checked_outin_date = date("Y-m-d H:i:s");
+		$doc->save();
+
+        return response(["success" => 1], 200);
+    }   
     
+
+
+	
+	  /**
+     * Checkin
+     * 
+     * Checkin the specified Document
+     *
+     * @param  Request  $request
+     * @param  string  $id
+     * @urlParam id required The ID of the Document. Example: 3
+     * @bodyParam checked_out boolean optional The checked out status for the document. 
+     * @return Response
+     */
+    public function checkin(Request $request, $id)
+    {
+		$doc = Document::findOrFail($id);
+		
+		if($doc->checked_out == 0){
+			return response(["success" => 0, "message" => "Document is not checked out."], 200);
+		}
+
+		if($doc->checked_outin_by != $_SESSION['PSC_USER']) {
+			return response(["success" => 0, "message" => "Document is checked out to another user."], 200);
+		}
+
+		$doc->checked_out = 0;
+		$doc->checked_outin_date = date("Y-m-d H:i:s");
+		$doc->save();
+
+        return response(["success" => 1], 200);
+    }   
+    
+
+
+
+	
     /**
      * Add
      *
@@ -165,6 +226,7 @@ class DocumentController extends BaseController
             'document_type' => 'required',
 */
 			'notes' => 'present|nullable',
+			'checked_out' => 'sometimes|boolean',
 			'published' => 'sometimes|boolean',
 			'publish_date' => 'sometimes|date_format:Y-m-d',
 			'checked_outin_by' => 'sometimes',
@@ -235,7 +297,8 @@ class DocumentController extends BaseController
 
         $document = Document::findorfail($id);
         $document->steps()->updateExistingPivot($request->step_id, [
-            'status' => $request->status
+            'status' => $request->status,
+			'username' => $_SESSION['PSC_USER']
         ]);
 
         return response(null, 204);

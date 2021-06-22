@@ -14,7 +14,7 @@ class NamesTitleVariantsProfessions extends Migration
     public function up()
     {
         Schema::table('names', function (Blueprint $table) {
-            $table->string('title', 32)->default("");
+            $table->string('title')->default("");
             $table->string('variants')->default("");
             $table->text('professions');
         });

@@ -36,6 +36,6 @@ class Document extends Model
     public function steps()
     {
         return $this->belongsToMany('Models\Step')
-                    ->withPivot('status','id');
+                    ->withPivot('status','id','username');
     }
 }

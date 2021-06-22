@@ -30,7 +30,9 @@ class Document extends JsonResource
             'published' => $this->published,
             'publish_date' => $this->publish_date,
             'checked_out' => $this->checked_out,
-            'steps' => StepResource::collection($this->steps)
+            'checked_outin_by' => $this->checked_outin_by,
+            'checked_outin_date' => $this->checked_outin_date,
+            'steps' => StepResource::collection($this->steps->sortBy("order"))
         ];
     }
 }

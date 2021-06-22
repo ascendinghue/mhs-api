@@ -25,6 +25,9 @@ class Step extends JsonResource
             'status' => $this->whenPivotLoaded('document_step', function () {
                 return $this->pivot->status;
             }),
+			'username' => $this->whenPivotLoaded('document_step', function () {
+                return $this->pivot->username;
+            }),
 			'document_step_id' => $this->whenPivotLoaded('document_step', function () {
                 return $this->pivot->id;
             })

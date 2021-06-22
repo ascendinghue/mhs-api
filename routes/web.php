@@ -93,6 +93,8 @@ $router->group(['prefix'=>'v1', 'middleware' => 'auth'], function() use($router)
     $router->get('documents/{id}', 'DocumentController@show');
     $router->group(['middleware' => 'permission:edit'], function()  use($router){
         $router->patch('documents/{id}', 'DocumentController@update');
+        $router->patch('documents/{id}/checkout', 'DocumentController@checkout');
+        $router->patch('documents/{id}/checkin', 'DocumentController@checkin');
         $router->post('documents', 'DocumentController@store');
         $router->delete('documents/{id}', 'DocumentController@delete');
         $router->patch('documents/{id}/steps', 'DocumentController@updateDocumentStep');

@@ -26,7 +26,7 @@ class StepController extends BaseController
      */
     public function index(Request $request)
     {
-        return StepResource::collection(Step::paginate($request->query('per_page') ?? 10));
+        return StepResource::collection(Step::paginate($request->query('per_page') ?? 10))->sortBy("order");
     }
 
     /**
