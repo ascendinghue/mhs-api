@@ -136,6 +136,7 @@ $router->group(['prefix'=>'v1', 'middleware' => 'auth'], function() use($router)
     $router->get('projects/{id}/documents', 'ProjectController@getDocuments');
     $router->get('projects/{id}/subjects', 'ProjectController@getSubjects');
     $router->group(['middleware' => 'permission:edit'], function()  use($router){
+	$router->patch('projects/{id}/names', 'ProjectController@toggleNames');
         $router->post('projects/{id}/names', 'ProjectController@addName');
         $router->delete('projects/{id}/names', 'ProjectController@removeName');
         $router->post('projects/{id}/subjects', 'ProjectController@addSubject');
