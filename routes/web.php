@@ -29,6 +29,7 @@ $router->group(['prefix'=>'v1', 'middleware' => 'auth'], function() use($router)
     /*
         Names
     */
+    $router->get('names/name-key-available', 'NameController@checkNameKey');
     $router->get('names', 'NameController@index');
     $router->get('names/{id}', 'NameController@show');
     $router->group(['middleware' => 'permission:edit'], function()  use($router){

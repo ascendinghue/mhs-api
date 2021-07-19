@@ -47,6 +47,11 @@ class NameController extends BaseController
     }
 
 
+    public function checkNameKey(Request $request)
+    {
+	return Name::where('name_key', $request->q)->count();
+    }
+
 
     /**
      * Read
