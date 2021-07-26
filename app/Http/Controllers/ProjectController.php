@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use Models\Name;
 use Models\Project;
 use Illuminate\Http\Request;
 use App\Http\Resources\Name as NameResource;
@@ -171,8 +172,31 @@ class ProjectController extends BaseController
      * @param  int  $id
      * @return Response
      */    
-    public function getNames($id)
+    public function getNames($id, Request $request)
     {
+	
+	$query = Name::with(['projects'])->where('family_name', 'like', '%'.$request->q.'%')
+                        ->orWhere('given_name', 'like', '%'.$request->q.'%')
+                        ->orWhere('maiden_name', 'like', '%'.$request->q.'%')
+                        ->orWhere('middle_name', 'like', '%'.$request->q.'%')
+                        ->orWhere('keywords', 'like', '%'.$request->q.'%')
+                        ->orWhere('public_notes', 'like', '%'.$request->q.'%')
+                        ->orWhere('staff_notes', 'like', '%'.$request->q.'%')
+                        ->orWhere('title', 'like', '%'.$request->q.'%')
+                        ->orWhere('name_key', 'like', '%'.$request->q.'%');
+
+	$names = $query->orderBy('created_at', 'desc')->paginate($request->query('per_page') ?? 100);
+
+	return NameResource::collection(
+		$names->filter(function ($name, $key) use ($id) {
+			$project_ids = [];
+			foreach($name->projects as $project) {
+				$project_ids[] = $project->id;
+			}
+			return in_array($id, $project_ids);
+		})
+	);
+
         return NameResource::collection(Project::findorfail($id)->names);
     }
 

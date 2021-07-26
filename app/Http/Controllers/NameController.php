@@ -39,7 +39,8 @@ class NameController extends BaseController
 			->orWhere('public_notes', 'like', '%'.$request->q.'%')
 			->orWhere('staff_notes', 'like', '%'.$request->q.'%')
 			->orWhere('title', 'like', '%'.$request->q.'%')
-			->orWhere('name_key', 'like', '%'.$request->q.'%')->get()
+			->orWhere('name_key', 'like', '%'.$request->q.'%')
+			->orderBy('created_at', 'desc')->paginate($request->query('per_page') ?? 100)
 		);
 
 		//find any fields
