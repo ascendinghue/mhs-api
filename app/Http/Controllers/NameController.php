@@ -47,6 +47,11 @@ class NameController extends BaseController
     }
 
 
+    public function checkNameKey(Request $request)
+    {
+	return Name::where('name_key', $request->q)->count();
+    }
+
 
     /**
      * Read
@@ -219,7 +224,13 @@ class NameController extends BaseController
         ]);
 
         $i = null;
-        $nameKey = strtolower($request->given_name).'-'.strtolower($request->family_name);
+        if (is_null($request->name_key)) {
+            $nameKey = strtolower($request->given_name).'-'.strtolower($request->family_name);
+            $nameKey .= (is_null($request->maiden_name)) ? '' : '-'.strtolower($request->maiden_name);
+        }else{
+            $nameKey = $request->name_key;
+        }
+
         $nameKeyAppend = '';
         $nameKeyResults = Name::where('name_key', $nameKey . $nameKeyAppend)->first();
         while (!is_null($nameKeyResults)) {
