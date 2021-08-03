@@ -17,11 +17,9 @@ class Authenticate
      */
     public function handle($request, Closure $next)
     {
-      //$session = ["username" => false, "role" => false, "sitename" => "", "display_name" => ""];
+		//$session = \Publications\StaffUser::currentUser();
 
-	//$session = \Publications\StaffUser::currentUser();
-
-$session = ["username" => "mojojojo", "role" => "editor", "sitename" => "cfm", "display_name" => "Mojo"];
+$session = ["username" => "mojojojo", "role" => "editor", "sitename" => "cfm", "display_name" => "Mojo", "project_id" => 1];
 
       if (!$session['username'] && !$session['role']) {
         return response('Unauthorized.', 401);
