@@ -35,7 +35,6 @@ class NameController extends BaseController
 			->orWhere('given_name', 'like', '%'.$request->q.'%')
 			->orWhere('maiden_name', 'like', '%'.$request->q.'%')
 			->orWhere('middle_name', 'like', '%'.$request->q.'%')
-			->orWhere('keywords', 'like', '%'.$request->q.'%')
 			->orWhere('public_notes', 'like', '%'.$request->q.'%')
 			->orWhere('staff_notes', 'like', '%'.$request->q.'%')
 			->orWhere('title', 'like', '%'.$request->q.'%')
@@ -82,12 +81,10 @@ class NameController extends BaseController
      *   "maiden_name": "",
      *   "middle_name": "",
      *   "suffix": "",
-     *   "keywords": "",
      *   "date_of_birth": "1968-04-23",
      *   "date_of_death": null,
      *   "public_notes": null,
      *   "staff_notes": null,
-     *   "bio_filename": null,
      *   "aliases": [
      *       {
      *       "id": "6",
@@ -96,12 +93,10 @@ class NameController extends BaseController
      *       "maiden_name": "",
      *       "middle_name": "",
      *       "suffix": "",
-     *       "keywords": "",
      *       "date_of_birth": "1968-04-23",
      *       "date_of_death": null,
      *       "public_notes": null,
-     *       "staff_notes": null,
-     *       "bio_filename": null
+     *       "staff_notes": null
      *       }
      *   ]
      * }
@@ -134,12 +129,10 @@ class NameController extends BaseController
      * @bodyParam maiden_name string optional The maiden name of the name.
      * @bodyParam middle_name string optional The middle name of the name.
      * @bodyParam suffix string optional The suffix of the name.
-     * @bodyParam keywords string optional The keywords of the name.
      * @bodyParam date_of_birth string optional The date of birth of the name.
      * @bodyParam date_of_death string optional The date of death of the name.
      * @bodyParam public_notes string optional The public notes of the name.
      * @bodyParam staff_notes string optional The staff notes of the name.
-     * @bodyParam bio_filename string optional The bio filename of the name.
      * @return Response
      */
     public function update(Request $request, $id)
@@ -150,12 +143,10 @@ class NameController extends BaseController
             'maiden_name' => 'sometimes|nullable',
             'middle_name' => 'sometimes|nullable',
             'suffix' => 'sometimes|nullable',
-            'keywords' => 'sometimes|nullable',
             'date_of_birth' => 'sometimes|nullable|date_format:Y-m-d',
             'date_of_death' => 'sometimes|nullable|date_format:Y-m-d',
             'public_notes' => 'sometimes|nullable',
             'staff_notes' => 'sometimes|nullable',
-            'bio_filename' => 'sometimes|nullable',
 			'variants' => 'sometimes',
 			'professions' => 'sometimes',
 			'title' => 'sometimes'
@@ -168,12 +159,10 @@ class NameController extends BaseController
                 'maiden_name',
                 'middle_name',
                 'suffix',
-                'keywords',
                 'date_of_birth',
                 'date_of_death',
                 'public_notes',
                 'staff_notes',
-                'bio_filename',
 				'variants',
 				'professions',
 				'title'
@@ -194,12 +183,10 @@ class NameController extends BaseController
      * @bodyParam maiden_name string optional The maiden name of the name.
      * @bodyParam middle_name string optional The middle name of the name.
      * @bodyParam suffix string optional The suffix of the name.
-     * @bodyParam keywords string optional The keywords of the name.
      * @bodyParam date_of_birth string optional The date of birth of the name.
      * @bodyParam date_of_death string optional The date of death of the name.
      * @bodyParam public_notes string optional The public notes of the name.
      * @bodyParam staff_notes string optional The staff notes of the name.
-     * @bodyParam bio_filename string optional The bio filename of the name.
      * @return Response
      * 
      * @response {
@@ -209,12 +196,10 @@ class NameController extends BaseController
      *   "maiden_name": "",
      *   "middle_name": "",
      *   "suffix": "",
-     *   "keywords": "",
      *   "date_of_birth": "1968-04-23",
      *   "date_of_death": null,
      *   "public_notes": null,
-     *   "staff_notes": null,
-     *   "bio_filename": null
+     *   "staff_notes": null
      * }
      */
     public function store(Request $request)
@@ -225,12 +210,10 @@ class NameController extends BaseController
             'maiden_name' => 'nullable',
             'middle_name' => 'nullable',
             'suffix' => 'nullable',
-            'keywords' => 'nullable',
             'date_of_birth' => 'nullable|date_format:Y-m-d',
             'date_of_death' => 'nullable|date_format:Y-m-d',
             'public_notes' => 'nullable',
             'staff_notes' => 'nullable',
-            'bio_filename' => 'nullable',
 			'variants' => 'nullable',
 			'professions' => 'nullable',
 			'title' => 'nullable'
@@ -259,12 +242,10 @@ class NameController extends BaseController
                 'maiden_name',
                 'middle_name',
                 'suffix',
-                'keywords',
                 'date_of_birth',
                 'date_of_death',
                 'public_notes',
                 'staff_notes',
-                'bio_filename',
 				'variants',
 				'professions',
 				'title'

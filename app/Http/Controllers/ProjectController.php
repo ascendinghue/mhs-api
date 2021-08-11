@@ -179,7 +179,6 @@ class ProjectController extends BaseController
                         ->orWhere('given_name', 'like', '%'.$request->q.'%')
                         ->orWhere('maiden_name', 'like', '%'.$request->q.'%')
                         ->orWhere('middle_name', 'like', '%'.$request->q.'%')
-                        ->orWhere('keywords', 'like', '%'.$request->q.'%')
                         ->orWhere('public_notes', 'like', '%'.$request->q.'%')
                         ->orWhere('staff_notes', 'like', '%'.$request->q.'%')
                         ->orWhere('title', 'like', '%'.$request->q.'%')
